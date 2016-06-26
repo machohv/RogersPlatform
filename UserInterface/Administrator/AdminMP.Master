@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMP.master.cs" Inherits="UserInterface.Administrator.AdminMP" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Administrator Platform</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="../Content/sb-admin.css" rel="stylesheet" />
+        <link href="../Content/font-awesome.min.css" rel="stylesheet" />
+        <script src="../scripts/jquery-1.9.1.min.js"></script>
+        <script src="../scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Roger's Administrator</a>
+            </div>
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrador <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-spoon"></i> Administrar platos</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa fa-users"></i> Administrar usuarios</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa fa-ban"></i> Bloquear clientes</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa fa-list"></i>  Administrar pedidos</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-clock-o"></i>  Administrar estados</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+         
+            </asp:ContentPlaceHolder>
+        </div>
+
+    </div>
+
+
+
+
+
+        
+    </form>
+</body>
+</html>
