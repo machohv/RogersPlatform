@@ -103,15 +103,17 @@
     <Content Include="Administrator\ImageSearch.aspx" />
     <Content Include="Administrator\RemoveEmployee.aspx" />
     <Content Include="Administrator\RemovePlate.aspx" />
+    <Content Include="Cocina\OrderList.aspx" />
     <Content Include="Content\imageGallery.css" />
+    <Content Include="Content\style.css" />
     <Content Include="images\bingLogo.png" />
     <Content Include="packages.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Administrator\AdminMP.Master" />
     <Content Include="scripts\BingSearch.js" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
+    <Content Include="scripts\jquery-3.0.0.min.js" />
+    <Content Include="scripts\OrderCreator.js" />
+    <Content Include="scripts\ThreadManagement.js" />
     <Content Include="Web References\RogersWS\Client.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -279,6 +281,13 @@
     <Compile Include="Administrator\RemovePlate.aspx.designer.cs">
       <DependentUpon>RemovePlate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocina\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocina\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -317,6 +326,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
