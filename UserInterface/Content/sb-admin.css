@@ -22,8 +22,13 @@ body {
 }
 
 #page-wrapper {
-    width: 100%;
+    width: 960px;
+    /*height:960px;*/
     padding: 0;
+    background-color: #fff;
+}
+
+.white-background {
     background-color: #fff;
 }
 

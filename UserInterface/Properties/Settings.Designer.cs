@@ -26,7 +26,7 @@ namespace UserInterface.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://rogersapp.azurewebsites.net/Rogers_API.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://approgers.azurewebsites.net/Rogers_API.asmx")]
         public string UserInterface_RogersWS_Rogers_API {
             get {
                 return ((string)(this["UserInterface_RogersWS_Rogers_API"]));

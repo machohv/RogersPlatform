@@ -30,35 +30,81 @@ namespace UserInterface.RogersWS {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Person))]
     public partial class Rogers_API : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback searchClientsOperationCompleted;
+        private System.Threading.SendOrPostCallback searchClientsJSONOperationCompleted;
         
-        private System.Threading.SendOrPostCallback addClientOperationCompleted;
+        private System.Threading.SendOrPostCallback searchClientsSOAPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback updateBasicDataOperationCompleted;
+        private System.Threading.SendOrPostCallback addClientJSONOperationCompleted;
         
-        private System.Threading.SendOrPostCallback changeStateOperationCompleted;
+        private System.Threading.SendOrPostCallback addClientSOAPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback deleteEmployeeOperationCompleted;
+        private System.Threading.SendOrPostCallback updateBasicDataJSONOperationCompleted;
         
-        private System.Threading.SendOrPostCallback updateEmployeeOperationCompleted;
+        private System.Threading.SendOrPostCallback updateBasicDataSOAPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback searchEmployeeOperationCompleted;
+        private System.Threading.SendOrPostCallback changeStateJSONOperationCompleted;
         
-        private System.Threading.SendOrPostCallback addEmployeeOperationCompleted;
+        private System.Threading.SendOrPostCallback changeStateSOAPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback searchOrderStatesOperationCompleted;
+        private System.Threading.SendOrPostCallback updateEmployeeJSONOperationCompleted;
         
-        private System.Threading.SendOrPostCallback setTimeOperationCompleted;
+        private System.Threading.SendOrPostCallback updateEmployeeSOAPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback addproductOperationCompleted;
+        private System.Threading.SendOrPostCallback searchEmployeeJSONOperationCompleted;
         
-        private System.Threading.SendOrPostCallback deleteProductOperationCompleted;
+        private System.Threading.SendOrPostCallback searchEmployeeSOAPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback searchProductOperationCompleted;
+        private System.Threading.SendOrPostCallback addEmployeeJSONOperationCompleted;
         
-        private System.Threading.SendOrPostCallback updateProductOperationCompleted;
+        private System.Threading.SendOrPostCallback addEmployeeSOAPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback addOrderOperationCompleted;
+        private System.Threading.SendOrPostCallback searchOrderStatesJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback searchOrderStatesSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback setTimeJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback setTimeSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback addproductJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback addproductSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deleteProductJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deleteProductSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback searchProductJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback searchProductSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback searchProductByIdJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback searchProductByIdSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateProductJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateProductSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback addOrderJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback addOrderSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback searchOrdersJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback searchOrdersSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deletePersonJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deletePersonSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback changeProductStateJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback changeProductStateSOAPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback verifyPasswordJSONOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback verifyPasswordSOAPOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -99,83 +145,181 @@ namespace UserInterface.RogersWS {
         }
         
         /// <remarks/>
-        public event searchClientsCompletedEventHandler searchClientsCompleted;
+        public event searchClientsJSONCompletedEventHandler searchClientsJSONCompleted;
         
         /// <remarks/>
-        public event addClientCompletedEventHandler addClientCompleted;
+        public event searchClientsSOAPCompletedEventHandler searchClientsSOAPCompleted;
         
         /// <remarks/>
-        public event updateBasicDataCompletedEventHandler updateBasicDataCompleted;
+        public event addClientJSONCompletedEventHandler addClientJSONCompleted;
         
         /// <remarks/>
-        public event changeStateCompletedEventHandler changeStateCompleted;
+        public event addClientSOAPCompletedEventHandler addClientSOAPCompleted;
         
         /// <remarks/>
-        public event deleteEmployeeCompletedEventHandler deleteEmployeeCompleted;
+        public event updateBasicDataJSONCompletedEventHandler updateBasicDataJSONCompleted;
         
         /// <remarks/>
-        public event updateEmployeeCompletedEventHandler updateEmployeeCompleted;
+        public event updateBasicDataSOAPCompletedEventHandler updateBasicDataSOAPCompleted;
         
         /// <remarks/>
-        public event searchEmployeeCompletedEventHandler searchEmployeeCompleted;
+        public event changeStateJSONCompletedEventHandler changeStateJSONCompleted;
         
         /// <remarks/>
-        public event addEmployeeCompletedEventHandler addEmployeeCompleted;
+        public event changeStateSOAPCompletedEventHandler changeStateSOAPCompleted;
         
         /// <remarks/>
-        public event searchOrderStatesCompletedEventHandler searchOrderStatesCompleted;
+        public event updateEmployeeJSONCompletedEventHandler updateEmployeeJSONCompleted;
         
         /// <remarks/>
-        public event setTimeCompletedEventHandler setTimeCompleted;
+        public event updateEmployeeSOAPCompletedEventHandler updateEmployeeSOAPCompleted;
         
         /// <remarks/>
-        public event addproductCompletedEventHandler addproductCompleted;
+        public event searchEmployeeJSONCompletedEventHandler searchEmployeeJSONCompleted;
         
         /// <remarks/>
-        public event deleteProductCompletedEventHandler deleteProductCompleted;
+        public event searchEmployeeSOAPCompletedEventHandler searchEmployeeSOAPCompleted;
         
         /// <remarks/>
-        public event searchProductCompletedEventHandler searchProductCompleted;
+        public event addEmployeeJSONCompletedEventHandler addEmployeeJSONCompleted;
         
         /// <remarks/>
-        public event updateProductCompletedEventHandler updateProductCompleted;
+        public event addEmployeeSOAPCompletedEventHandler addEmployeeSOAPCompleted;
         
         /// <remarks/>
-        public event addOrderCompletedEventHandler addOrderCompleted;
+        public event searchOrderStatesJSONCompletedEventHandler searchOrderStatesJSONCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchClients", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string searchClients(string param) {
-            object[] results = this.Invoke("searchClients", new object[] {
+        public event searchOrderStatesSOAPCompletedEventHandler searchOrderStatesSOAPCompleted;
+        
+        /// <remarks/>
+        public event setTimeJSONCompletedEventHandler setTimeJSONCompleted;
+        
+        /// <remarks/>
+        public event setTimeSOAPCompletedEventHandler setTimeSOAPCompleted;
+        
+        /// <remarks/>
+        public event addproductJSONCompletedEventHandler addproductJSONCompleted;
+        
+        /// <remarks/>
+        public event addproductSOAPCompletedEventHandler addproductSOAPCompleted;
+        
+        /// <remarks/>
+        public event deleteProductJSONCompletedEventHandler deleteProductJSONCompleted;
+        
+        /// <remarks/>
+        public event deleteProductSOAPCompletedEventHandler deleteProductSOAPCompleted;
+        
+        /// <remarks/>
+        public event searchProductJSONCompletedEventHandler searchProductJSONCompleted;
+        
+        /// <remarks/>
+        public event searchProductSOAPCompletedEventHandler searchProductSOAPCompleted;
+        
+        /// <remarks/>
+        public event searchProductByIdJSONCompletedEventHandler searchProductByIdJSONCompleted;
+        
+        /// <remarks/>
+        public event searchProductByIdSOAPCompletedEventHandler searchProductByIdSOAPCompleted;
+        
+        /// <remarks/>
+        public event updateProductJSONCompletedEventHandler updateProductJSONCompleted;
+        
+        /// <remarks/>
+        public event updateProductSOAPCompletedEventHandler updateProductSOAPCompleted;
+        
+        /// <remarks/>
+        public event addOrderJSONCompletedEventHandler addOrderJSONCompleted;
+        
+        /// <remarks/>
+        public event addOrderSOAPCompletedEventHandler addOrderSOAPCompleted;
+        
+        /// <remarks/>
+        public event searchOrdersJSONCompletedEventHandler searchOrdersJSONCompleted;
+        
+        /// <remarks/>
+        public event searchOrdersSOAPCompletedEventHandler searchOrdersSOAPCompleted;
+        
+        /// <remarks/>
+        public event deletePersonJSONCompletedEventHandler deletePersonJSONCompleted;
+        
+        /// <remarks/>
+        public event deletePersonSOAPCompletedEventHandler deletePersonSOAPCompleted;
+        
+        /// <remarks/>
+        public event changeProductStateJSONCompletedEventHandler changeProductStateJSONCompleted;
+        
+        /// <remarks/>
+        public event changeProductStateSOAPCompletedEventHandler changeProductStateSOAPCompleted;
+        
+        /// <remarks/>
+        public event verifyPasswordJSONCompletedEventHandler verifyPasswordJSONCompleted;
+        
+        /// <remarks/>
+        public event verifyPasswordSOAPCompletedEventHandler verifyPasswordSOAPCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchClientsJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string searchClientsJSON(string param) {
+            object[] results = this.Invoke("searchClientsJSON", new object[] {
                         param});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void searchClientsAsync(string param) {
-            this.searchClientsAsync(param, null);
+        public void searchClientsJSONAsync(string param) {
+            this.searchClientsJSONAsync(param, null);
         }
         
         /// <remarks/>
-        public void searchClientsAsync(string param, object userState) {
-            if ((this.searchClientsOperationCompleted == null)) {
-                this.searchClientsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchClientsOperationCompleted);
+        public void searchClientsJSONAsync(string param, object userState) {
+            if ((this.searchClientsJSONOperationCompleted == null)) {
+                this.searchClientsJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchClientsJSONOperationCompleted);
             }
-            this.InvokeAsync("searchClients", new object[] {
-                        param}, this.searchClientsOperationCompleted, userState);
+            this.InvokeAsync("searchClientsJSON", new object[] {
+                        param}, this.searchClientsJSONOperationCompleted, userState);
         }
         
-        private void OnsearchClientsOperationCompleted(object arg) {
-            if ((this.searchClientsCompleted != null)) {
+        private void OnsearchClientsJSONOperationCompleted(object arg) {
+            if ((this.searchClientsJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.searchClientsCompleted(this, new searchClientsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.searchClientsJSONCompleted(this, new searchClientsJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addClient", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void addClient(string fullname, string password, string profilepictureurl, string email, string address) {
-            this.Invoke("addClient", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchClientsSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Client[] searchClientsSOAP(string param) {
+            object[] results = this.Invoke("searchClientsSOAP", new object[] {
+                        param});
+            return ((Client[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void searchClientsSOAPAsync(string param) {
+            this.searchClientsSOAPAsync(param, null);
+        }
+        
+        /// <remarks/>
+        public void searchClientsSOAPAsync(string param, object userState) {
+            if ((this.searchClientsSOAPOperationCompleted == null)) {
+                this.searchClientsSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchClientsSOAPOperationCompleted);
+            }
+            this.InvokeAsync("searchClientsSOAP", new object[] {
+                        param}, this.searchClientsSOAPOperationCompleted, userState);
+        }
+        
+        private void OnsearchClientsSOAPOperationCompleted(object arg) {
+            if ((this.searchClientsSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.searchClientsSOAPCompleted(this, new searchClientsSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addClientJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void addClientJSON(string fullname, string password, string profilepictureurl, string email, string address) {
+            this.Invoke("addClientJSON", new object[] {
                         fullname,
                         password,
                         profilepictureurl,
@@ -184,34 +328,70 @@ namespace UserInterface.RogersWS {
         }
         
         /// <remarks/>
-        public void addClientAsync(string fullname, string password, string profilepictureurl, string email, string address) {
-            this.addClientAsync(fullname, password, profilepictureurl, email, address, null);
+        public void addClientJSONAsync(string fullname, string password, string profilepictureurl, string email, string address) {
+            this.addClientJSONAsync(fullname, password, profilepictureurl, email, address, null);
         }
         
         /// <remarks/>
-        public void addClientAsync(string fullname, string password, string profilepictureurl, string email, string address, object userState) {
-            if ((this.addClientOperationCompleted == null)) {
-                this.addClientOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddClientOperationCompleted);
+        public void addClientJSONAsync(string fullname, string password, string profilepictureurl, string email, string address, object userState) {
+            if ((this.addClientJSONOperationCompleted == null)) {
+                this.addClientJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddClientJSONOperationCompleted);
             }
-            this.InvokeAsync("addClient", new object[] {
+            this.InvokeAsync("addClientJSON", new object[] {
                         fullname,
                         password,
                         profilepictureurl,
                         email,
-                        address}, this.addClientOperationCompleted, userState);
+                        address}, this.addClientJSONOperationCompleted, userState);
         }
         
-        private void OnaddClientOperationCompleted(object arg) {
-            if ((this.addClientCompleted != null)) {
+        private void OnaddClientJSONOperationCompleted(object arg) {
+            if ((this.addClientJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.addClientCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.addClientJSONCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateBasicData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool updateBasicData(string fullname, string address, string password, string email) {
-            object[] results = this.Invoke("updateBasicData", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addClientSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void addClientSOAP(string fullname, string password, string profilepictureurl, string email, string address) {
+            this.Invoke("addClientSOAP", new object[] {
+                        fullname,
+                        password,
+                        profilepictureurl,
+                        email,
+                        address});
+        }
+        
+        /// <remarks/>
+        public void addClientSOAPAsync(string fullname, string password, string profilepictureurl, string email, string address) {
+            this.addClientSOAPAsync(fullname, password, profilepictureurl, email, address, null);
+        }
+        
+        /// <remarks/>
+        public void addClientSOAPAsync(string fullname, string password, string profilepictureurl, string email, string address, object userState) {
+            if ((this.addClientSOAPOperationCompleted == null)) {
+                this.addClientSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddClientSOAPOperationCompleted);
+            }
+            this.InvokeAsync("addClientSOAP", new object[] {
+                        fullname,
+                        password,
+                        profilepictureurl,
+                        email,
+                        address}, this.addClientSOAPOperationCompleted, userState);
+        }
+        
+        private void OnaddClientSOAPOperationCompleted(object arg) {
+            if ((this.addClientSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addClientSOAPCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateBasicDataJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool updateBasicDataJSON(string fullname, string address, string password, string email) {
+            object[] results = this.Invoke("updateBasicDataJSON", new object[] {
                         fullname,
                         address,
                         password,
@@ -220,93 +400,130 @@ namespace UserInterface.RogersWS {
         }
         
         /// <remarks/>
-        public void updateBasicDataAsync(string fullname, string address, string password, string email) {
-            this.updateBasicDataAsync(fullname, address, password, email, null);
+        public void updateBasicDataJSONAsync(string fullname, string address, string password, string email) {
+            this.updateBasicDataJSONAsync(fullname, address, password, email, null);
         }
         
         /// <remarks/>
-        public void updateBasicDataAsync(string fullname, string address, string password, string email, object userState) {
-            if ((this.updateBasicDataOperationCompleted == null)) {
-                this.updateBasicDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateBasicDataOperationCompleted);
+        public void updateBasicDataJSONAsync(string fullname, string address, string password, string email, object userState) {
+            if ((this.updateBasicDataJSONOperationCompleted == null)) {
+                this.updateBasicDataJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateBasicDataJSONOperationCompleted);
             }
-            this.InvokeAsync("updateBasicData", new object[] {
+            this.InvokeAsync("updateBasicDataJSON", new object[] {
                         fullname,
                         address,
                         password,
-                        email}, this.updateBasicDataOperationCompleted, userState);
+                        email}, this.updateBasicDataJSONOperationCompleted, userState);
         }
         
-        private void OnupdateBasicDataOperationCompleted(object arg) {
-            if ((this.updateBasicDataCompleted != null)) {
+        private void OnupdateBasicDataJSONOperationCompleted(object arg) {
+            if ((this.updateBasicDataJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateBasicDataCompleted(this, new updateBasicDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.updateBasicDataJSONCompleted(this, new updateBasicDataJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/changeState", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool changeState(bool state, string email) {
-            object[] results = this.Invoke("changeState", new object[] {
-                        state,
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateBasicDataSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool updateBasicDataSOAP(string fullname, string address, string password, string email) {
+            object[] results = this.Invoke("updateBasicDataSOAP", new object[] {
+                        fullname,
+                        address,
+                        password,
                         email});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void changeStateAsync(bool state, string email) {
-            this.changeStateAsync(state, email, null);
+        public void updateBasicDataSOAPAsync(string fullname, string address, string password, string email) {
+            this.updateBasicDataSOAPAsync(fullname, address, password, email, null);
         }
         
         /// <remarks/>
-        public void changeStateAsync(bool state, string email, object userState) {
-            if ((this.changeStateOperationCompleted == null)) {
-                this.changeStateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnchangeStateOperationCompleted);
+        public void updateBasicDataSOAPAsync(string fullname, string address, string password, string email, object userState) {
+            if ((this.updateBasicDataSOAPOperationCompleted == null)) {
+                this.updateBasicDataSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateBasicDataSOAPOperationCompleted);
             }
-            this.InvokeAsync("changeState", new object[] {
-                        state,
-                        email}, this.changeStateOperationCompleted, userState);
+            this.InvokeAsync("updateBasicDataSOAP", new object[] {
+                        fullname,
+                        address,
+                        password,
+                        email}, this.updateBasicDataSOAPOperationCompleted, userState);
         }
         
-        private void OnchangeStateOperationCompleted(object arg) {
-            if ((this.changeStateCompleted != null)) {
+        private void OnupdateBasicDataSOAPOperationCompleted(object arg) {
+            if ((this.updateBasicDataSOAPCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.changeStateCompleted(this, new changeStateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.updateBasicDataSOAPCompleted(this, new updateBasicDataSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool deleteEmployee(string username) {
-            object[] results = this.Invoke("deleteEmployee", new object[] {
-                        username});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/changeStateJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool changeStateJSON(int id, bool state) {
+            object[] results = this.Invoke("changeStateJSON", new object[] {
+                        id,
+                        state});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void deleteEmployeeAsync(string username) {
-            this.deleteEmployeeAsync(username, null);
+        public void changeStateJSONAsync(int id, bool state) {
+            this.changeStateJSONAsync(id, state, null);
         }
         
         /// <remarks/>
-        public void deleteEmployeeAsync(string username, object userState) {
-            if ((this.deleteEmployeeOperationCompleted == null)) {
-                this.deleteEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteEmployeeOperationCompleted);
+        public void changeStateJSONAsync(int id, bool state, object userState) {
+            if ((this.changeStateJSONOperationCompleted == null)) {
+                this.changeStateJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnchangeStateJSONOperationCompleted);
             }
-            this.InvokeAsync("deleteEmployee", new object[] {
-                        username}, this.deleteEmployeeOperationCompleted, userState);
+            this.InvokeAsync("changeStateJSON", new object[] {
+                        id,
+                        state}, this.changeStateJSONOperationCompleted, userState);
         }
         
-        private void OndeleteEmployeeOperationCompleted(object arg) {
-            if ((this.deleteEmployeeCompleted != null)) {
+        private void OnchangeStateJSONOperationCompleted(object arg) {
+            if ((this.changeStateJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.deleteEmployeeCompleted(this, new deleteEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.changeStateJSONCompleted(this, new changeStateJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool updateEmployee(string fullname, string password, string username, bool isadmin) {
-            object[] results = this.Invoke("updateEmployee", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/changeStateSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool changeStateSOAP(int id, bool state) {
+            object[] results = this.Invoke("changeStateSOAP", new object[] {
+                        id,
+                        state});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void changeStateSOAPAsync(int id, bool state) {
+            this.changeStateSOAPAsync(id, state, null);
+        }
+        
+        /// <remarks/>
+        public void changeStateSOAPAsync(int id, bool state, object userState) {
+            if ((this.changeStateSOAPOperationCompleted == null)) {
+                this.changeStateSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnchangeStateSOAPOperationCompleted);
+            }
+            this.InvokeAsync("changeStateSOAP", new object[] {
+                        id,
+                        state}, this.changeStateSOAPOperationCompleted, userState);
+        }
+        
+        private void OnchangeStateSOAPOperationCompleted(object arg) {
+            if ((this.changeStateSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.changeStateSOAPCompleted(this, new changeStateSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateEmployeeJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool updateEmployeeJSON(string fullname, string password, string username, bool isadmin) {
+            object[] results = this.Invoke("updateEmployeeJSON", new object[] {
                         fullname,
                         password,
                         username,
@@ -315,62 +532,126 @@ namespace UserInterface.RogersWS {
         }
         
         /// <remarks/>
-        public void updateEmployeeAsync(string fullname, string password, string username, bool isadmin) {
-            this.updateEmployeeAsync(fullname, password, username, isadmin, null);
+        public void updateEmployeeJSONAsync(string fullname, string password, string username, bool isadmin) {
+            this.updateEmployeeJSONAsync(fullname, password, username, isadmin, null);
         }
         
         /// <remarks/>
-        public void updateEmployeeAsync(string fullname, string password, string username, bool isadmin, object userState) {
-            if ((this.updateEmployeeOperationCompleted == null)) {
-                this.updateEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateEmployeeOperationCompleted);
+        public void updateEmployeeJSONAsync(string fullname, string password, string username, bool isadmin, object userState) {
+            if ((this.updateEmployeeJSONOperationCompleted == null)) {
+                this.updateEmployeeJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateEmployeeJSONOperationCompleted);
             }
-            this.InvokeAsync("updateEmployee", new object[] {
+            this.InvokeAsync("updateEmployeeJSON", new object[] {
                         fullname,
                         password,
                         username,
-                        isadmin}, this.updateEmployeeOperationCompleted, userState);
+                        isadmin}, this.updateEmployeeJSONOperationCompleted, userState);
         }
         
-        private void OnupdateEmployeeOperationCompleted(object arg) {
-            if ((this.updateEmployeeCompleted != null)) {
+        private void OnupdateEmployeeJSONOperationCompleted(object arg) {
+            if ((this.updateEmployeeJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateEmployeeCompleted(this, new updateEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.updateEmployeeJSONCompleted(this, new updateEmployeeJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Employee[] searchEmployee(string filter) {
-            object[] results = this.Invoke("searchEmployee", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateEmployeeSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool updateEmployeeSOAP(string fullname, string password, string username, bool isadmin) {
+            object[] results = this.Invoke("updateEmployeeSOAP", new object[] {
+                        fullname,
+                        password,
+                        username,
+                        isadmin});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateEmployeeSOAPAsync(string fullname, string password, string username, bool isadmin) {
+            this.updateEmployeeSOAPAsync(fullname, password, username, isadmin, null);
+        }
+        
+        /// <remarks/>
+        public void updateEmployeeSOAPAsync(string fullname, string password, string username, bool isadmin, object userState) {
+            if ((this.updateEmployeeSOAPOperationCompleted == null)) {
+                this.updateEmployeeSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateEmployeeSOAPOperationCompleted);
+            }
+            this.InvokeAsync("updateEmployeeSOAP", new object[] {
+                        fullname,
+                        password,
+                        username,
+                        isadmin}, this.updateEmployeeSOAPOperationCompleted, userState);
+        }
+        
+        private void OnupdateEmployeeSOAPOperationCompleted(object arg) {
+            if ((this.updateEmployeeSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateEmployeeSOAPCompleted(this, new updateEmployeeSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchEmployeeJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string searchEmployeeJSON(string filter) {
+            object[] results = this.Invoke("searchEmployeeJSON", new object[] {
+                        filter});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void searchEmployeeJSONAsync(string filter) {
+            this.searchEmployeeJSONAsync(filter, null);
+        }
+        
+        /// <remarks/>
+        public void searchEmployeeJSONAsync(string filter, object userState) {
+            if ((this.searchEmployeeJSONOperationCompleted == null)) {
+                this.searchEmployeeJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchEmployeeJSONOperationCompleted);
+            }
+            this.InvokeAsync("searchEmployeeJSON", new object[] {
+                        filter}, this.searchEmployeeJSONOperationCompleted, userState);
+        }
+        
+        private void OnsearchEmployeeJSONOperationCompleted(object arg) {
+            if ((this.searchEmployeeJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.searchEmployeeJSONCompleted(this, new searchEmployeeJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchEmployeeSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Employee[] searchEmployeeSOAP(string filter) {
+            object[] results = this.Invoke("searchEmployeeSOAP", new object[] {
                         filter});
             return ((Employee[])(results[0]));
         }
         
         /// <remarks/>
-        public void searchEmployeeAsync(string filter) {
-            this.searchEmployeeAsync(filter, null);
+        public void searchEmployeeSOAPAsync(string filter) {
+            this.searchEmployeeSOAPAsync(filter, null);
         }
         
         /// <remarks/>
-        public void searchEmployeeAsync(string filter, object userState) {
-            if ((this.searchEmployeeOperationCompleted == null)) {
-                this.searchEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchEmployeeOperationCompleted);
+        public void searchEmployeeSOAPAsync(string filter, object userState) {
+            if ((this.searchEmployeeSOAPOperationCompleted == null)) {
+                this.searchEmployeeSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchEmployeeSOAPOperationCompleted);
             }
-            this.InvokeAsync("searchEmployee", new object[] {
-                        filter}, this.searchEmployeeOperationCompleted, userState);
+            this.InvokeAsync("searchEmployeeSOAP", new object[] {
+                        filter}, this.searchEmployeeSOAPOperationCompleted, userState);
         }
         
-        private void OnsearchEmployeeOperationCompleted(object arg) {
-            if ((this.searchEmployeeCompleted != null)) {
+        private void OnsearchEmployeeSOAPOperationCompleted(object arg) {
+            if ((this.searchEmployeeSOAPCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.searchEmployeeCompleted(this, new searchEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.searchEmployeeSOAPCompleted(this, new searchEmployeeSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addEmployee", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool addEmployee(string fullname, string password, string username, bool isadmin) {
-            object[] results = this.Invoke("addEmployee", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addEmployeeJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool addEmployeeJSON(string fullname, string password, string username, bool isadmin) {
+            object[] results = this.Invoke("addEmployeeJSON", new object[] {
                         fullname,
                         password,
                         username,
@@ -379,91 +660,184 @@ namespace UserInterface.RogersWS {
         }
         
         /// <remarks/>
-        public void addEmployeeAsync(string fullname, string password, string username, bool isadmin) {
-            this.addEmployeeAsync(fullname, password, username, isadmin, null);
+        public void addEmployeeJSONAsync(string fullname, string password, string username, bool isadmin) {
+            this.addEmployeeJSONAsync(fullname, password, username, isadmin, null);
         }
         
         /// <remarks/>
-        public void addEmployeeAsync(string fullname, string password, string username, bool isadmin, object userState) {
-            if ((this.addEmployeeOperationCompleted == null)) {
-                this.addEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddEmployeeOperationCompleted);
+        public void addEmployeeJSONAsync(string fullname, string password, string username, bool isadmin, object userState) {
+            if ((this.addEmployeeJSONOperationCompleted == null)) {
+                this.addEmployeeJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddEmployeeJSONOperationCompleted);
             }
-            this.InvokeAsync("addEmployee", new object[] {
+            this.InvokeAsync("addEmployeeJSON", new object[] {
                         fullname,
                         password,
                         username,
-                        isadmin}, this.addEmployeeOperationCompleted, userState);
+                        isadmin}, this.addEmployeeJSONOperationCompleted, userState);
         }
         
-        private void OnaddEmployeeOperationCompleted(object arg) {
-            if ((this.addEmployeeCompleted != null)) {
+        private void OnaddEmployeeJSONOperationCompleted(object arg) {
+            if ((this.addEmployeeJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.addEmployeeCompleted(this, new addEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.addEmployeeJSONCompleted(this, new addEmployeeJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchOrderStates", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public OrderState[] searchOrderStates() {
-            object[] results = this.Invoke("searchOrderStates", new object[0]);
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addEmployeeSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool addEmployeeSOAP(string fullname, string password, string username, bool isadmin) {
+            object[] results = this.Invoke("addEmployeeSOAP", new object[] {
+                        fullname,
+                        password,
+                        username,
+                        isadmin});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void addEmployeeSOAPAsync(string fullname, string password, string username, bool isadmin) {
+            this.addEmployeeSOAPAsync(fullname, password, username, isadmin, null);
+        }
+        
+        /// <remarks/>
+        public void addEmployeeSOAPAsync(string fullname, string password, string username, bool isadmin, object userState) {
+            if ((this.addEmployeeSOAPOperationCompleted == null)) {
+                this.addEmployeeSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddEmployeeSOAPOperationCompleted);
+            }
+            this.InvokeAsync("addEmployeeSOAP", new object[] {
+                        fullname,
+                        password,
+                        username,
+                        isadmin}, this.addEmployeeSOAPOperationCompleted, userState);
+        }
+        
+        private void OnaddEmployeeSOAPOperationCompleted(object arg) {
+            if ((this.addEmployeeSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addEmployeeSOAPCompleted(this, new addEmployeeSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchOrderStatesJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string searchOrderStatesJSON() {
+            object[] results = this.Invoke("searchOrderStatesJSON", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void searchOrderStatesJSONAsync() {
+            this.searchOrderStatesJSONAsync(null);
+        }
+        
+        /// <remarks/>
+        public void searchOrderStatesJSONAsync(object userState) {
+            if ((this.searchOrderStatesJSONOperationCompleted == null)) {
+                this.searchOrderStatesJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchOrderStatesJSONOperationCompleted);
+            }
+            this.InvokeAsync("searchOrderStatesJSON", new object[0], this.searchOrderStatesJSONOperationCompleted, userState);
+        }
+        
+        private void OnsearchOrderStatesJSONOperationCompleted(object arg) {
+            if ((this.searchOrderStatesJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.searchOrderStatesJSONCompleted(this, new searchOrderStatesJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchOrderStatesSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public OrderState[] searchOrderStatesSOAP() {
+            object[] results = this.Invoke("searchOrderStatesSOAP", new object[0]);
             return ((OrderState[])(results[0]));
         }
         
         /// <remarks/>
-        public void searchOrderStatesAsync() {
-            this.searchOrderStatesAsync(null);
+        public void searchOrderStatesSOAPAsync() {
+            this.searchOrderStatesSOAPAsync(null);
         }
         
         /// <remarks/>
-        public void searchOrderStatesAsync(object userState) {
-            if ((this.searchOrderStatesOperationCompleted == null)) {
-                this.searchOrderStatesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchOrderStatesOperationCompleted);
+        public void searchOrderStatesSOAPAsync(object userState) {
+            if ((this.searchOrderStatesSOAPOperationCompleted == null)) {
+                this.searchOrderStatesSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchOrderStatesSOAPOperationCompleted);
             }
-            this.InvokeAsync("searchOrderStates", new object[0], this.searchOrderStatesOperationCompleted, userState);
+            this.InvokeAsync("searchOrderStatesSOAP", new object[0], this.searchOrderStatesSOAPOperationCompleted, userState);
         }
         
-        private void OnsearchOrderStatesOperationCompleted(object arg) {
-            if ((this.searchOrderStatesCompleted != null)) {
+        private void OnsearchOrderStatesSOAPOperationCompleted(object arg) {
+            if ((this.searchOrderStatesSOAPCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.searchOrderStatesCompleted(this, new searchOrderStatesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.searchOrderStatesSOAPCompleted(this, new searchOrderStatesSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/setTime", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool setTime(int id, System.DateTime time) {
-            object[] results = this.Invoke("setTime", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/setTimeJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool setTimeJSON(int id, System.DateTime time) {
+            object[] results = this.Invoke("setTimeJSON", new object[] {
                         id,
                         time});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void setTimeAsync(int id, System.DateTime time) {
-            this.setTimeAsync(id, time, null);
+        public void setTimeJSONAsync(int id, System.DateTime time) {
+            this.setTimeJSONAsync(id, time, null);
         }
         
         /// <remarks/>
-        public void setTimeAsync(int id, System.DateTime time, object userState) {
-            if ((this.setTimeOperationCompleted == null)) {
-                this.setTimeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsetTimeOperationCompleted);
+        public void setTimeJSONAsync(int id, System.DateTime time, object userState) {
+            if ((this.setTimeJSONOperationCompleted == null)) {
+                this.setTimeJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsetTimeJSONOperationCompleted);
             }
-            this.InvokeAsync("setTime", new object[] {
+            this.InvokeAsync("setTimeJSON", new object[] {
                         id,
-                        time}, this.setTimeOperationCompleted, userState);
+                        time}, this.setTimeJSONOperationCompleted, userState);
         }
         
-        private void OnsetTimeOperationCompleted(object arg) {
-            if ((this.setTimeCompleted != null)) {
+        private void OnsetTimeJSONOperationCompleted(object arg) {
+            if ((this.setTimeJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.setTimeCompleted(this, new setTimeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.setTimeJSONCompleted(this, new setTimeJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addproduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool addproduct(string productname, string description, double price, string image, bool isoutofstoc, int category) {
-            object[] results = this.Invoke("addproduct", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/setTimeSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool setTimeSOAP(int id, System.DateTime time) {
+            object[] results = this.Invoke("setTimeSOAP", new object[] {
+                        id,
+                        time});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void setTimeSOAPAsync(int id, System.DateTime time) {
+            this.setTimeSOAPAsync(id, time, null);
+        }
+        
+        /// <remarks/>
+        public void setTimeSOAPAsync(int id, System.DateTime time, object userState) {
+            if ((this.setTimeSOAPOperationCompleted == null)) {
+                this.setTimeSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsetTimeSOAPOperationCompleted);
+            }
+            this.InvokeAsync("setTimeSOAP", new object[] {
+                        id,
+                        time}, this.setTimeSOAPOperationCompleted, userState);
+        }
+        
+        private void OnsetTimeSOAPOperationCompleted(object arg) {
+            if ((this.setTimeSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.setTimeSOAPCompleted(this, new setTimeSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addproductJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool addproductJSON(string productname, string description, double price, string image, bool isoutofstoc, string category) {
+            object[] results = this.Invoke("addproductJSON", new object[] {
                         productname,
                         description,
                         price,
@@ -474,93 +848,246 @@ namespace UserInterface.RogersWS {
         }
         
         /// <remarks/>
-        public void addproductAsync(string productname, string description, double price, string image, bool isoutofstoc, int category) {
-            this.addproductAsync(productname, description, price, image, isoutofstoc, category, null);
+        public void addproductJSONAsync(string productname, string description, double price, string image, bool isoutofstoc, string category) {
+            this.addproductJSONAsync(productname, description, price, image, isoutofstoc, category, null);
         }
         
         /// <remarks/>
-        public void addproductAsync(string productname, string description, double price, string image, bool isoutofstoc, int category, object userState) {
-            if ((this.addproductOperationCompleted == null)) {
-                this.addproductOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddproductOperationCompleted);
+        public void addproductJSONAsync(string productname, string description, double price, string image, bool isoutofstoc, string category, object userState) {
+            if ((this.addproductJSONOperationCompleted == null)) {
+                this.addproductJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddproductJSONOperationCompleted);
             }
-            this.InvokeAsync("addproduct", new object[] {
+            this.InvokeAsync("addproductJSON", new object[] {
                         productname,
                         description,
                         price,
                         image,
                         isoutofstoc,
-                        category}, this.addproductOperationCompleted, userState);
+                        category}, this.addproductJSONOperationCompleted, userState);
         }
         
-        private void OnaddproductOperationCompleted(object arg) {
-            if ((this.addproductCompleted != null)) {
+        private void OnaddproductJSONOperationCompleted(object arg) {
+            if ((this.addproductJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.addproductCompleted(this, new addproductCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.addproductJSONCompleted(this, new addproductJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteProduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool deleteProduct(int id) {
-            object[] results = this.Invoke("deleteProduct", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addproductSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool addproductSOAP(string productname, string description, double price, string image, bool isoutofstoc, string category) {
+            object[] results = this.Invoke("addproductSOAP", new object[] {
+                        productname,
+                        description,
+                        price,
+                        image,
+                        isoutofstoc,
+                        category});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void addproductSOAPAsync(string productname, string description, double price, string image, bool isoutofstoc, string category) {
+            this.addproductSOAPAsync(productname, description, price, image, isoutofstoc, category, null);
+        }
+        
+        /// <remarks/>
+        public void addproductSOAPAsync(string productname, string description, double price, string image, bool isoutofstoc, string category, object userState) {
+            if ((this.addproductSOAPOperationCompleted == null)) {
+                this.addproductSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddproductSOAPOperationCompleted);
+            }
+            this.InvokeAsync("addproductSOAP", new object[] {
+                        productname,
+                        description,
+                        price,
+                        image,
+                        isoutofstoc,
+                        category}, this.addproductSOAPOperationCompleted, userState);
+        }
+        
+        private void OnaddproductSOAPOperationCompleted(object arg) {
+            if ((this.addproductSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addproductSOAPCompleted(this, new addproductSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteProductJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool deleteProductJSON(int id) {
+            object[] results = this.Invoke("deleteProductJSON", new object[] {
                         id});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void deleteProductAsync(int id) {
-            this.deleteProductAsync(id, null);
+        public void deleteProductJSONAsync(int id) {
+            this.deleteProductJSONAsync(id, null);
         }
         
         /// <remarks/>
-        public void deleteProductAsync(int id, object userState) {
-            if ((this.deleteProductOperationCompleted == null)) {
-                this.deleteProductOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteProductOperationCompleted);
+        public void deleteProductJSONAsync(int id, object userState) {
+            if ((this.deleteProductJSONOperationCompleted == null)) {
+                this.deleteProductJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteProductJSONOperationCompleted);
             }
-            this.InvokeAsync("deleteProduct", new object[] {
-                        id}, this.deleteProductOperationCompleted, userState);
+            this.InvokeAsync("deleteProductJSON", new object[] {
+                        id}, this.deleteProductJSONOperationCompleted, userState);
         }
         
-        private void OndeleteProductOperationCompleted(object arg) {
-            if ((this.deleteProductCompleted != null)) {
+        private void OndeleteProductJSONOperationCompleted(object arg) {
+            if ((this.deleteProductJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.deleteProductCompleted(this, new deleteProductCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.deleteProductJSONCompleted(this, new deleteProductJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchProduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Product[] searchProduct(string productname) {
-            object[] results = this.Invoke("searchProduct", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteProductSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool deleteProductSOAP(int id) {
+            object[] results = this.Invoke("deleteProductSOAP", new object[] {
+                        id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deleteProductSOAPAsync(int id) {
+            this.deleteProductSOAPAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void deleteProductSOAPAsync(int id, object userState) {
+            if ((this.deleteProductSOAPOperationCompleted == null)) {
+                this.deleteProductSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteProductSOAPOperationCompleted);
+            }
+            this.InvokeAsync("deleteProductSOAP", new object[] {
+                        id}, this.deleteProductSOAPOperationCompleted, userState);
+        }
+        
+        private void OndeleteProductSOAPOperationCompleted(object arg) {
+            if ((this.deleteProductSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteProductSOAPCompleted(this, new deleteProductSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchProductJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void searchProductJSON(string productname) {
+            this.Invoke("searchProductJSON", new object[] {
+                        productname});
+        }
+        
+        /// <remarks/>
+        public void searchProductJSONAsync(string productname) {
+            this.searchProductJSONAsync(productname, null);
+        }
+        
+        /// <remarks/>
+        public void searchProductJSONAsync(string productname, object userState) {
+            if ((this.searchProductJSONOperationCompleted == null)) {
+                this.searchProductJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchProductJSONOperationCompleted);
+            }
+            this.InvokeAsync("searchProductJSON", new object[] {
+                        productname}, this.searchProductJSONOperationCompleted, userState);
+        }
+        
+        private void OnsearchProductJSONOperationCompleted(object arg) {
+            if ((this.searchProductJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.searchProductJSONCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchProductSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Product[] searchProductSOAP(string productname) {
+            object[] results = this.Invoke("searchProductSOAP", new object[] {
                         productname});
             return ((Product[])(results[0]));
         }
         
         /// <remarks/>
-        public void searchProductAsync(string productname) {
-            this.searchProductAsync(productname, null);
+        public void searchProductSOAPAsync(string productname) {
+            this.searchProductSOAPAsync(productname, null);
         }
         
         /// <remarks/>
-        public void searchProductAsync(string productname, object userState) {
-            if ((this.searchProductOperationCompleted == null)) {
-                this.searchProductOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchProductOperationCompleted);
+        public void searchProductSOAPAsync(string productname, object userState) {
+            if ((this.searchProductSOAPOperationCompleted == null)) {
+                this.searchProductSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchProductSOAPOperationCompleted);
             }
-            this.InvokeAsync("searchProduct", new object[] {
-                        productname}, this.searchProductOperationCompleted, userState);
+            this.InvokeAsync("searchProductSOAP", new object[] {
+                        productname}, this.searchProductSOAPOperationCompleted, userState);
         }
         
-        private void OnsearchProductOperationCompleted(object arg) {
-            if ((this.searchProductCompleted != null)) {
+        private void OnsearchProductSOAPOperationCompleted(object arg) {
+            if ((this.searchProductSOAPCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.searchProductCompleted(this, new searchProductCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.searchProductSOAPCompleted(this, new searchProductSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateProduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool updateProduct(int id, string name, string descr, double price, string imageuri, int stock, int cat) {
-            object[] results = this.Invoke("updateProduct", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchProductByIdJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void searchProductByIdJSON(string id) {
+            this.Invoke("searchProductByIdJSON", new object[] {
+                        id});
+        }
+        
+        /// <remarks/>
+        public void searchProductByIdJSONAsync(string id) {
+            this.searchProductByIdJSONAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void searchProductByIdJSONAsync(string id, object userState) {
+            if ((this.searchProductByIdJSONOperationCompleted == null)) {
+                this.searchProductByIdJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchProductByIdJSONOperationCompleted);
+            }
+            this.InvokeAsync("searchProductByIdJSON", new object[] {
+                        id}, this.searchProductByIdJSONOperationCompleted, userState);
+        }
+        
+        private void OnsearchProductByIdJSONOperationCompleted(object arg) {
+            if ((this.searchProductByIdJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.searchProductByIdJSONCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchProductByIdSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Product searchProductByIdSOAP(string id) {
+            object[] results = this.Invoke("searchProductByIdSOAP", new object[] {
+                        id});
+            return ((Product)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void searchProductByIdSOAPAsync(string id) {
+            this.searchProductByIdSOAPAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void searchProductByIdSOAPAsync(string id, object userState) {
+            if ((this.searchProductByIdSOAPOperationCompleted == null)) {
+                this.searchProductByIdSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchProductByIdSOAPOperationCompleted);
+            }
+            this.InvokeAsync("searchProductByIdSOAP", new object[] {
+                        id}, this.searchProductByIdSOAPOperationCompleted, userState);
+        }
+        
+        private void OnsearchProductByIdSOAPOperationCompleted(object arg) {
+            if ((this.searchProductByIdSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.searchProductByIdSOAPCompleted(this, new searchProductByIdSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateProductJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool updateProductJSON(int id, string name, string descr, double price, string imageuri, int stock, string cat) {
+            object[] results = this.Invoke("updateProductJSON", new object[] {
                         id,
                         name,
                         descr,
@@ -572,60 +1099,372 @@ namespace UserInterface.RogersWS {
         }
         
         /// <remarks/>
-        public void updateProductAsync(int id, string name, string descr, double price, string imageuri, int stock, int cat) {
-            this.updateProductAsync(id, name, descr, price, imageuri, stock, cat, null);
+        public void updateProductJSONAsync(int id, string name, string descr, double price, string imageuri, int stock, string cat) {
+            this.updateProductJSONAsync(id, name, descr, price, imageuri, stock, cat, null);
         }
         
         /// <remarks/>
-        public void updateProductAsync(int id, string name, string descr, double price, string imageuri, int stock, int cat, object userState) {
-            if ((this.updateProductOperationCompleted == null)) {
-                this.updateProductOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateProductOperationCompleted);
+        public void updateProductJSONAsync(int id, string name, string descr, double price, string imageuri, int stock, string cat, object userState) {
+            if ((this.updateProductJSONOperationCompleted == null)) {
+                this.updateProductJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateProductJSONOperationCompleted);
             }
-            this.InvokeAsync("updateProduct", new object[] {
+            this.InvokeAsync("updateProductJSON", new object[] {
                         id,
                         name,
                         descr,
                         price,
                         imageuri,
                         stock,
-                        cat}, this.updateProductOperationCompleted, userState);
+                        cat}, this.updateProductJSONOperationCompleted, userState);
         }
         
-        private void OnupdateProductOperationCompleted(object arg) {
-            if ((this.updateProductCompleted != null)) {
+        private void OnupdateProductJSONOperationCompleted(object arg) {
+            if ((this.updateProductJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateProductCompleted(this, new updateProductCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.updateProductJSONCompleted(this, new updateProductJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addOrder", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool addOrder(int id, Product[] prods) {
-            object[] results = this.Invoke("addOrder", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateProductSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool updateProductSOAP(int id, string name, string descr, double price, string imageuri, int stock, string cat) {
+            object[] results = this.Invoke("updateProductSOAP", new object[] {
+                        id,
+                        name,
+                        descr,
+                        price,
+                        imageuri,
+                        stock,
+                        cat});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateProductSOAPAsync(int id, string name, string descr, double price, string imageuri, int stock, string cat) {
+            this.updateProductSOAPAsync(id, name, descr, price, imageuri, stock, cat, null);
+        }
+        
+        /// <remarks/>
+        public void updateProductSOAPAsync(int id, string name, string descr, double price, string imageuri, int stock, string cat, object userState) {
+            if ((this.updateProductSOAPOperationCompleted == null)) {
+                this.updateProductSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateProductSOAPOperationCompleted);
+            }
+            this.InvokeAsync("updateProductSOAP", new object[] {
+                        id,
+                        name,
+                        descr,
+                        price,
+                        imageuri,
+                        stock,
+                        cat}, this.updateProductSOAPOperationCompleted, userState);
+        }
+        
+        private void OnupdateProductSOAPOperationCompleted(object arg) {
+            if ((this.updateProductSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateProductSOAPCompleted(this, new updateProductSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addOrderJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool addOrderJSON(int id, Product[] prods) {
+            object[] results = this.Invoke("addOrderJSON", new object[] {
                         id,
                         prods});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void addOrderAsync(int id, Product[] prods) {
-            this.addOrderAsync(id, prods, null);
+        public void addOrderJSONAsync(int id, Product[] prods) {
+            this.addOrderJSONAsync(id, prods, null);
         }
         
         /// <remarks/>
-        public void addOrderAsync(int id, Product[] prods, object userState) {
-            if ((this.addOrderOperationCompleted == null)) {
-                this.addOrderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddOrderOperationCompleted);
+        public void addOrderJSONAsync(int id, Product[] prods, object userState) {
+            if ((this.addOrderJSONOperationCompleted == null)) {
+                this.addOrderJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddOrderJSONOperationCompleted);
             }
-            this.InvokeAsync("addOrder", new object[] {
+            this.InvokeAsync("addOrderJSON", new object[] {
                         id,
-                        prods}, this.addOrderOperationCompleted, userState);
+                        prods}, this.addOrderJSONOperationCompleted, userState);
         }
         
-        private void OnaddOrderOperationCompleted(object arg) {
-            if ((this.addOrderCompleted != null)) {
+        private void OnaddOrderJSONOperationCompleted(object arg) {
+            if ((this.addOrderJSONCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.addOrderCompleted(this, new addOrderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.addOrderJSONCompleted(this, new addOrderJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addOrderSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool addOrderSOAP(int id, Product[] prods) {
+            object[] results = this.Invoke("addOrderSOAP", new object[] {
+                        id,
+                        prods});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void addOrderSOAPAsync(int id, Product[] prods) {
+            this.addOrderSOAPAsync(id, prods, null);
+        }
+        
+        /// <remarks/>
+        public void addOrderSOAPAsync(int id, Product[] prods, object userState) {
+            if ((this.addOrderSOAPOperationCompleted == null)) {
+                this.addOrderSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddOrderSOAPOperationCompleted);
+            }
+            this.InvokeAsync("addOrderSOAP", new object[] {
+                        id,
+                        prods}, this.addOrderSOAPOperationCompleted, userState);
+        }
+        
+        private void OnaddOrderSOAPOperationCompleted(object arg) {
+            if ((this.addOrderSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addOrderSOAPCompleted(this, new addOrderSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchOrdersJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string searchOrdersJSON(string id) {
+            object[] results = this.Invoke("searchOrdersJSON", new object[] {
+                        id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void searchOrdersJSONAsync(string id) {
+            this.searchOrdersJSONAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void searchOrdersJSONAsync(string id, object userState) {
+            if ((this.searchOrdersJSONOperationCompleted == null)) {
+                this.searchOrdersJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchOrdersJSONOperationCompleted);
+            }
+            this.InvokeAsync("searchOrdersJSON", new object[] {
+                        id}, this.searchOrdersJSONOperationCompleted, userState);
+        }
+        
+        private void OnsearchOrdersJSONOperationCompleted(object arg) {
+            if ((this.searchOrdersJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.searchOrdersJSONCompleted(this, new searchOrdersJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/searchOrdersSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Order[] searchOrdersSOAP(string id) {
+            object[] results = this.Invoke("searchOrdersSOAP", new object[] {
+                        id});
+            return ((Order[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void searchOrdersSOAPAsync(string id) {
+            this.searchOrdersSOAPAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void searchOrdersSOAPAsync(string id, object userState) {
+            if ((this.searchOrdersSOAPOperationCompleted == null)) {
+                this.searchOrdersSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsearchOrdersSOAPOperationCompleted);
+            }
+            this.InvokeAsync("searchOrdersSOAP", new object[] {
+                        id}, this.searchOrdersSOAPOperationCompleted, userState);
+        }
+        
+        private void OnsearchOrdersSOAPOperationCompleted(object arg) {
+            if ((this.searchOrdersSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.searchOrdersSOAPCompleted(this, new searchOrdersSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deletePersonJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool deletePersonJSON(string person_id) {
+            object[] results = this.Invoke("deletePersonJSON", new object[] {
+                        person_id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deletePersonJSONAsync(string person_id) {
+            this.deletePersonJSONAsync(person_id, null);
+        }
+        
+        /// <remarks/>
+        public void deletePersonJSONAsync(string person_id, object userState) {
+            if ((this.deletePersonJSONOperationCompleted == null)) {
+                this.deletePersonJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeletePersonJSONOperationCompleted);
+            }
+            this.InvokeAsync("deletePersonJSON", new object[] {
+                        person_id}, this.deletePersonJSONOperationCompleted, userState);
+        }
+        
+        private void OndeletePersonJSONOperationCompleted(object arg) {
+            if ((this.deletePersonJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deletePersonJSONCompleted(this, new deletePersonJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deletePersonSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool deletePersonSOAP(string person_id) {
+            object[] results = this.Invoke("deletePersonSOAP", new object[] {
+                        person_id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deletePersonSOAPAsync(string person_id) {
+            this.deletePersonSOAPAsync(person_id, null);
+        }
+        
+        /// <remarks/>
+        public void deletePersonSOAPAsync(string person_id, object userState) {
+            if ((this.deletePersonSOAPOperationCompleted == null)) {
+                this.deletePersonSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeletePersonSOAPOperationCompleted);
+            }
+            this.InvokeAsync("deletePersonSOAP", new object[] {
+                        person_id}, this.deletePersonSOAPOperationCompleted, userState);
+        }
+        
+        private void OndeletePersonSOAPOperationCompleted(object arg) {
+            if ((this.deletePersonSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deletePersonSOAPCompleted(this, new deletePersonSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/changeProductStateJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool changeProductStateJSON(int id, bool state) {
+            object[] results = this.Invoke("changeProductStateJSON", new object[] {
+                        id,
+                        state});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void changeProductStateJSONAsync(int id, bool state) {
+            this.changeProductStateJSONAsync(id, state, null);
+        }
+        
+        /// <remarks/>
+        public void changeProductStateJSONAsync(int id, bool state, object userState) {
+            if ((this.changeProductStateJSONOperationCompleted == null)) {
+                this.changeProductStateJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnchangeProductStateJSONOperationCompleted);
+            }
+            this.InvokeAsync("changeProductStateJSON", new object[] {
+                        id,
+                        state}, this.changeProductStateJSONOperationCompleted, userState);
+        }
+        
+        private void OnchangeProductStateJSONOperationCompleted(object arg) {
+            if ((this.changeProductStateJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.changeProductStateJSONCompleted(this, new changeProductStateJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/changeProductStateSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool changeProductStateSOAP(int id, bool state) {
+            object[] results = this.Invoke("changeProductStateSOAP", new object[] {
+                        id,
+                        state});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void changeProductStateSOAPAsync(int id, bool state) {
+            this.changeProductStateSOAPAsync(id, state, null);
+        }
+        
+        /// <remarks/>
+        public void changeProductStateSOAPAsync(int id, bool state, object userState) {
+            if ((this.changeProductStateSOAPOperationCompleted == null)) {
+                this.changeProductStateSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnchangeProductStateSOAPOperationCompleted);
+            }
+            this.InvokeAsync("changeProductStateSOAP", new object[] {
+                        id,
+                        state}, this.changeProductStateSOAPOperationCompleted, userState);
+        }
+        
+        private void OnchangeProductStateSOAPOperationCompleted(object arg) {
+            if ((this.changeProductStateSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.changeProductStateSOAPCompleted(this, new changeProductStateSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/verifyPasswordJSON", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool verifyPasswordJSON(int id, string password) {
+            object[] results = this.Invoke("verifyPasswordJSON", new object[] {
+                        id,
+                        password});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void verifyPasswordJSONAsync(int id, string password) {
+            this.verifyPasswordJSONAsync(id, password, null);
+        }
+        
+        /// <remarks/>
+        public void verifyPasswordJSONAsync(int id, string password, object userState) {
+            if ((this.verifyPasswordJSONOperationCompleted == null)) {
+                this.verifyPasswordJSONOperationCompleted = new System.Threading.SendOrPostCallback(this.OnverifyPasswordJSONOperationCompleted);
+            }
+            this.InvokeAsync("verifyPasswordJSON", new object[] {
+                        id,
+                        password}, this.verifyPasswordJSONOperationCompleted, userState);
+        }
+        
+        private void OnverifyPasswordJSONOperationCompleted(object arg) {
+            if ((this.verifyPasswordJSONCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.verifyPasswordJSONCompleted(this, new verifyPasswordJSONCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/verifyPasswordSOAP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool verifyPasswordSOAP(int id, string password) {
+            object[] results = this.Invoke("verifyPasswordSOAP", new object[] {
+                        id,
+                        password});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void verifyPasswordSOAPAsync(int id, string password) {
+            this.verifyPasswordSOAPAsync(id, password, null);
+        }
+        
+        /// <remarks/>
+        public void verifyPasswordSOAPAsync(int id, string password, object userState) {
+            if ((this.verifyPasswordSOAPOperationCompleted == null)) {
+                this.verifyPasswordSOAPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnverifyPasswordSOAPOperationCompleted);
+            }
+            this.InvokeAsync("verifyPasswordSOAP", new object[] {
+                        id,
+                        password}, this.verifyPasswordSOAPOperationCompleted, userState);
+        }
+        
+        private void OnverifyPasswordSOAPOperationCompleted(object arg) {
+            if ((this.verifyPasswordSOAPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.verifyPasswordSOAPCompleted(this, new verifyPasswordSOAPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -654,35 +1493,60 @@ namespace UserInterface.RogersWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class Employee : Person {
+    public partial class Client : Person {
         
-        private string uSERNAMEField;
+        private string pROFILEPICTUREURLField;
         
-        private bool isADMINField;
+        private string eMAILField;
+        
+        private bool isACTIVEField;
+        
+        private string aDDRESSField;
         
         /// <remarks/>
-        public string USERNAME {
+        public string PROFILEPICTUREURL {
             get {
-                return this.uSERNAMEField;
+                return this.pROFILEPICTUREURLField;
             }
             set {
-                this.uSERNAMEField = value;
+                this.pROFILEPICTUREURLField = value;
             }
         }
         
         /// <remarks/>
-        public bool isADMIN {
+        public string EMAIL {
             get {
-                return this.isADMINField;
+                return this.eMAILField;
             }
             set {
-                this.isADMINField = value;
+                this.eMAILField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool isACTIVE {
+            get {
+                return this.isACTIVEField;
+            }
+            set {
+                this.isACTIVEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ADDRESS {
+            get {
+                return this.aDDRESSField;
+            }
+            set {
+                this.aDDRESSField = value;
             }
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Employee))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Client))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -733,6 +1597,123 @@ namespace UserInterface.RogersWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Order {
+        
+        private string oRDERIDField;
+        
+        private string oRDERSTATEIDField;
+        
+        private System.DateTime dATETTIMEField;
+        
+        private string fULLNAMEField;
+        
+        private string pICTUREURLField;
+        
+        private string aDDRESSField;
+        
+        private string eMAILField;
+        
+        private double tOTALField;
+        
+        private Product[] pRODUCTSField;
+        
+        /// <remarks/>
+        public string ORDERID {
+            get {
+                return this.oRDERIDField;
+            }
+            set {
+                this.oRDERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ORDERSTATEID {
+            get {
+                return this.oRDERSTATEIDField;
+            }
+            set {
+                this.oRDERSTATEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DATETTIME {
+            get {
+                return this.dATETTIMEField;
+            }
+            set {
+                this.dATETTIMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FULLNAME {
+            get {
+                return this.fULLNAMEField;
+            }
+            set {
+                this.fULLNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PICTUREURL {
+            get {
+                return this.pICTUREURLField;
+            }
+            set {
+                this.pICTUREURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ADDRESS {
+            get {
+                return this.aDDRESSField;
+            }
+            set {
+                this.aDDRESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EMAIL {
+            get {
+                return this.eMAILField;
+            }
+            set {
+                this.eMAILField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double TOTAL {
+            get {
+                return this.tOTALField;
+            }
+            set {
+                this.tOTALField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Product[] PRODUCTS {
+            get {
+                return this.pRODUCTSField;
+            }
+            set {
+                this.pRODUCTSField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class Product {
         
         private int pRODUCT_IDField;
@@ -747,7 +1728,7 @@ namespace UserInterface.RogersWS {
         
         private bool isoutofstockField;
         
-        private int categoryField;
+        private string categoryField;
         
         /// <remarks/>
         public int PRODUCT_ID {
@@ -810,7 +1791,7 @@ namespace UserInterface.RogersWS {
         }
         
         /// <remarks/>
-        public int category {
+        public string category {
             get {
                 return this.categoryField;
             }
@@ -866,18 +1847,51 @@ namespace UserInterface.RogersWS {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Employee : Person {
+        
+        private string uSERNAMEField;
+        
+        private bool isADMINField;
+        
+        /// <remarks/>
+        public string USERNAME {
+            get {
+                return this.uSERNAMEField;
+            }
+            set {
+                this.uSERNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool isADMIN {
+            get {
+                return this.isADMINField;
+            }
+            set {
+                this.isADMINField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void searchClientsCompletedEventHandler(object sender, searchClientsCompletedEventArgs e);
+    public delegate void searchClientsJSONCompletedEventHandler(object sender, searchClientsJSONCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class searchClientsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class searchClientsJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal searchClientsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal searchClientsJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -893,21 +1907,51 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void addClientCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void updateBasicDataCompletedEventHandler(object sender, updateBasicDataCompletedEventArgs e);
+    public delegate void searchClientsSOAPCompletedEventHandler(object sender, searchClientsSOAPCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateBasicDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class searchClientsSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal updateBasicDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal searchClientsSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Client[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Client[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void addClientJSONCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void addClientSOAPCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void updateBasicDataJSONCompletedEventHandler(object sender, updateBasicDataJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updateBasicDataJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updateBasicDataJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -923,17 +1967,17 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void changeStateCompletedEventHandler(object sender, changeStateCompletedEventArgs e);
+    public delegate void updateBasicDataSOAPCompletedEventHandler(object sender, updateBasicDataSOAPCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class changeStateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class updateBasicDataSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal changeStateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal updateBasicDataSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -949,17 +1993,17 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void deleteEmployeeCompletedEventHandler(object sender, deleteEmployeeCompletedEventArgs e);
+    public delegate void changeStateJSONCompletedEventHandler(object sender, changeStateJSONCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class deleteEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class changeStateJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal deleteEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal changeStateJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -975,17 +2019,17 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void updateEmployeeCompletedEventHandler(object sender, updateEmployeeCompletedEventArgs e);
+    public delegate void changeStateSOAPCompletedEventHandler(object sender, changeStateSOAPCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class changeStateSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal updateEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal changeStateSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1001,17 +2045,95 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void searchEmployeeCompletedEventHandler(object sender, searchEmployeeCompletedEventArgs e);
+    public delegate void updateEmployeeJSONCompletedEventHandler(object sender, updateEmployeeJSONCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class searchEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class updateEmployeeJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal searchEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal updateEmployeeJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void updateEmployeeSOAPCompletedEventHandler(object sender, updateEmployeeSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updateEmployeeSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updateEmployeeSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchEmployeeJSONCompletedEventHandler(object sender, searchEmployeeJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class searchEmployeeJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal searchEmployeeJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchEmployeeSOAPCompletedEventHandler(object sender, searchEmployeeSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class searchEmployeeSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal searchEmployeeSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1027,17 +2149,17 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void addEmployeeCompletedEventHandler(object sender, addEmployeeCompletedEventArgs e);
+    public delegate void addEmployeeJSONCompletedEventHandler(object sender, addEmployeeJSONCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class addEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class addEmployeeJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal addEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal addEmployeeJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1053,17 +2175,69 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void searchOrderStatesCompletedEventHandler(object sender, searchOrderStatesCompletedEventArgs e);
+    public delegate void addEmployeeSOAPCompletedEventHandler(object sender, addEmployeeSOAPCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class searchOrderStatesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class addEmployeeSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal searchOrderStatesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal addEmployeeSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchOrderStatesJSONCompletedEventHandler(object sender, searchOrderStatesJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class searchOrderStatesJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal searchOrderStatesJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchOrderStatesSOAPCompletedEventHandler(object sender, searchOrderStatesSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class searchOrderStatesSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal searchOrderStatesSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1079,17 +2253,17 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void setTimeCompletedEventHandler(object sender, setTimeCompletedEventArgs e);
+    public delegate void setTimeJSONCompletedEventHandler(object sender, setTimeJSONCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class setTimeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class setTimeJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal setTimeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal setTimeJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1105,17 +2279,17 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void addproductCompletedEventHandler(object sender, addproductCompletedEventArgs e);
+    public delegate void setTimeSOAPCompletedEventHandler(object sender, setTimeSOAPCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class addproductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class setTimeSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal addproductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal setTimeSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1131,17 +2305,17 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void deleteProductCompletedEventHandler(object sender, deleteProductCompletedEventArgs e);
+    public delegate void addproductJSONCompletedEventHandler(object sender, addproductJSONCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class deleteProductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class addproductJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal deleteProductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal addproductJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1157,17 +2331,99 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void searchProductCompletedEventHandler(object sender, searchProductCompletedEventArgs e);
+    public delegate void addproductSOAPCompletedEventHandler(object sender, addproductSOAPCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class searchProductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class addproductSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal searchProductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal addproductSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void deleteProductJSONCompletedEventHandler(object sender, deleteProductJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteProductJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteProductJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void deleteProductSOAPCompletedEventHandler(object sender, deleteProductSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteProductSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteProductSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchProductJSONCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchProductSOAPCompletedEventHandler(object sender, searchProductSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class searchProductSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal searchProductSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1183,17 +2439,47 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void updateProductCompletedEventHandler(object sender, updateProductCompletedEventArgs e);
+    public delegate void searchProductByIdJSONCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchProductByIdSOAPCompletedEventHandler(object sender, searchProductByIdSOAPCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateProductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class searchProductByIdSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal updateProductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal searchProductByIdSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Product Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Product)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void updateProductJSONCompletedEventHandler(object sender, updateProductJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updateProductJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updateProductJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1209,17 +2495,277 @@ namespace UserInterface.RogersWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void addOrderCompletedEventHandler(object sender, addOrderCompletedEventArgs e);
+    public delegate void updateProductSOAPCompletedEventHandler(object sender, updateProductSOAPCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class addOrderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class updateProductSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal addOrderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal updateProductSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void addOrderJSONCompletedEventHandler(object sender, addOrderJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class addOrderJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal addOrderJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void addOrderSOAPCompletedEventHandler(object sender, addOrderSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class addOrderSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal addOrderSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchOrdersJSONCompletedEventHandler(object sender, searchOrdersJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class searchOrdersJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal searchOrdersJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void searchOrdersSOAPCompletedEventHandler(object sender, searchOrdersSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class searchOrdersSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal searchOrdersSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Order[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Order[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void deletePersonJSONCompletedEventHandler(object sender, deletePersonJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deletePersonJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deletePersonJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void deletePersonSOAPCompletedEventHandler(object sender, deletePersonSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deletePersonSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deletePersonSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void changeProductStateJSONCompletedEventHandler(object sender, changeProductStateJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class changeProductStateJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal changeProductStateJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void changeProductStateSOAPCompletedEventHandler(object sender, changeProductStateSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class changeProductStateSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal changeProductStateSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void verifyPasswordJSONCompletedEventHandler(object sender, verifyPasswordJSONCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class verifyPasswordJSONCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal verifyPasswordJSONCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void verifyPasswordSOAPCompletedEventHandler(object sender, verifyPasswordSOAPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class verifyPasswordSOAPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal verifyPasswordSOAPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

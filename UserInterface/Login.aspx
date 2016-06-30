@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Roger's</title>
+    <link rel="icon" href="images/favicon.ico" sizes="16x16"/>
     <link href="Content/login.css" rel="stylesheet" />
 </head>
 <body>    

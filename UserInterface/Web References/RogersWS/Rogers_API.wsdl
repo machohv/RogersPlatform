@@ -2,21 +2,59 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="searchClients">
+      <s:element name="searchClientsJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="param" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="searchClientsResponse">
+      <s:element name="searchClientsJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="searchClientsResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchClientsJSONResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="addClient">
+      <s:element name="searchClientsSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="param" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchClientsSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchClientsSOAPResult" type="tns:ArrayOfClient" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfClient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Client">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Person">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PROFILEPICTUREURL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="isACTIVE" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="ADDRESS" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Person" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PERSON_ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FULLNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PASSWORD" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="addClientJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
@@ -27,10 +65,24 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="addClientResponse">
+      <s:element name="addClientJSONResponse">
         <s:complexType />
       </s:element>
-      <s:element name="updateBasicData">
+      <s:element name="addClientSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="profilepictureurl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addClientSOAPResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="updateBasicDataJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
@@ -40,43 +92,61 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="updateBasicDataResponse">
+      <s:element name="updateBasicDataJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="updateBasicDataResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="updateBasicDataJSONResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="changeState">
+      <s:element name="updateBasicDataSOAP">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="state" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="changeStateResponse">
+      <s:element name="updateBasicDataSOAPResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="changeStateResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="updateBasicDataSOAPResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="deleteEmployee">
+      <s:element name="changeStateJSON">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="state" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="deleteEmployeeResponse">
+      <s:element name="changeStateJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="deleteEmployeeResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="changeStateJSONResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="updateEmployee">
+      <s:element name="changeStateSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="state" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeStateSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="changeStateSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateEmployeeJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
@@ -86,24 +156,55 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="updateEmployeeResponse">
+      <s:element name="updateEmployeeJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="updateEmployeeResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="updateEmployeeJSONResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="searchEmployee">
+      <s:element name="updateEmployeeSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isadmin" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateEmployeeSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="updateEmployeeSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchEmployeeJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="searchEmployeeResponse">
+      <s:element name="searchEmployeeJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="searchEmployeeResult" type="tns:ArrayOfEmployee" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchEmployeeJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchEmployeeSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchEmployeeSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchEmployeeSOAPResult" type="tns:ArrayOfEmployee" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -122,14 +223,7 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
-      <s:complexType name="Person" abstract="true">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="PERSON_ID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="FULLNAME" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="PASSWORD" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="addEmployee">
+      <s:element name="addEmployeeJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
@@ -139,20 +233,47 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="addEmployeeResponse">
+      <s:element name="addEmployeeJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="addEmployeeResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="addEmployeeJSONResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="searchOrderStates">
-        <s:complexType />
-      </s:element>
-      <s:element name="searchOrderStatesResponse">
+      <s:element name="addEmployeeSOAP">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="searchOrderStatesResult" type="tns:ArrayOfOrderState" />
+            <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isadmin" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addEmployeeSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="addEmployeeSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchOrderStatesJSON">
+        <s:complexType />
+      </s:element>
+      <s:element name="searchOrderStatesJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchOrderStatesJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchOrderStatesSOAP">
+        <s:complexType />
+      </s:element>
+      <s:element name="searchOrderStatesSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchOrderStatesSOAPResult" type="tns:ArrayOfOrderState" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -168,7 +289,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="orderStateID" type="s:int" />
         </s:sequence>
       </s:complexType>
-      <s:element name="setTime">
+      <s:element name="setTimeJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
@@ -176,14 +297,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="setTimeResponse">
+      <s:element name="setTimeJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="setTimeResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="setTimeJSONResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="addproduct">
+      <s:element name="setTimeSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="time" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setTimeSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setTimeSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addproductJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="productname" type="s:string" />
@@ -191,42 +327,85 @@
             <s:element minOccurs="1" maxOccurs="1" name="price" type="s:double" />
             <s:element minOccurs="0" maxOccurs="1" name="image" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="isoutofstoc" type="s:boolean" />
-            <s:element minOccurs="1" maxOccurs="1" name="category" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="category" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="addproductResponse">
+      <s:element name="addproductJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="addproductResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="addproductJSONResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="deleteProduct">
+      <s:element name="addproductSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="productname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="price" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="image" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isoutofstoc" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addproductSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="addproductSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteProductJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="deleteProductResponse">
+      <s:element name="deleteProductJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="deleteProductResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="deleteProductJSONResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="searchProduct">
+      <s:element name="deleteProductSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteProductSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteProductSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchProductJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="productname" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="searchProductResponse">
+      <s:element name="searchProductJSONResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="searchProductSOAP">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="searchProductResult" type="tns:ArrayOfProduct" />
+            <s:element minOccurs="0" maxOccurs="1" name="productname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchProductSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchProductSOAPResult" type="tns:ArrayOfProduct" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -243,10 +422,34 @@
           <s:element minOccurs="1" maxOccurs="1" name="PRICE" type="s:double" />
           <s:element minOccurs="0" maxOccurs="1" name="IMAGEURI" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="isoutofstock" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="category" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="category" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:element name="updateProduct">
+      <s:element name="searchProductByIdJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchProductByIdJSONResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="searchProductByIdSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchProductByIdSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchProductByIdSOAPResult" type="tns:Product" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateProductJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
@@ -255,18 +458,38 @@
             <s:element minOccurs="1" maxOccurs="1" name="price" type="s:double" />
             <s:element minOccurs="0" maxOccurs="1" name="imageuri" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="stock" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="cat" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="cat" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="updateProductResponse">
+      <s:element name="updateProductJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="updateProductResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="updateProductJSONResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="addOrder">
+      <s:element name="updateProductSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descr" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="price" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="imageuri" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="stock" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="cat" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateProductSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="updateProductSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addOrderJSON">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
@@ -274,182 +497,531 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="addOrderResponse">
+      <s:element name="addOrderJSONResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="addOrderResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="addOrderJSONResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addOrderSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="prods" type="tns:ArrayOfProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addOrderSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="addOrderSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchOrdersJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchOrdersJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchOrdersJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchOrdersSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchOrdersSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchOrdersSOAPResult" type="tns:ArrayOfOrder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Order" nillable="true" type="tns:Order" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Order">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ORDERID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ORDERSTATEID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DATETTIME" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="FULLNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PICTUREURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ADDRESS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TOTAL" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRODUCTS" type="tns:ArrayOfProduct" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="deletePersonJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="person_id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deletePersonJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deletePersonJSONResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deletePersonSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="person_id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deletePersonSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deletePersonSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeProductStateJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="state" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeProductStateJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="changeProductStateJSONResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeProductStateSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="state" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeProductStateSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="changeProductStateSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verifyPasswordJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verifyPasswordJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verifyPasswordJSONResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verifyPasswordSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verifyPasswordSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verifyPasswordSOAPResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfClient" nillable="true" type="tns:ArrayOfClient" />
       <s:element name="boolean" type="s:boolean" />
       <s:element name="ArrayOfEmployee" nillable="true" type="tns:ArrayOfEmployee" />
       <s:element name="ArrayOfOrderState" nillable="true" type="tns:ArrayOfOrderState" />
       <s:element name="ArrayOfProduct" nillable="true" type="tns:ArrayOfProduct" />
+      <s:element name="Product" nillable="true" type="tns:Product" />
+      <s:element name="ArrayOfOrder" nillable="true" type="tns:ArrayOfOrder" />
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="searchClientsSoapIn">
-    <wsdl:part name="parameters" element="tns:searchClients" />
+  <wsdl:message name="searchClientsJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchClientsJSON" />
   </wsdl:message>
-  <wsdl:message name="searchClientsSoapOut">
-    <wsdl:part name="parameters" element="tns:searchClientsResponse" />
+  <wsdl:message name="searchClientsJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchClientsJSONResponse" />
   </wsdl:message>
-  <wsdl:message name="addClientSoapIn">
-    <wsdl:part name="parameters" element="tns:addClient" />
+  <wsdl:message name="searchClientsSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:searchClientsSOAP" />
   </wsdl:message>
-  <wsdl:message name="addClientSoapOut">
-    <wsdl:part name="parameters" element="tns:addClientResponse" />
+  <wsdl:message name="searchClientsSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:searchClientsSOAPResponse" />
   </wsdl:message>
-  <wsdl:message name="updateBasicDataSoapIn">
-    <wsdl:part name="parameters" element="tns:updateBasicData" />
+  <wsdl:message name="addClientJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:addClientJSON" />
   </wsdl:message>
-  <wsdl:message name="updateBasicDataSoapOut">
-    <wsdl:part name="parameters" element="tns:updateBasicDataResponse" />
+  <wsdl:message name="addClientJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:addClientJSONResponse" />
   </wsdl:message>
-  <wsdl:message name="changeStateSoapIn">
-    <wsdl:part name="parameters" element="tns:changeState" />
+  <wsdl:message name="addClientSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:addClientSOAP" />
   </wsdl:message>
-  <wsdl:message name="changeStateSoapOut">
-    <wsdl:part name="parameters" element="tns:changeStateResponse" />
+  <wsdl:message name="addClientSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:addClientSOAPResponse" />
   </wsdl:message>
-  <wsdl:message name="deleteEmployeeSoapIn">
-    <wsdl:part name="parameters" element="tns:deleteEmployee" />
+  <wsdl:message name="updateBasicDataJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:updateBasicDataJSON" />
   </wsdl:message>
-  <wsdl:message name="deleteEmployeeSoapOut">
-    <wsdl:part name="parameters" element="tns:deleteEmployeeResponse" />
+  <wsdl:message name="updateBasicDataJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:updateBasicDataJSONResponse" />
   </wsdl:message>
-  <wsdl:message name="updateEmployeeSoapIn">
-    <wsdl:part name="parameters" element="tns:updateEmployee" />
+  <wsdl:message name="updateBasicDataSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:updateBasicDataSOAP" />
   </wsdl:message>
-  <wsdl:message name="updateEmployeeSoapOut">
-    <wsdl:part name="parameters" element="tns:updateEmployeeResponse" />
+  <wsdl:message name="updateBasicDataSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:updateBasicDataSOAPResponse" />
   </wsdl:message>
-  <wsdl:message name="searchEmployeeSoapIn">
-    <wsdl:part name="parameters" element="tns:searchEmployee" />
+  <wsdl:message name="changeStateJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:changeStateJSON" />
   </wsdl:message>
-  <wsdl:message name="searchEmployeeSoapOut">
-    <wsdl:part name="parameters" element="tns:searchEmployeeResponse" />
+  <wsdl:message name="changeStateJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:changeStateJSONResponse" />
   </wsdl:message>
-  <wsdl:message name="addEmployeeSoapIn">
-    <wsdl:part name="parameters" element="tns:addEmployee" />
+  <wsdl:message name="changeStateSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:changeStateSOAP" />
   </wsdl:message>
-  <wsdl:message name="addEmployeeSoapOut">
-    <wsdl:part name="parameters" element="tns:addEmployeeResponse" />
+  <wsdl:message name="changeStateSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:changeStateSOAPResponse" />
   </wsdl:message>
-  <wsdl:message name="searchOrderStatesSoapIn">
-    <wsdl:part name="parameters" element="tns:searchOrderStates" />
+  <wsdl:message name="updateEmployeeJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:updateEmployeeJSON" />
   </wsdl:message>
-  <wsdl:message name="searchOrderStatesSoapOut">
-    <wsdl:part name="parameters" element="tns:searchOrderStatesResponse" />
+  <wsdl:message name="updateEmployeeJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:updateEmployeeJSONResponse" />
   </wsdl:message>
-  <wsdl:message name="setTimeSoapIn">
-    <wsdl:part name="parameters" element="tns:setTime" />
+  <wsdl:message name="updateEmployeeSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:updateEmployeeSOAP" />
   </wsdl:message>
-  <wsdl:message name="setTimeSoapOut">
-    <wsdl:part name="parameters" element="tns:setTimeResponse" />
+  <wsdl:message name="updateEmployeeSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:updateEmployeeSOAPResponse" />
   </wsdl:message>
-  <wsdl:message name="addproductSoapIn">
-    <wsdl:part name="parameters" element="tns:addproduct" />
+  <wsdl:message name="searchEmployeeJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchEmployeeJSON" />
   </wsdl:message>
-  <wsdl:message name="addproductSoapOut">
-    <wsdl:part name="parameters" element="tns:addproductResponse" />
+  <wsdl:message name="searchEmployeeJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchEmployeeJSONResponse" />
   </wsdl:message>
-  <wsdl:message name="deleteProductSoapIn">
-    <wsdl:part name="parameters" element="tns:deleteProduct" />
+  <wsdl:message name="searchEmployeeSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:searchEmployeeSOAP" />
   </wsdl:message>
-  <wsdl:message name="deleteProductSoapOut">
-    <wsdl:part name="parameters" element="tns:deleteProductResponse" />
+  <wsdl:message name="searchEmployeeSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:searchEmployeeSOAPResponse" />
   </wsdl:message>
-  <wsdl:message name="searchProductSoapIn">
-    <wsdl:part name="parameters" element="tns:searchProduct" />
+  <wsdl:message name="addEmployeeJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:addEmployeeJSON" />
   </wsdl:message>
-  <wsdl:message name="searchProductSoapOut">
-    <wsdl:part name="parameters" element="tns:searchProductResponse" />
+  <wsdl:message name="addEmployeeJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:addEmployeeJSONResponse" />
   </wsdl:message>
-  <wsdl:message name="updateProductSoapIn">
-    <wsdl:part name="parameters" element="tns:updateProduct" />
+  <wsdl:message name="addEmployeeSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:addEmployeeSOAP" />
   </wsdl:message>
-  <wsdl:message name="updateProductSoapOut">
-    <wsdl:part name="parameters" element="tns:updateProductResponse" />
+  <wsdl:message name="addEmployeeSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:addEmployeeSOAPResponse" />
   </wsdl:message>
-  <wsdl:message name="addOrderSoapIn">
-    <wsdl:part name="parameters" element="tns:addOrder" />
+  <wsdl:message name="searchOrderStatesJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchOrderStatesJSON" />
   </wsdl:message>
-  <wsdl:message name="addOrderSoapOut">
-    <wsdl:part name="parameters" element="tns:addOrderResponse" />
+  <wsdl:message name="searchOrderStatesJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchOrderStatesJSONResponse" />
   </wsdl:message>
-  <wsdl:message name="searchClientsHttpGetIn">
+  <wsdl:message name="searchOrderStatesSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:searchOrderStatesSOAP" />
+  </wsdl:message>
+  <wsdl:message name="searchOrderStatesSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:searchOrderStatesSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="setTimeJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:setTimeJSON" />
+  </wsdl:message>
+  <wsdl:message name="setTimeJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:setTimeJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="setTimeSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:setTimeSOAP" />
+  </wsdl:message>
+  <wsdl:message name="setTimeSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:setTimeSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="addproductJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:addproductJSON" />
+  </wsdl:message>
+  <wsdl:message name="addproductJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:addproductJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="addproductSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:addproductSOAP" />
+  </wsdl:message>
+  <wsdl:message name="addproductSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:addproductSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteProductJSON" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteProductJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteProductSOAP" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteProductSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchProductJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchProductJSON" />
+  </wsdl:message>
+  <wsdl:message name="searchProductJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchProductJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchProductSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:searchProductSOAP" />
+  </wsdl:message>
+  <wsdl:message name="searchProductSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:searchProductSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchProductByIdJSON" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchProductByIdJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:searchProductByIdSOAP" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:searchProductByIdSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateProductJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:updateProductJSON" />
+  </wsdl:message>
+  <wsdl:message name="updateProductJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:updateProductJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateProductSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:updateProductSOAP" />
+  </wsdl:message>
+  <wsdl:message name="updateProductSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:updateProductSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="addOrderJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:addOrderJSON" />
+  </wsdl:message>
+  <wsdl:message name="addOrderJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:addOrderJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="addOrderSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:addOrderSOAP" />
+  </wsdl:message>
+  <wsdl:message name="addOrderSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:addOrderSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchOrdersJSON" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchOrdersJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:searchOrdersSOAP" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:searchOrdersSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:deletePersonJSON" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:deletePersonJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:deletePersonSOAP" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:deletePersonSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:changeProductStateJSON" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:changeProductStateJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:changeProductStateSOAP" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:changeProductStateSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:verifyPasswordJSON" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:verifyPasswordJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:verifyPasswordSOAP" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:verifyPasswordSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchClientsJSONHttpGetIn">
     <wsdl:part name="param" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="searchClientsHttpGetOut">
+  <wsdl:message name="searchClientsJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="addClientHttpGetIn">
+  <wsdl:message name="searchClientsSOAPHttpGetIn">
+    <wsdl:part name="param" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchClientsSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClient" />
+  </wsdl:message>
+  <wsdl:message name="addClientJSONHttpGetIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
     <wsdl:part name="profilepictureurl" type="s:string" />
     <wsdl:part name="email" type="s:string" />
     <wsdl:part name="address" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="addClientHttpGetOut" />
-  <wsdl:message name="updateBasicDataHttpGetIn">
+  <wsdl:message name="addClientJSONHttpGetOut" />
+  <wsdl:message name="addClientSOAPHttpGetIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="profilepictureurl" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addClientSOAPHttpGetOut" />
+  <wsdl:message name="updateBasicDataJSONHttpGetIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="address" type="s:string" />
     <wsdl:part name="password" type="s:string" />
     <wsdl:part name="email" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="updateBasicDataHttpGetOut">
+  <wsdl:message name="updateBasicDataJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="changeStateHttpGetIn">
-    <wsdl:part name="state" type="s:string" />
+  <wsdl:message name="updateBasicDataSOAPHttpGetIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
     <wsdl:part name="email" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="changeStateHttpGetOut">
+  <wsdl:message name="updateBasicDataSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="deleteEmployeeHttpGetIn">
-    <wsdl:part name="username" type="s:string" />
+  <wsdl:message name="changeStateJSONHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="deleteEmployeeHttpGetOut">
+  <wsdl:message name="changeStateJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="updateEmployeeHttpGetIn">
+  <wsdl:message name="changeStateSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="changeStateSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeJSONHttpGetIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
     <wsdl:part name="username" type="s:string" />
     <wsdl:part name="isadmin" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="updateEmployeeHttpGetOut">
+  <wsdl:message name="updateEmployeeJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="searchEmployeeHttpGetIn">
+  <wsdl:message name="updateEmployeeSOAPHttpGetIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="isadmin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeJSONHttpGetIn">
     <wsdl:part name="filter" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="searchEmployeeHttpGetOut">
+  <wsdl:message name="searchEmployeeJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeSOAPHttpGetIn">
+    <wsdl:part name="filter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfEmployee" />
   </wsdl:message>
-  <wsdl:message name="addEmployeeHttpGetIn">
+  <wsdl:message name="addEmployeeJSONHttpGetIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
     <wsdl:part name="username" type="s:string" />
     <wsdl:part name="isadmin" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="addEmployeeHttpGetOut">
+  <wsdl:message name="addEmployeeJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="searchOrderStatesHttpGetIn" />
-  <wsdl:message name="searchOrderStatesHttpGetOut">
+  <wsdl:message name="addEmployeeSOAPHttpGetIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="isadmin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addEmployeeSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchOrderStatesJSONHttpGetIn" />
+  <wsdl:message name="searchOrderStatesJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="searchOrderStatesSOAPHttpGetIn" />
+  <wsdl:message name="searchOrderStatesSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfOrderState" />
   </wsdl:message>
-  <wsdl:message name="setTimeHttpGetIn">
+  <wsdl:message name="setTimeJSONHttpGetIn">
     <wsdl:part name="id" type="s:string" />
     <wsdl:part name="time" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="setTimeHttpGetOut">
+  <wsdl:message name="setTimeJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="addproductHttpGetIn">
+  <wsdl:message name="setTimeSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="time" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="setTimeSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="addproductJSONHttpGetIn">
     <wsdl:part name="productname" type="s:string" />
     <wsdl:part name="description" type="s:string" />
     <wsdl:part name="price" type="s:string" />
@@ -457,22 +1029,53 @@
     <wsdl:part name="isoutofstoc" type="s:string" />
     <wsdl:part name="category" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="addproductHttpGetOut">
+  <wsdl:message name="addproductJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="deleteProductHttpGetIn">
+  <wsdl:message name="addproductSOAPHttpGetIn">
+    <wsdl:part name="productname" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+    <wsdl:part name="price" type="s:string" />
+    <wsdl:part name="image" type="s:string" />
+    <wsdl:part name="isoutofstoc" type="s:string" />
+    <wsdl:part name="category" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addproductSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductJSONHttpGetIn">
     <wsdl:part name="id" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="deleteProductHttpGetOut">
+  <wsdl:message name="deleteProductJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="searchProductHttpGetIn">
+  <wsdl:message name="deleteProductSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchProductJSONHttpGetIn">
     <wsdl:part name="productname" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="searchProductHttpGetOut">
+  <wsdl:message name="searchProductJSONHttpGetOut" />
+  <wsdl:message name="searchProductSOAPHttpGetIn">
+    <wsdl:part name="productname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfProduct" />
   </wsdl:message>
-  <wsdl:message name="updateProductHttpGetIn">
+  <wsdl:message name="searchProductByIdJSONHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdJSONHttpGetOut" />
+  <wsdl:message name="searchProductByIdSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:Product" />
+  </wsdl:message>
+  <wsdl:message name="updateProductJSONHttpGetIn">
     <wsdl:part name="id" type="s:string" />
     <wsdl:part name="name" type="s:string" />
     <wsdl:part name="descr" type="s:string" />
@@ -481,104 +1084,10 @@
     <wsdl:part name="stock" type="s:string" />
     <wsdl:part name="cat" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="updateProductHttpGetOut">
+  <wsdl:message name="updateProductJSONHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="searchClientsHttpPostIn">
-    <wsdl:part name="param" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="searchClientsHttpPostOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="addClientHttpPostIn">
-    <wsdl:part name="fullname" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="profilepictureurl" type="s:string" />
-    <wsdl:part name="email" type="s:string" />
-    <wsdl:part name="address" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="addClientHttpPostOut" />
-  <wsdl:message name="updateBasicDataHttpPostIn">
-    <wsdl:part name="fullname" type="s:string" />
-    <wsdl:part name="address" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="email" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="updateBasicDataHttpPostOut">
-    <wsdl:part name="Body" element="tns:boolean" />
-  </wsdl:message>
-  <wsdl:message name="changeStateHttpPostIn">
-    <wsdl:part name="state" type="s:string" />
-    <wsdl:part name="email" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="changeStateHttpPostOut">
-    <wsdl:part name="Body" element="tns:boolean" />
-  </wsdl:message>
-  <wsdl:message name="deleteEmployeeHttpPostIn">
-    <wsdl:part name="username" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="deleteEmployeeHttpPostOut">
-    <wsdl:part name="Body" element="tns:boolean" />
-  </wsdl:message>
-  <wsdl:message name="updateEmployeeHttpPostIn">
-    <wsdl:part name="fullname" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="username" type="s:string" />
-    <wsdl:part name="isadmin" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="updateEmployeeHttpPostOut">
-    <wsdl:part name="Body" element="tns:boolean" />
-  </wsdl:message>
-  <wsdl:message name="searchEmployeeHttpPostIn">
-    <wsdl:part name="filter" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="searchEmployeeHttpPostOut">
-    <wsdl:part name="Body" element="tns:ArrayOfEmployee" />
-  </wsdl:message>
-  <wsdl:message name="addEmployeeHttpPostIn">
-    <wsdl:part name="fullname" type="s:string" />
-    <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="username" type="s:string" />
-    <wsdl:part name="isadmin" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="addEmployeeHttpPostOut">
-    <wsdl:part name="Body" element="tns:boolean" />
-  </wsdl:message>
-  <wsdl:message name="searchOrderStatesHttpPostIn" />
-  <wsdl:message name="searchOrderStatesHttpPostOut">
-    <wsdl:part name="Body" element="tns:ArrayOfOrderState" />
-  </wsdl:message>
-  <wsdl:message name="setTimeHttpPostIn">
-    <wsdl:part name="id" type="s:string" />
-    <wsdl:part name="time" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="setTimeHttpPostOut">
-    <wsdl:part name="Body" element="tns:boolean" />
-  </wsdl:message>
-  <wsdl:message name="addproductHttpPostIn">
-    <wsdl:part name="productname" type="s:string" />
-    <wsdl:part name="description" type="s:string" />
-    <wsdl:part name="price" type="s:string" />
-    <wsdl:part name="image" type="s:string" />
-    <wsdl:part name="isoutofstoc" type="s:string" />
-    <wsdl:part name="category" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="addproductHttpPostOut">
-    <wsdl:part name="Body" element="tns:boolean" />
-  </wsdl:message>
-  <wsdl:message name="deleteProductHttpPostIn">
-    <wsdl:part name="id" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="deleteProductHttpPostOut">
-    <wsdl:part name="Body" element="tns:boolean" />
-  </wsdl:message>
-  <wsdl:message name="searchProductHttpPostIn">
-    <wsdl:part name="productname" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="searchProductHttpPostOut">
-    <wsdl:part name="Body" element="tns:ArrayOfProduct" />
-  </wsdl:message>
-  <wsdl:message name="updateProductHttpPostIn">
+  <wsdl:message name="updateProductSOAPHttpGetIn">
     <wsdl:part name="id" type="s:string" />
     <wsdl:part name="name" type="s:string" />
     <wsdl:part name="descr" type="s:string" />
@@ -587,191 +1096,771 @@
     <wsdl:part name="stock" type="s:string" />
     <wsdl:part name="cat" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="updateProductHttpPostOut">
+  <wsdl:message name="updateProductSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersJSONHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOrder" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonJSONHttpGetIn">
+    <wsdl:part name="person_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonSOAPHttpGetIn">
+    <wsdl:part name="person_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateJSONHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordJSONHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchClientsJSONHttpPostIn">
+    <wsdl:part name="param" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchClientsJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="searchClientsSOAPHttpPostIn">
+    <wsdl:part name="param" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchClientsSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClient" />
+  </wsdl:message>
+  <wsdl:message name="addClientJSONHttpPostIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="profilepictureurl" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addClientJSONHttpPostOut" />
+  <wsdl:message name="addClientSOAPHttpPostIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="profilepictureurl" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addClientSOAPHttpPostOut" />
+  <wsdl:message name="updateBasicDataJSONHttpPostIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateBasicDataJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="updateBasicDataSOAPHttpPostIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateBasicDataSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="changeStateJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="changeStateJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="changeStateSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="changeStateSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeJSONHttpPostIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="isadmin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeSOAPHttpPostIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="isadmin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeJSONHttpPostIn">
+    <wsdl:part name="filter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeSOAPHttpPostIn">
+    <wsdl:part name="filter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmployee" />
+  </wsdl:message>
+  <wsdl:message name="addEmployeeJSONHttpPostIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="isadmin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addEmployeeJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="addEmployeeSOAPHttpPostIn">
+    <wsdl:part name="fullname" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="isadmin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addEmployeeSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchOrderStatesJSONHttpPostIn" />
+  <wsdl:message name="searchOrderStatesJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="searchOrderStatesSOAPHttpPostIn" />
+  <wsdl:message name="searchOrderStatesSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOrderState" />
+  </wsdl:message>
+  <wsdl:message name="setTimeJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="time" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="setTimeJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="setTimeSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="time" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="setTimeSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="addproductJSONHttpPostIn">
+    <wsdl:part name="productname" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+    <wsdl:part name="price" type="s:string" />
+    <wsdl:part name="image" type="s:string" />
+    <wsdl:part name="isoutofstoc" type="s:string" />
+    <wsdl:part name="category" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addproductJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="addproductSOAPHttpPostIn">
+    <wsdl:part name="productname" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+    <wsdl:part name="price" type="s:string" />
+    <wsdl:part name="image" type="s:string" />
+    <wsdl:part name="isoutofstoc" type="s:string" />
+    <wsdl:part name="category" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addproductSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deleteProductSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchProductJSONHttpPostIn">
+    <wsdl:part name="productname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductJSONHttpPostOut" />
+  <wsdl:message name="searchProductSOAPHttpPostIn">
+    <wsdl:part name="productname" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProduct" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdJSONHttpPostOut" />
+  <wsdl:message name="searchProductByIdSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductByIdSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:Product" />
+  </wsdl:message>
+  <wsdl:message name="updateProductJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="descr" type="s:string" />
+    <wsdl:part name="price" type="s:string" />
+    <wsdl:part name="imageuri" type="s:string" />
+    <wsdl:part name="stock" type="s:string" />
+    <wsdl:part name="cat" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateProductJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="updateProductSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="descr" type="s:string" />
+    <wsdl:part name="price" type="s:string" />
+    <wsdl:part name="imageuri" type="s:string" />
+    <wsdl:part name="stock" type="s:string" />
+    <wsdl:part name="cat" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateProductSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchOrdersSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOrder" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonJSONHttpPostIn">
+    <wsdl:part name="person_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonSOAPHttpPostIn">
+    <wsdl:part name="person_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deletePersonSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="changeProductStateSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="verifyPasswordSOAPHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
   <wsdl:portType name="Rogers_APISoap">
-    <wsdl:operation name="searchClients">
-      <wsdl:input message="tns:searchClientsSoapIn" />
-      <wsdl:output message="tns:searchClientsSoapOut" />
+    <wsdl:operation name="searchClientsJSON">
+      <wsdl:input message="tns:searchClientsJSONSoapIn" />
+      <wsdl:output message="tns:searchClientsJSONSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="addClient">
-      <wsdl:input message="tns:addClientSoapIn" />
-      <wsdl:output message="tns:addClientSoapOut" />
+    <wsdl:operation name="searchClientsSOAP">
+      <wsdl:input message="tns:searchClientsSOAPSoapIn" />
+      <wsdl:output message="tns:searchClientsSOAPSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateBasicData">
-      <wsdl:input message="tns:updateBasicDataSoapIn" />
-      <wsdl:output message="tns:updateBasicDataSoapOut" />
+    <wsdl:operation name="addClientJSON">
+      <wsdl:input message="tns:addClientJSONSoapIn" />
+      <wsdl:output message="tns:addClientJSONSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="changeState">
-      <wsdl:input message="tns:changeStateSoapIn" />
-      <wsdl:output message="tns:changeStateSoapOut" />
+    <wsdl:operation name="addClientSOAP">
+      <wsdl:input message="tns:addClientSOAPSoapIn" />
+      <wsdl:output message="tns:addClientSOAPSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployee">
-      <wsdl:input message="tns:deleteEmployeeSoapIn" />
-      <wsdl:output message="tns:deleteEmployeeSoapOut" />
+    <wsdl:operation name="updateBasicDataJSON">
+      <wsdl:input message="tns:updateBasicDataJSONSoapIn" />
+      <wsdl:output message="tns:updateBasicDataJSONSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <wsdl:input message="tns:updateEmployeeSoapIn" />
-      <wsdl:output message="tns:updateEmployeeSoapOut" />
+    <wsdl:operation name="updateBasicDataSOAP">
+      <wsdl:input message="tns:updateBasicDataSOAPSoapIn" />
+      <wsdl:output message="tns:updateBasicDataSOAPSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchEmployee">
-      <wsdl:input message="tns:searchEmployeeSoapIn" />
-      <wsdl:output message="tns:searchEmployeeSoapOut" />
+    <wsdl:operation name="changeStateJSON">
+      <wsdl:input message="tns:changeStateJSONSoapIn" />
+      <wsdl:output message="tns:changeStateJSONSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="addEmployee">
-      <wsdl:input message="tns:addEmployeeSoapIn" />
-      <wsdl:output message="tns:addEmployeeSoapOut" />
+    <wsdl:operation name="changeStateSOAP">
+      <wsdl:input message="tns:changeStateSOAPSoapIn" />
+      <wsdl:output message="tns:changeStateSOAPSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchOrderStates">
-      <wsdl:input message="tns:searchOrderStatesSoapIn" />
-      <wsdl:output message="tns:searchOrderStatesSoapOut" />
+    <wsdl:operation name="updateEmployeeJSON">
+      <wsdl:input message="tns:updateEmployeeJSONSoapIn" />
+      <wsdl:output message="tns:updateEmployeeJSONSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="setTime">
-      <wsdl:input message="tns:setTimeSoapIn" />
-      <wsdl:output message="tns:setTimeSoapOut" />
+    <wsdl:operation name="updateEmployeeSOAP">
+      <wsdl:input message="tns:updateEmployeeSOAPSoapIn" />
+      <wsdl:output message="tns:updateEmployeeSOAPSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="addproduct">
-      <wsdl:input message="tns:addproductSoapIn" />
-      <wsdl:output message="tns:addproductSoapOut" />
+    <wsdl:operation name="searchEmployeeJSON">
+      <wsdl:input message="tns:searchEmployeeJSONSoapIn" />
+      <wsdl:output message="tns:searchEmployeeJSONSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="deleteProduct">
-      <wsdl:input message="tns:deleteProductSoapIn" />
-      <wsdl:output message="tns:deleteProductSoapOut" />
+    <wsdl:operation name="searchEmployeeSOAP">
+      <wsdl:input message="tns:searchEmployeeSOAPSoapIn" />
+      <wsdl:output message="tns:searchEmployeeSOAPSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchProduct">
-      <wsdl:input message="tns:searchProductSoapIn" />
-      <wsdl:output message="tns:searchProductSoapOut" />
+    <wsdl:operation name="addEmployeeJSON">
+      <wsdl:input message="tns:addEmployeeJSONSoapIn" />
+      <wsdl:output message="tns:addEmployeeJSONSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateProduct">
-      <wsdl:input message="tns:updateProductSoapIn" />
-      <wsdl:output message="tns:updateProductSoapOut" />
+    <wsdl:operation name="addEmployeeSOAP">
+      <wsdl:input message="tns:addEmployeeSOAPSoapIn" />
+      <wsdl:output message="tns:addEmployeeSOAPSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="addOrder">
-      <wsdl:input message="tns:addOrderSoapIn" />
-      <wsdl:output message="tns:addOrderSoapOut" />
+    <wsdl:operation name="searchOrderStatesJSON">
+      <wsdl:input message="tns:searchOrderStatesJSONSoapIn" />
+      <wsdl:output message="tns:searchOrderStatesJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderStatesSOAP">
+      <wsdl:input message="tns:searchOrderStatesSOAPSoapIn" />
+      <wsdl:output message="tns:searchOrderStatesSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setTimeJSON">
+      <wsdl:input message="tns:setTimeJSONSoapIn" />
+      <wsdl:output message="tns:setTimeJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setTimeSOAP">
+      <wsdl:input message="tns:setTimeSOAPSoapIn" />
+      <wsdl:output message="tns:setTimeSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addproductJSON">
+      <wsdl:input message="tns:addproductJSONSoapIn" />
+      <wsdl:output message="tns:addproductJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addproductSOAP">
+      <wsdl:input message="tns:addproductSOAPSoapIn" />
+      <wsdl:output message="tns:addproductSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductJSON">
+      <wsdl:input message="tns:deleteProductJSONSoapIn" />
+      <wsdl:output message="tns:deleteProductJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductSOAP">
+      <wsdl:input message="tns:deleteProductSOAPSoapIn" />
+      <wsdl:output message="tns:deleteProductSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductJSON">
+      <wsdl:input message="tns:searchProductJSONSoapIn" />
+      <wsdl:output message="tns:searchProductJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductSOAP">
+      <wsdl:input message="tns:searchProductSOAPSoapIn" />
+      <wsdl:output message="tns:searchProductSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdJSON">
+      <wsdl:input message="tns:searchProductByIdJSONSoapIn" />
+      <wsdl:output message="tns:searchProductByIdJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdSOAP">
+      <wsdl:input message="tns:searchProductByIdSOAPSoapIn" />
+      <wsdl:output message="tns:searchProductByIdSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProductJSON">
+      <wsdl:input message="tns:updateProductJSONSoapIn" />
+      <wsdl:output message="tns:updateProductJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProductSOAP">
+      <wsdl:input message="tns:updateProductSOAPSoapIn" />
+      <wsdl:output message="tns:updateProductSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addOrderJSON">
+      <wsdl:input message="tns:addOrderJSONSoapIn" />
+      <wsdl:output message="tns:addOrderJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addOrderSOAP">
+      <wsdl:input message="tns:addOrderSOAPSoapIn" />
+      <wsdl:output message="tns:addOrderSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersJSON">
+      <wsdl:input message="tns:searchOrdersJSONSoapIn" />
+      <wsdl:output message="tns:searchOrdersJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersSOAP">
+      <wsdl:input message="tns:searchOrdersSOAPSoapIn" />
+      <wsdl:output message="tns:searchOrdersSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonJSON">
+      <wsdl:input message="tns:deletePersonJSONSoapIn" />
+      <wsdl:output message="tns:deletePersonJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonSOAP">
+      <wsdl:input message="tns:deletePersonSOAPSoapIn" />
+      <wsdl:output message="tns:deletePersonSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateJSON">
+      <wsdl:input message="tns:changeProductStateJSONSoapIn" />
+      <wsdl:output message="tns:changeProductStateJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateSOAP">
+      <wsdl:input message="tns:changeProductStateSOAPSoapIn" />
+      <wsdl:output message="tns:changeProductStateSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordJSON">
+      <wsdl:input message="tns:verifyPasswordJSONSoapIn" />
+      <wsdl:output message="tns:verifyPasswordJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordSOAP">
+      <wsdl:input message="tns:verifyPasswordSOAPSoapIn" />
+      <wsdl:output message="tns:verifyPasswordSOAPSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="Rogers_APIHttpGet">
-    <wsdl:operation name="searchClients">
-      <wsdl:input message="tns:searchClientsHttpGetIn" />
-      <wsdl:output message="tns:searchClientsHttpGetOut" />
+    <wsdl:operation name="searchClientsJSON">
+      <wsdl:input message="tns:searchClientsJSONHttpGetIn" />
+      <wsdl:output message="tns:searchClientsJSONHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="addClient">
-      <wsdl:input message="tns:addClientHttpGetIn" />
-      <wsdl:output message="tns:addClientHttpGetOut" />
+    <wsdl:operation name="searchClientsSOAP">
+      <wsdl:input message="tns:searchClientsSOAPHttpGetIn" />
+      <wsdl:output message="tns:searchClientsSOAPHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateBasicData">
-      <wsdl:input message="tns:updateBasicDataHttpGetIn" />
-      <wsdl:output message="tns:updateBasicDataHttpGetOut" />
+    <wsdl:operation name="addClientJSON">
+      <wsdl:input message="tns:addClientJSONHttpGetIn" />
+      <wsdl:output message="tns:addClientJSONHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="changeState">
-      <wsdl:input message="tns:changeStateHttpGetIn" />
-      <wsdl:output message="tns:changeStateHttpGetOut" />
+    <wsdl:operation name="addClientSOAP">
+      <wsdl:input message="tns:addClientSOAPHttpGetIn" />
+      <wsdl:output message="tns:addClientSOAPHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployee">
-      <wsdl:input message="tns:deleteEmployeeHttpGetIn" />
-      <wsdl:output message="tns:deleteEmployeeHttpGetOut" />
+    <wsdl:operation name="updateBasicDataJSON">
+      <wsdl:input message="tns:updateBasicDataJSONHttpGetIn" />
+      <wsdl:output message="tns:updateBasicDataJSONHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <wsdl:input message="tns:updateEmployeeHttpGetIn" />
-      <wsdl:output message="tns:updateEmployeeHttpGetOut" />
+    <wsdl:operation name="updateBasicDataSOAP">
+      <wsdl:input message="tns:updateBasicDataSOAPHttpGetIn" />
+      <wsdl:output message="tns:updateBasicDataSOAPHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchEmployee">
-      <wsdl:input message="tns:searchEmployeeHttpGetIn" />
-      <wsdl:output message="tns:searchEmployeeHttpGetOut" />
+    <wsdl:operation name="changeStateJSON">
+      <wsdl:input message="tns:changeStateJSONHttpGetIn" />
+      <wsdl:output message="tns:changeStateJSONHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="addEmployee">
-      <wsdl:input message="tns:addEmployeeHttpGetIn" />
-      <wsdl:output message="tns:addEmployeeHttpGetOut" />
+    <wsdl:operation name="changeStateSOAP">
+      <wsdl:input message="tns:changeStateSOAPHttpGetIn" />
+      <wsdl:output message="tns:changeStateSOAPHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchOrderStates">
-      <wsdl:input message="tns:searchOrderStatesHttpGetIn" />
-      <wsdl:output message="tns:searchOrderStatesHttpGetOut" />
+    <wsdl:operation name="updateEmployeeJSON">
+      <wsdl:input message="tns:updateEmployeeJSONHttpGetIn" />
+      <wsdl:output message="tns:updateEmployeeJSONHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="setTime">
-      <wsdl:input message="tns:setTimeHttpGetIn" />
-      <wsdl:output message="tns:setTimeHttpGetOut" />
+    <wsdl:operation name="updateEmployeeSOAP">
+      <wsdl:input message="tns:updateEmployeeSOAPHttpGetIn" />
+      <wsdl:output message="tns:updateEmployeeSOAPHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="addproduct">
-      <wsdl:input message="tns:addproductHttpGetIn" />
-      <wsdl:output message="tns:addproductHttpGetOut" />
+    <wsdl:operation name="searchEmployeeJSON">
+      <wsdl:input message="tns:searchEmployeeJSONHttpGetIn" />
+      <wsdl:output message="tns:searchEmployeeJSONHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="deleteProduct">
-      <wsdl:input message="tns:deleteProductHttpGetIn" />
-      <wsdl:output message="tns:deleteProductHttpGetOut" />
+    <wsdl:operation name="searchEmployeeSOAP">
+      <wsdl:input message="tns:searchEmployeeSOAPHttpGetIn" />
+      <wsdl:output message="tns:searchEmployeeSOAPHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchProduct">
-      <wsdl:input message="tns:searchProductHttpGetIn" />
-      <wsdl:output message="tns:searchProductHttpGetOut" />
+    <wsdl:operation name="addEmployeeJSON">
+      <wsdl:input message="tns:addEmployeeJSONHttpGetIn" />
+      <wsdl:output message="tns:addEmployeeJSONHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateProduct">
-      <wsdl:input message="tns:updateProductHttpGetIn" />
-      <wsdl:output message="tns:updateProductHttpGetOut" />
+    <wsdl:operation name="addEmployeeSOAP">
+      <wsdl:input message="tns:addEmployeeSOAPHttpGetIn" />
+      <wsdl:output message="tns:addEmployeeSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderStatesJSON">
+      <wsdl:input message="tns:searchOrderStatesJSONHttpGetIn" />
+      <wsdl:output message="tns:searchOrderStatesJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderStatesSOAP">
+      <wsdl:input message="tns:searchOrderStatesSOAPHttpGetIn" />
+      <wsdl:output message="tns:searchOrderStatesSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setTimeJSON">
+      <wsdl:input message="tns:setTimeJSONHttpGetIn" />
+      <wsdl:output message="tns:setTimeJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setTimeSOAP">
+      <wsdl:input message="tns:setTimeSOAPHttpGetIn" />
+      <wsdl:output message="tns:setTimeSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addproductJSON">
+      <wsdl:input message="tns:addproductJSONHttpGetIn" />
+      <wsdl:output message="tns:addproductJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addproductSOAP">
+      <wsdl:input message="tns:addproductSOAPHttpGetIn" />
+      <wsdl:output message="tns:addproductSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductJSON">
+      <wsdl:input message="tns:deleteProductJSONHttpGetIn" />
+      <wsdl:output message="tns:deleteProductJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductSOAP">
+      <wsdl:input message="tns:deleteProductSOAPHttpGetIn" />
+      <wsdl:output message="tns:deleteProductSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductJSON">
+      <wsdl:input message="tns:searchProductJSONHttpGetIn" />
+      <wsdl:output message="tns:searchProductJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductSOAP">
+      <wsdl:input message="tns:searchProductSOAPHttpGetIn" />
+      <wsdl:output message="tns:searchProductSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdJSON">
+      <wsdl:input message="tns:searchProductByIdJSONHttpGetIn" />
+      <wsdl:output message="tns:searchProductByIdJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdSOAP">
+      <wsdl:input message="tns:searchProductByIdSOAPHttpGetIn" />
+      <wsdl:output message="tns:searchProductByIdSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProductJSON">
+      <wsdl:input message="tns:updateProductJSONHttpGetIn" />
+      <wsdl:output message="tns:updateProductJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProductSOAP">
+      <wsdl:input message="tns:updateProductSOAPHttpGetIn" />
+      <wsdl:output message="tns:updateProductSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersJSON">
+      <wsdl:input message="tns:searchOrdersJSONHttpGetIn" />
+      <wsdl:output message="tns:searchOrdersJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersSOAP">
+      <wsdl:input message="tns:searchOrdersSOAPHttpGetIn" />
+      <wsdl:output message="tns:searchOrdersSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonJSON">
+      <wsdl:input message="tns:deletePersonJSONHttpGetIn" />
+      <wsdl:output message="tns:deletePersonJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonSOAP">
+      <wsdl:input message="tns:deletePersonSOAPHttpGetIn" />
+      <wsdl:output message="tns:deletePersonSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateJSON">
+      <wsdl:input message="tns:changeProductStateJSONHttpGetIn" />
+      <wsdl:output message="tns:changeProductStateJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateSOAP">
+      <wsdl:input message="tns:changeProductStateSOAPHttpGetIn" />
+      <wsdl:output message="tns:changeProductStateSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordJSON">
+      <wsdl:input message="tns:verifyPasswordJSONHttpGetIn" />
+      <wsdl:output message="tns:verifyPasswordJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordSOAP">
+      <wsdl:input message="tns:verifyPasswordSOAPHttpGetIn" />
+      <wsdl:output message="tns:verifyPasswordSOAPHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="Rogers_APIHttpPost">
-    <wsdl:operation name="searchClients">
-      <wsdl:input message="tns:searchClientsHttpPostIn" />
-      <wsdl:output message="tns:searchClientsHttpPostOut" />
+    <wsdl:operation name="searchClientsJSON">
+      <wsdl:input message="tns:searchClientsJSONHttpPostIn" />
+      <wsdl:output message="tns:searchClientsJSONHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="addClient">
-      <wsdl:input message="tns:addClientHttpPostIn" />
-      <wsdl:output message="tns:addClientHttpPostOut" />
+    <wsdl:operation name="searchClientsSOAP">
+      <wsdl:input message="tns:searchClientsSOAPHttpPostIn" />
+      <wsdl:output message="tns:searchClientsSOAPHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateBasicData">
-      <wsdl:input message="tns:updateBasicDataHttpPostIn" />
-      <wsdl:output message="tns:updateBasicDataHttpPostOut" />
+    <wsdl:operation name="addClientJSON">
+      <wsdl:input message="tns:addClientJSONHttpPostIn" />
+      <wsdl:output message="tns:addClientJSONHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="changeState">
-      <wsdl:input message="tns:changeStateHttpPostIn" />
-      <wsdl:output message="tns:changeStateHttpPostOut" />
+    <wsdl:operation name="addClientSOAP">
+      <wsdl:input message="tns:addClientSOAPHttpPostIn" />
+      <wsdl:output message="tns:addClientSOAPHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployee">
-      <wsdl:input message="tns:deleteEmployeeHttpPostIn" />
-      <wsdl:output message="tns:deleteEmployeeHttpPostOut" />
+    <wsdl:operation name="updateBasicDataJSON">
+      <wsdl:input message="tns:updateBasicDataJSONHttpPostIn" />
+      <wsdl:output message="tns:updateBasicDataJSONHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <wsdl:input message="tns:updateEmployeeHttpPostIn" />
-      <wsdl:output message="tns:updateEmployeeHttpPostOut" />
+    <wsdl:operation name="updateBasicDataSOAP">
+      <wsdl:input message="tns:updateBasicDataSOAPHttpPostIn" />
+      <wsdl:output message="tns:updateBasicDataSOAPHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchEmployee">
-      <wsdl:input message="tns:searchEmployeeHttpPostIn" />
-      <wsdl:output message="tns:searchEmployeeHttpPostOut" />
+    <wsdl:operation name="changeStateJSON">
+      <wsdl:input message="tns:changeStateJSONHttpPostIn" />
+      <wsdl:output message="tns:changeStateJSONHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="addEmployee">
-      <wsdl:input message="tns:addEmployeeHttpPostIn" />
-      <wsdl:output message="tns:addEmployeeHttpPostOut" />
+    <wsdl:operation name="changeStateSOAP">
+      <wsdl:input message="tns:changeStateSOAPHttpPostIn" />
+      <wsdl:output message="tns:changeStateSOAPHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchOrderStates">
-      <wsdl:input message="tns:searchOrderStatesHttpPostIn" />
-      <wsdl:output message="tns:searchOrderStatesHttpPostOut" />
+    <wsdl:operation name="updateEmployeeJSON">
+      <wsdl:input message="tns:updateEmployeeJSONHttpPostIn" />
+      <wsdl:output message="tns:updateEmployeeJSONHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="setTime">
-      <wsdl:input message="tns:setTimeHttpPostIn" />
-      <wsdl:output message="tns:setTimeHttpPostOut" />
+    <wsdl:operation name="updateEmployeeSOAP">
+      <wsdl:input message="tns:updateEmployeeSOAPHttpPostIn" />
+      <wsdl:output message="tns:updateEmployeeSOAPHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="addproduct">
-      <wsdl:input message="tns:addproductHttpPostIn" />
-      <wsdl:output message="tns:addproductHttpPostOut" />
+    <wsdl:operation name="searchEmployeeJSON">
+      <wsdl:input message="tns:searchEmployeeJSONHttpPostIn" />
+      <wsdl:output message="tns:searchEmployeeJSONHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="deleteProduct">
-      <wsdl:input message="tns:deleteProductHttpPostIn" />
-      <wsdl:output message="tns:deleteProductHttpPostOut" />
+    <wsdl:operation name="searchEmployeeSOAP">
+      <wsdl:input message="tns:searchEmployeeSOAPHttpPostIn" />
+      <wsdl:output message="tns:searchEmployeeSOAPHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="searchProduct">
-      <wsdl:input message="tns:searchProductHttpPostIn" />
-      <wsdl:output message="tns:searchProductHttpPostOut" />
+    <wsdl:operation name="addEmployeeJSON">
+      <wsdl:input message="tns:addEmployeeJSONHttpPostIn" />
+      <wsdl:output message="tns:addEmployeeJSONHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="updateProduct">
-      <wsdl:input message="tns:updateProductHttpPostIn" />
-      <wsdl:output message="tns:updateProductHttpPostOut" />
+    <wsdl:operation name="addEmployeeSOAP">
+      <wsdl:input message="tns:addEmployeeSOAPHttpPostIn" />
+      <wsdl:output message="tns:addEmployeeSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderStatesJSON">
+      <wsdl:input message="tns:searchOrderStatesJSONHttpPostIn" />
+      <wsdl:output message="tns:searchOrderStatesJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderStatesSOAP">
+      <wsdl:input message="tns:searchOrderStatesSOAPHttpPostIn" />
+      <wsdl:output message="tns:searchOrderStatesSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setTimeJSON">
+      <wsdl:input message="tns:setTimeJSONHttpPostIn" />
+      <wsdl:output message="tns:setTimeJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setTimeSOAP">
+      <wsdl:input message="tns:setTimeSOAPHttpPostIn" />
+      <wsdl:output message="tns:setTimeSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addproductJSON">
+      <wsdl:input message="tns:addproductJSONHttpPostIn" />
+      <wsdl:output message="tns:addproductJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addproductSOAP">
+      <wsdl:input message="tns:addproductSOAPHttpPostIn" />
+      <wsdl:output message="tns:addproductSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductJSON">
+      <wsdl:input message="tns:deleteProductJSONHttpPostIn" />
+      <wsdl:output message="tns:deleteProductJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductSOAP">
+      <wsdl:input message="tns:deleteProductSOAPHttpPostIn" />
+      <wsdl:output message="tns:deleteProductSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductJSON">
+      <wsdl:input message="tns:searchProductJSONHttpPostIn" />
+      <wsdl:output message="tns:searchProductJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductSOAP">
+      <wsdl:input message="tns:searchProductSOAPHttpPostIn" />
+      <wsdl:output message="tns:searchProductSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdJSON">
+      <wsdl:input message="tns:searchProductByIdJSONHttpPostIn" />
+      <wsdl:output message="tns:searchProductByIdJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdSOAP">
+      <wsdl:input message="tns:searchProductByIdSOAPHttpPostIn" />
+      <wsdl:output message="tns:searchProductByIdSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProductJSON">
+      <wsdl:input message="tns:updateProductJSONHttpPostIn" />
+      <wsdl:output message="tns:updateProductJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProductSOAP">
+      <wsdl:input message="tns:updateProductSOAPHttpPostIn" />
+      <wsdl:output message="tns:updateProductSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersJSON">
+      <wsdl:input message="tns:searchOrdersJSONHttpPostIn" />
+      <wsdl:output message="tns:searchOrdersJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersSOAP">
+      <wsdl:input message="tns:searchOrdersSOAPHttpPostIn" />
+      <wsdl:output message="tns:searchOrdersSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonJSON">
+      <wsdl:input message="tns:deletePersonJSONHttpPostIn" />
+      <wsdl:output message="tns:deletePersonJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonSOAP">
+      <wsdl:input message="tns:deletePersonSOAPHttpPostIn" />
+      <wsdl:output message="tns:deletePersonSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateJSON">
+      <wsdl:input message="tns:changeProductStateJSONHttpPostIn" />
+      <wsdl:output message="tns:changeProductStateJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateSOAP">
+      <wsdl:input message="tns:changeProductStateSOAPHttpPostIn" />
+      <wsdl:output message="tns:changeProductStateSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordJSON">
+      <wsdl:input message="tns:verifyPasswordJSONHttpPostIn" />
+      <wsdl:output message="tns:verifyPasswordJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordSOAP">
+      <wsdl:input message="tns:verifyPasswordSOAPHttpPostIn" />
+      <wsdl:output message="tns:verifyPasswordSOAPHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Rogers_APISoap" type="tns:Rogers_APISoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="searchClients">
-      <soap:operation soapAction="http://tempuri.org/searchClients" style="document" />
+    <wsdl:operation name="searchClientsJSON">
+      <soap:operation soapAction="http://tempuri.org/searchClientsJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -779,8 +1868,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addClient">
-      <soap:operation soapAction="http://tempuri.org/addClient" style="document" />
+    <wsdl:operation name="searchClientsSOAP">
+      <soap:operation soapAction="http://tempuri.org/searchClientsSOAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -788,8 +1877,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateBasicData">
-      <soap:operation soapAction="http://tempuri.org/updateBasicData" style="document" />
+    <wsdl:operation name="addClientJSON">
+      <soap:operation soapAction="http://tempuri.org/addClientJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -797,8 +1886,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="changeState">
-      <soap:operation soapAction="http://tempuri.org/changeState" style="document" />
+    <wsdl:operation name="addClientSOAP">
+      <soap:operation soapAction="http://tempuri.org/addClientSOAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -806,8 +1895,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployee">
-      <soap:operation soapAction="http://tempuri.org/deleteEmployee" style="document" />
+    <wsdl:operation name="updateBasicDataJSON">
+      <soap:operation soapAction="http://tempuri.org/updateBasicDataJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -815,8 +1904,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <soap:operation soapAction="http://tempuri.org/updateEmployee" style="document" />
+    <wsdl:operation name="updateBasicDataSOAP">
+      <soap:operation soapAction="http://tempuri.org/updateBasicDataSOAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -824,8 +1913,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchEmployee">
-      <soap:operation soapAction="http://tempuri.org/searchEmployee" style="document" />
+    <wsdl:operation name="changeStateJSON">
+      <soap:operation soapAction="http://tempuri.org/changeStateJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -833,8 +1922,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addEmployee">
-      <soap:operation soapAction="http://tempuri.org/addEmployee" style="document" />
+    <wsdl:operation name="changeStateSOAP">
+      <soap:operation soapAction="http://tempuri.org/changeStateSOAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -842,8 +1931,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchOrderStates">
-      <soap:operation soapAction="http://tempuri.org/searchOrderStates" style="document" />
+    <wsdl:operation name="updateEmployeeJSON">
+      <soap:operation soapAction="http://tempuri.org/updateEmployeeJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -851,8 +1940,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="setTime">
-      <soap:operation soapAction="http://tempuri.org/setTime" style="document" />
+    <wsdl:operation name="updateEmployeeSOAP">
+      <soap:operation soapAction="http://tempuri.org/updateEmployeeSOAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -860,8 +1949,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addproduct">
-      <soap:operation soapAction="http://tempuri.org/addproduct" style="document" />
+    <wsdl:operation name="searchEmployeeJSON">
+      <soap:operation soapAction="http://tempuri.org/searchEmployeeJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -869,8 +1958,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteProduct">
-      <soap:operation soapAction="http://tempuri.org/deleteProduct" style="document" />
+    <wsdl:operation name="searchEmployeeSOAP">
+      <soap:operation soapAction="http://tempuri.org/searchEmployeeSOAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -878,8 +1967,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchProduct">
-      <soap:operation soapAction="http://tempuri.org/searchProduct" style="document" />
+    <wsdl:operation name="addEmployeeJSON">
+      <soap:operation soapAction="http://tempuri.org/addEmployeeJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -887,8 +1976,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateProduct">
-      <soap:operation soapAction="http://tempuri.org/updateProduct" style="document" />
+    <wsdl:operation name="addEmployeeSOAP">
+      <soap:operation soapAction="http://tempuri.org/addEmployeeSOAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -896,8 +1985,215 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addOrder">
-      <soap:operation soapAction="http://tempuri.org/addOrder" style="document" />
+    <wsdl:operation name="searchOrderStatesJSON">
+      <soap:operation soapAction="http://tempuri.org/searchOrderStatesJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderStatesSOAP">
+      <soap:operation soapAction="http://tempuri.org/searchOrderStatesSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTimeJSON">
+      <soap:operation soapAction="http://tempuri.org/setTimeJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTimeSOAP">
+      <soap:operation soapAction="http://tempuri.org/setTimeSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addproductJSON">
+      <soap:operation soapAction="http://tempuri.org/addproductJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addproductSOAP">
+      <soap:operation soapAction="http://tempuri.org/addproductSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductJSON">
+      <soap:operation soapAction="http://tempuri.org/deleteProductJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductSOAP">
+      <soap:operation soapAction="http://tempuri.org/deleteProductSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductJSON">
+      <soap:operation soapAction="http://tempuri.org/searchProductJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductSOAP">
+      <soap:operation soapAction="http://tempuri.org/searchProductSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdJSON">
+      <soap:operation soapAction="http://tempuri.org/searchProductByIdJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdSOAP">
+      <soap:operation soapAction="http://tempuri.org/searchProductByIdSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductJSON">
+      <soap:operation soapAction="http://tempuri.org/updateProductJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductSOAP">
+      <soap:operation soapAction="http://tempuri.org/updateProductSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addOrderJSON">
+      <soap:operation soapAction="http://tempuri.org/addOrderJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addOrderSOAP">
+      <soap:operation soapAction="http://tempuri.org/addOrderSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersJSON">
+      <soap:operation soapAction="http://tempuri.org/searchOrdersJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersSOAP">
+      <soap:operation soapAction="http://tempuri.org/searchOrdersSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonJSON">
+      <soap:operation soapAction="http://tempuri.org/deletePersonJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonSOAP">
+      <soap:operation soapAction="http://tempuri.org/deletePersonSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateJSON">
+      <soap:operation soapAction="http://tempuri.org/changeProductStateJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateSOAP">
+      <soap:operation soapAction="http://tempuri.org/changeProductStateSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordJSON">
+      <soap:operation soapAction="http://tempuri.org/verifyPasswordJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordSOAP">
+      <soap:operation soapAction="http://tempuri.org/verifyPasswordSOAP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -908,8 +2204,8 @@
   </wsdl:binding>
   <wsdl:binding name="Rogers_APISoap12" type="tns:Rogers_APISoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="searchClients">
-      <soap12:operation soapAction="http://tempuri.org/searchClients" style="document" />
+    <wsdl:operation name="searchClientsJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchClientsJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -917,8 +2213,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addClient">
-      <soap12:operation soapAction="http://tempuri.org/addClient" style="document" />
+    <wsdl:operation name="searchClientsSOAP">
+      <soap12:operation soapAction="http://tempuri.org/searchClientsSOAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -926,8 +2222,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateBasicData">
-      <soap12:operation soapAction="http://tempuri.org/updateBasicData" style="document" />
+    <wsdl:operation name="addClientJSON">
+      <soap12:operation soapAction="http://tempuri.org/addClientJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -935,8 +2231,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="changeState">
-      <soap12:operation soapAction="http://tempuri.org/changeState" style="document" />
+    <wsdl:operation name="addClientSOAP">
+      <soap12:operation soapAction="http://tempuri.org/addClientSOAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -944,8 +2240,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployee">
-      <soap12:operation soapAction="http://tempuri.org/deleteEmployee" style="document" />
+    <wsdl:operation name="updateBasicDataJSON">
+      <soap12:operation soapAction="http://tempuri.org/updateBasicDataJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -953,8 +2249,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <soap12:operation soapAction="http://tempuri.org/updateEmployee" style="document" />
+    <wsdl:operation name="updateBasicDataSOAP">
+      <soap12:operation soapAction="http://tempuri.org/updateBasicDataSOAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -962,8 +2258,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchEmployee">
-      <soap12:operation soapAction="http://tempuri.org/searchEmployee" style="document" />
+    <wsdl:operation name="changeStateJSON">
+      <soap12:operation soapAction="http://tempuri.org/changeStateJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -971,8 +2267,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addEmployee">
-      <soap12:operation soapAction="http://tempuri.org/addEmployee" style="document" />
+    <wsdl:operation name="changeStateSOAP">
+      <soap12:operation soapAction="http://tempuri.org/changeStateSOAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -980,8 +2276,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchOrderStates">
-      <soap12:operation soapAction="http://tempuri.org/searchOrderStates" style="document" />
+    <wsdl:operation name="updateEmployeeJSON">
+      <soap12:operation soapAction="http://tempuri.org/updateEmployeeJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -989,8 +2285,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="setTime">
-      <soap12:operation soapAction="http://tempuri.org/setTime" style="document" />
+    <wsdl:operation name="updateEmployeeSOAP">
+      <soap12:operation soapAction="http://tempuri.org/updateEmployeeSOAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -998,8 +2294,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addproduct">
-      <soap12:operation soapAction="http://tempuri.org/addproduct" style="document" />
+    <wsdl:operation name="searchEmployeeJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchEmployeeJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1007,8 +2303,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteProduct">
-      <soap12:operation soapAction="http://tempuri.org/deleteProduct" style="document" />
+    <wsdl:operation name="searchEmployeeSOAP">
+      <soap12:operation soapAction="http://tempuri.org/searchEmployeeSOAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1016,8 +2312,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchProduct">
-      <soap12:operation soapAction="http://tempuri.org/searchProduct" style="document" />
+    <wsdl:operation name="addEmployeeJSON">
+      <soap12:operation soapAction="http://tempuri.org/addEmployeeJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1025,8 +2321,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateProduct">
-      <soap12:operation soapAction="http://tempuri.org/updateProduct" style="document" />
+    <wsdl:operation name="addEmployeeSOAP">
+      <soap12:operation soapAction="http://tempuri.org/addEmployeeSOAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1034,8 +2330,215 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addOrder">
-      <soap12:operation soapAction="http://tempuri.org/addOrder" style="document" />
+    <wsdl:operation name="searchOrderStatesJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchOrderStatesJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderStatesSOAP">
+      <soap12:operation soapAction="http://tempuri.org/searchOrderStatesSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTimeJSON">
+      <soap12:operation soapAction="http://tempuri.org/setTimeJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTimeSOAP">
+      <soap12:operation soapAction="http://tempuri.org/setTimeSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addproductJSON">
+      <soap12:operation soapAction="http://tempuri.org/addproductJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addproductSOAP">
+      <soap12:operation soapAction="http://tempuri.org/addproductSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductJSON">
+      <soap12:operation soapAction="http://tempuri.org/deleteProductJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductSOAP">
+      <soap12:operation soapAction="http://tempuri.org/deleteProductSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchProductJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductSOAP">
+      <soap12:operation soapAction="http://tempuri.org/searchProductSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchProductByIdJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdSOAP">
+      <soap12:operation soapAction="http://tempuri.org/searchProductByIdSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductJSON">
+      <soap12:operation soapAction="http://tempuri.org/updateProductJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductSOAP">
+      <soap12:operation soapAction="http://tempuri.org/updateProductSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addOrderJSON">
+      <soap12:operation soapAction="http://tempuri.org/addOrderJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addOrderSOAP">
+      <soap12:operation soapAction="http://tempuri.org/addOrderSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchOrdersJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersSOAP">
+      <soap12:operation soapAction="http://tempuri.org/searchOrdersSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonJSON">
+      <soap12:operation soapAction="http://tempuri.org/deletePersonJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonSOAP">
+      <soap12:operation soapAction="http://tempuri.org/deletePersonSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateJSON">
+      <soap12:operation soapAction="http://tempuri.org/changeProductStateJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateSOAP">
+      <soap12:operation soapAction="http://tempuri.org/changeProductStateSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordJSON">
+      <soap12:operation soapAction="http://tempuri.org/verifyPasswordJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordSOAP">
+      <soap12:operation soapAction="http://tempuri.org/verifyPasswordSOAP" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1046,8 +2549,8 @@
   </wsdl:binding>
   <wsdl:binding name="Rogers_APIHttpGet" type="tns:Rogers_APIHttpGet">
     <http:binding verb="GET" />
-    <wsdl:operation name="searchClients">
-      <http:operation location="/searchClients" />
+    <wsdl:operation name="searchClientsJSON">
+      <http:operation location="/searchClientsJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1055,15 +2558,31 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addClient">
-      <http:operation location="/addClient" />
+    <wsdl:operation name="searchClientsSOAP">
+      <http:operation location="/searchClientsSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addClientJSON">
+      <http:operation location="/addClientJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
-    <wsdl:operation name="updateBasicData">
-      <http:operation location="/updateBasicData" />
+    <wsdl:operation name="addClientSOAP">
+      <http:operation location="/addClientSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="updateBasicDataJSON">
+      <http:operation location="/updateBasicDataJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1071,8 +2590,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="changeState">
-      <http:operation location="/changeState" />
+    <wsdl:operation name="updateBasicDataSOAP">
+      <http:operation location="/updateBasicDataSOAP" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1080,8 +2599,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployee">
-      <http:operation location="/deleteEmployee" />
+    <wsdl:operation name="changeStateJSON">
+      <http:operation location="/changeStateJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1089,8 +2608,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <http:operation location="/updateEmployee" />
+    <wsdl:operation name="changeStateSOAP">
+      <http:operation location="/changeStateSOAP" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1098,8 +2617,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchEmployee">
-      <http:operation location="/searchEmployee" />
+    <wsdl:operation name="updateEmployeeJSON">
+      <http:operation location="/updateEmployeeJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1107,8 +2626,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addEmployee">
-      <http:operation location="/addEmployee" />
+    <wsdl:operation name="updateEmployeeSOAP">
+      <http:operation location="/updateEmployeeSOAP" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1116,8 +2635,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchOrderStates">
-      <http:operation location="/searchOrderStates" />
+    <wsdl:operation name="searchEmployeeJSON">
+      <http:operation location="/searchEmployeeJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1125,8 +2644,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="setTime">
-      <http:operation location="/setTime" />
+    <wsdl:operation name="searchEmployeeSOAP">
+      <http:operation location="/searchEmployeeSOAP" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1134,8 +2653,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addproduct">
-      <http:operation location="/addproduct" />
+    <wsdl:operation name="addEmployeeJSON">
+      <http:operation location="/addEmployeeJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1143,8 +2662,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteProduct">
-      <http:operation location="/deleteProduct" />
+    <wsdl:operation name="addEmployeeSOAP">
+      <http:operation location="/addEmployeeSOAP" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1152,8 +2671,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchProduct">
-      <http:operation location="/searchProduct" />
+    <wsdl:operation name="searchOrderStatesJSON">
+      <http:operation location="/searchOrderStatesJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1161,8 +2680,184 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateProduct">
-      <http:operation location="/updateProduct" />
+    <wsdl:operation name="searchOrderStatesSOAP">
+      <http:operation location="/searchOrderStatesSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTimeJSON">
+      <http:operation location="/setTimeJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTimeSOAP">
+      <http:operation location="/setTimeSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addproductJSON">
+      <http:operation location="/addproductJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addproductSOAP">
+      <http:operation location="/addproductSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductJSON">
+      <http:operation location="/deleteProductJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductSOAP">
+      <http:operation location="/deleteProductSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductJSON">
+      <http:operation location="/searchProductJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductSOAP">
+      <http:operation location="/searchProductSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdJSON">
+      <http:operation location="/searchProductByIdJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdSOAP">
+      <http:operation location="/searchProductByIdSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductJSON">
+      <http:operation location="/updateProductJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductSOAP">
+      <http:operation location="/updateProductSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersJSON">
+      <http:operation location="/searchOrdersJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersSOAP">
+      <http:operation location="/searchOrdersSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonJSON">
+      <http:operation location="/deletePersonJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonSOAP">
+      <http:operation location="/deletePersonSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateJSON">
+      <http:operation location="/changeProductStateJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateSOAP">
+      <http:operation location="/changeProductStateSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordJSON">
+      <http:operation location="/verifyPasswordJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordSOAP">
+      <http:operation location="/verifyPasswordSOAP" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1173,8 +2868,8 @@
   </wsdl:binding>
   <wsdl:binding name="Rogers_APIHttpPost" type="tns:Rogers_APIHttpPost">
     <http:binding verb="POST" />
-    <wsdl:operation name="searchClients">
-      <http:operation location="/searchClients" />
+    <wsdl:operation name="searchClientsJSON">
+      <http:operation location="/searchClientsJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1182,15 +2877,31 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addClient">
-      <http:operation location="/addClient" />
+    <wsdl:operation name="searchClientsSOAP">
+      <http:operation location="/searchClientsSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addClientJSON">
+      <http:operation location="/addClientJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
-    <wsdl:operation name="updateBasicData">
-      <http:operation location="/updateBasicData" />
+    <wsdl:operation name="addClientSOAP">
+      <http:operation location="/addClientSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="updateBasicDataJSON">
+      <http:operation location="/updateBasicDataJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1198,8 +2909,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="changeState">
-      <http:operation location="/changeState" />
+    <wsdl:operation name="updateBasicDataSOAP">
+      <http:operation location="/updateBasicDataSOAP" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1207,8 +2918,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployee">
-      <http:operation location="/deleteEmployee" />
+    <wsdl:operation name="changeStateJSON">
+      <http:operation location="/changeStateJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1216,8 +2927,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <http:operation location="/updateEmployee" />
+    <wsdl:operation name="changeStateSOAP">
+      <http:operation location="/changeStateSOAP" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1225,8 +2936,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchEmployee">
-      <http:operation location="/searchEmployee" />
+    <wsdl:operation name="updateEmployeeJSON">
+      <http:operation location="/updateEmployeeJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1234,8 +2945,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addEmployee">
-      <http:operation location="/addEmployee" />
+    <wsdl:operation name="updateEmployeeSOAP">
+      <http:operation location="/updateEmployeeSOAP" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1243,8 +2954,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchOrderStates">
-      <http:operation location="/searchOrderStates" />
+    <wsdl:operation name="searchEmployeeJSON">
+      <http:operation location="/searchEmployeeJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1252,8 +2963,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="setTime">
-      <http:operation location="/setTime" />
+    <wsdl:operation name="searchEmployeeSOAP">
+      <http:operation location="/searchEmployeeSOAP" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1261,8 +2972,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addproduct">
-      <http:operation location="/addproduct" />
+    <wsdl:operation name="addEmployeeJSON">
+      <http:operation location="/addEmployeeJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1270,8 +2981,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteProduct">
-      <http:operation location="/deleteProduct" />
+    <wsdl:operation name="addEmployeeSOAP">
+      <http:operation location="/addEmployeeSOAP" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1279,8 +2990,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="searchProduct">
-      <http:operation location="/searchProduct" />
+    <wsdl:operation name="searchOrderStatesJSON">
+      <http:operation location="/searchOrderStatesJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1288,8 +2999,184 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateProduct">
-      <http:operation location="/updateProduct" />
+    <wsdl:operation name="searchOrderStatesSOAP">
+      <http:operation location="/searchOrderStatesSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTimeJSON">
+      <http:operation location="/setTimeJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTimeSOAP">
+      <http:operation location="/setTimeSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addproductJSON">
+      <http:operation location="/addproductJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addproductSOAP">
+      <http:operation location="/addproductSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductJSON">
+      <http:operation location="/deleteProductJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProductSOAP">
+      <http:operation location="/deleteProductSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductJSON">
+      <http:operation location="/searchProductJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductSOAP">
+      <http:operation location="/searchProductSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdJSON">
+      <http:operation location="/searchProductByIdJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductByIdSOAP">
+      <http:operation location="/searchProductByIdSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductJSON">
+      <http:operation location="/updateProductJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductSOAP">
+      <http:operation location="/updateProductSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersJSON">
+      <http:operation location="/searchOrdersJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrdersSOAP">
+      <http:operation location="/searchOrdersSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonJSON">
+      <http:operation location="/deletePersonJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonSOAP">
+      <http:operation location="/deletePersonSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateJSON">
+      <http:operation location="/changeProductStateJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeProductStateSOAP">
+      <http:operation location="/changeProductStateSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordJSON">
+      <http:operation location="/verifyPasswordJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyPasswordSOAP">
+      <http:operation location="/verifyPasswordSOAP" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -1300,16 +3187,16 @@
   </wsdl:binding>
   <wsdl:service name="Rogers_API">
     <wsdl:port name="Rogers_APISoap" binding="tns:Rogers_APISoap">
-      <soap:address location="https://rogersapp.azurewebsites.net/Rogers_API.asmx" />
+      <soap:address location="https://approgers.azurewebsites.net/Rogers_API.asmx" />
     </wsdl:port>
     <wsdl:port name="Rogers_APISoap12" binding="tns:Rogers_APISoap12">
-      <soap12:address location="https://rogersapp.azurewebsites.net/Rogers_API.asmx" />
+      <soap12:address location="https://approgers.azurewebsites.net/Rogers_API.asmx" />
     </wsdl:port>
     <wsdl:port name="Rogers_APIHttpGet" binding="tns:Rogers_APIHttpGet">
-      <http:address location="https://rogersapp.azurewebsites.net/Rogers_API.asmx" />
+      <http:address location="https://approgers.azurewebsites.net/Rogers_API.asmx" />
     </wsdl:port>
     <wsdl:port name="Rogers_APIHttpPost" binding="tns:Rogers_APIHttpPost">
-      <http:address location="https://rogersapp.azurewebsites.net/Rogers_API.asmx" />
+      <http:address location="https://approgers.azurewebsites.net/Rogers_API.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -94,12 +94,44 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administrator\AddEmployee.aspx" />
+    <Content Include="Administrator\AdminClients.aspx" />
+    <Content Include="Administrator\AdminEmployees.aspx" />
+    <Content Include="Administrator\AdminOrders.aspx" />
+    <Content Include="Administrator\EditEmployee.aspx" />
+    <Content Include="Administrator\EditPlate.aspx" />
+    <Content Include="Administrator\ImageSearch.aspx" />
+    <Content Include="Administrator\RemoveEmployee.aspx" />
+    <Content Include="Administrator\RemovePlate.aspx" />
+    <Content Include="Content\imageGallery.css" />
+    <Content Include="images\bingLogo.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Administrator\AdminMP.Master" />
+    <Content Include="scripts\BingSearch.js" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
+    <Content Include="Web References\RogersWS\Client.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RogersWS\Employee.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RogersWS\Order.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RogersWS\OrderState.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RogersWS\Product.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RogersWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\RogersWS\Rogers_API.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -108,7 +140,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administrator\AddPlate.aspx" />
+    <Content Include="Administrator\AdminPlates.aspx" />
     <Content Include="Administrator\Default.aspx" />
+    <Content Include="Content\bootstrap-switch.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -121,6 +156,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="images\13509491_10153725799861989_1475246789_o.png" />
     <Content Include="images\background.jpg" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\logo.png" />
     <Content Include="Login.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
@@ -142,28 +179,43 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\bootstrap-switch.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="Web References\RogersWS\Employee.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\RogersWS\OrderState.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\RogersWS\Product.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\RogersWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
     <None Include="Web References\RogersWS\Rogers_API.disco" />
     <Content Include="Web.config" />
-    <None Include="Web References\RogersWS\Rogers_API.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrator\AddEmployee.aspx.cs">
+      <DependentUpon>AddEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AddEmployee.aspx.designer.cs">
+      <DependentUpon>AddEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\AddPlate.aspx.cs">
+      <DependentUpon>AddPlate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AddPlate.aspx.designer.cs">
+      <DependentUpon>AddPlate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\AdminClients.aspx.cs">
+      <DependentUpon>AdminClients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AdminClients.aspx.designer.cs">
+      <DependentUpon>AdminClients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\AdminEmployees.aspx.cs">
+      <DependentUpon>AdminEmployees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AdminEmployees.aspx.designer.cs">
+      <DependentUpon>AdminEmployees.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\AdminMP.Master.cs">
       <DependentUpon>AdminMP.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -171,12 +223,61 @@
     <Compile Include="Administrator\AdminMP.Master.designer.cs">
       <DependentUpon>AdminMP.Master</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\AdminOrders.aspx.cs">
+      <DependentUpon>AdminOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AdminOrders.aspx.designer.cs">
+      <DependentUpon>AdminOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\AdminPlates.aspx.cs">
+      <DependentUpon>AdminPlates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AdminPlates.aspx.designer.cs">
+      <DependentUpon>AdminPlates.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Administrator\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\EditEmployee.aspx.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\EditEmployee.aspx.designer.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\EditPlate.aspx.cs">
+      <DependentUpon>EditPlate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\EditPlate.aspx.designer.cs">
+      <DependentUpon>EditPlate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\ImageSearch.aspx.cs">
+      <DependentUpon>ImageSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\ImageSearch.aspx.designer.cs">
+      <DependentUpon>ImageSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\RemoveEmployee.aspx.cs">
+      <DependentUpon>RemoveEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\RemoveEmployee.aspx.designer.cs">
+      <DependentUpon>RemoveEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\RemovePlate.aspx.cs">
+      <DependentUpon>RemovePlate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\RemovePlate.aspx.designer.cs">
+      <DependentUpon>RemovePlate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -201,10 +302,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://rogersapp.azurewebsites.net/Rogers_API.asmx">
+    <WebReferenceUrl Include="https://approgers.azurewebsites.net/Rogers_API.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\RogersWS\</RelPath>
-      <UpdateFromURL>https://rogersapp.azurewebsites.net/Rogers_API.asmx</UpdateFromURL>
+      <UpdateFromURL>https://approgers.azurewebsites.net/Rogers_API.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

@@ -24,9 +24,9 @@ namespace UserInterface
 
         public void UserValidate(object source, ServerValidateEventArgs args)
         {   
-            if (api.searchEmployee(txtUser.Text) == null)
+            if (api.searchEmployeeSOAP(txtUser.Text) == null)
             {
-                 args.IsValid = (api.searchEmployee(txtUser.Text).First() == null);
+                 args.IsValid = (api.searchEmployeeSOAP(txtUser.Text).First() == null);
             } else
             {
                 args.IsValid = false;
@@ -36,9 +36,9 @@ namespace UserInterface
 
         public void PasswordValidate(object source, ServerValidateEventArgs args)
         {
-            if (api.searchEmployee(txtUser.Text) == null)
+            if (api.searchEmployeeSOAP(txtUser.Text) == null)
             {
-                args.IsValid = ((api.searchEmployee(txtUser.Text).First()).PASSWORD == txtPassword.Text);
+                args.IsValid = api.verifyPasswordSOAP((api.searchEmployeeSOAP(txtUser.Text).First()).PERSON_ID, txtPassword.Text);
             }
             else
             {
@@ -52,7 +52,7 @@ namespace UserInterface
         {
             if (IsValid)
             {
-                Employee employee = api.searchEmployee(txtUser.Text).First();
+                Employee employee = api.searchEmployeeSOAP(txtUser.Text).First();
                 Session["user"] = employee;
                 if (employee.isADMIN)
                 {

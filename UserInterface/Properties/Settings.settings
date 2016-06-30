@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="UserInterface_RogersWS_Rogers_API" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://rogersapp.azurewebsites.net/Rogers_API.asmx</Value>
+      <Value Profile="(Default)">https://approgers.azurewebsites.net/Rogers_API.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

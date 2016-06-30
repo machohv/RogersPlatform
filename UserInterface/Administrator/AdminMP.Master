@@ -7,6 +7,7 @@
     <title>Administrator Platform</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <link rel="icon" href="images/favicon.ico" sizes="16x16"/>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
         <link href="../Content/sb-admin.css" rel="stylesheet" />
         <link href="../Content/font-awesome.min.css" rel="stylesheet" />
@@ -19,7 +20,9 @@
         <div id="wrapper">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Roger's Administrator</a>
+                <a href="Default.aspx">
+                    <img src="../images/logo.png" style="width:15%;height:15%;padding:5px;"/>
+                </a>
             </div>
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
@@ -36,16 +39,16 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-spoon"></i> Administrar platos</a>
+                        <a href="AdminPlates.aspx"><i class="fa fa-fw fa-spoon"></i> Administrar platos</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa fa-users"></i> Administrar usuarios</a>
+                        <a href="AdminEmployees.aspx"><i class="fa fa-fw fa fa-users"></i> Administrar usuarios</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa fa-ban"></i> Bloquear clientes</a>
+                        <a href="AdminClients.aspx"><i class="fa fa-fw fa fa-ban"></i> Bloquear clientes</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa fa-list"></i>  Administrar pedidos</a>
+                        <a href="AdminOrders.aspx"><i class="fa fa-fw fa fa-list"></i>  Administrar pedidos</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-clock-o"></i>  Administrar estados</a>
@@ -55,11 +58,13 @@
             </div>
         </nav>
 
-        <div id="page-wrapper">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        <%--<div id="page-wrapper">--%>
+            <div class="container white-background">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
          
-            </asp:ContentPlaceHolder>
-        </div>
+                </asp:ContentPlaceHolder>
+            </div>
+        <%--</div>--%>
 
     </div>
 
