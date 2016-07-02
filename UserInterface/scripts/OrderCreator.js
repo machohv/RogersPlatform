@@ -11,39 +11,42 @@
 
 }
 
-function AgregarOrden() {
-    var WSurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/searchOrdersJSON';
-    var req = $.ajax({
-        url: WSurl,
-        datype: 'json',
-        timeout: 10000,
-        success: function (datos) { ProcesarOrdenes(datos) }
-    });
+function RegresarOrden() {
+    var IdPedido = document.getElementById("lastId").value;
+    document.getElementById(IdPedido).style.display = "inline-block";
+    document.getElementById("lastId").value = "clear";
 }
 
 function ProcesarOrdenes(datos) {
     var ul = document.getElementById('listapedidos');
-    var contador = 0;
+    var cont = document.getElementById('contador').value;
     $.each(JSON.parse(datos), function () {
-        CrearNuevaOrden(ul, ++contador, this.ORDERID);
-        if (contador >= 10) {
-            document.getElementById('li' + this.popularity).style.display = "none";
-            document.getElementById('footer').style.display = "block";
+        var ul = document.getElementById('listapedidos');
+        if (ul.lastElementChild == null) {
+            CrearNuevaOrden(ul, cont, this);
+            cont++;
+        } else if (this.ORDERID > ul.lastElementChild.id) {
+            CrearNuevaOrden(ul, cont, this);
+            if (cont++ > 10) {
+                document.getElementById('li' + this.ORDERID).style.display = "none";
+                document.getElementById('footer').style.display = "block";
+            }
         }
     });
+    document.getElementById('contador').value = cont;
 }
 
-function CrearNuevaOrden(ul, contador, id) {
+function CrearNuevaOrden(ul, contador, pedido) {
     var li = document.createElement('li');
-    li.id = "li" + id;
+    li.id = pedido.ORDERID;
 
     var divContenedor = document.createElement('div');
-    divContenedor.id = "contenedor"+id;
+    divContenedor.id = "contenedor"+pedido.ORDERID;
     divContenedor.className = "contenedor";
 
     var divEstado = document.createElement('div');
     divEstado.className = "estado";
-    divEstado.id = "estado"+id;
+    divEstado.id = "estado"+pedido.ORDERID;
 
     var spanId = document.createElement('span');
     spanId.className = "id";
@@ -71,10 +74,10 @@ function CrearNuevaOrden(ul, contador, id) {
 
     var img = document.createElement('img');
     img.className = "profile";
-    img.src = "../images/background.jpg";
+    img.src = pedido.PICTUREURL;
 
     var p = document.createElement('p');
-    p.innerHTML = "Cliente";
+    p.innerHTML = pedido.FULLNAME;
 
     divCliente.appendChild(img);
     divCliente.appendChild(p);
@@ -82,15 +85,15 @@ function CrearNuevaOrden(ul, contador, id) {
     var divDetalles = document.createElement('div');
     divDetalles.className = "detalles";
 
-    var WSPurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/searchOrdersJSON';
+    var WSPurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/searchProductsOrderIdJSON?id=' + pedido.ORDERID;
     var req = $.ajax({
         url: WSPurl,
         timeout: 10000,
-        success: function (datos) { ProcesarProductos(datos) }
+        success: function (productos) { ProcesarProductos(productos) }
     });
 
-    function ProcesarProductos(datos) {
-        $.each(JSON.parse(datos), function () {
+    function ProcesarProductos(productos) {
+        $.each(JSON.parse(productos), function () {
             var cantidad = document.createElement('p');
             cantidad.className = "cantidad";
             var cant = document.createTextNode("1");
@@ -98,7 +101,7 @@ function CrearNuevaOrden(ul, contador, id) {
             
             var producto = document.createElement('p');
             producto.className = "producto";
-            var detalle = document.createTextNode(this.ORDERID);
+            var detalle = document.createTextNode(this.PRODUCTNAME);
             producto.appendChild(detalle);
             divDetalles.appendChild(cantidad);
             divDetalles.appendChild(producto);
@@ -114,11 +117,30 @@ function CrearNuevaOrden(ul, contador, id) {
     boton.value = "Entregar"
 
     boton.addEventListener('click', (function () {
+
+        var Id = pedido.ORDERID;
         var IdPedido = li.id;
+        var LastId = document.getElementById("lastId");
+
         return function () {
-            document.getElementById("lastId").value = IdPedido;
-            elemento = document.getElementById(IdPedido);
-            elemento.parentNode.removeChild(elemento);
+
+            var elem = document.getElementById(LastId.value);
+
+            if (elem != null) {
+                elem.parentNode.removeChild(elem);
+                
+            }
+
+            alert(Id);
+            //var WSSurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/' + Id;
+            //var req = $.ajax({
+            //    url: WSSurl,
+            //    timeout: 10000,
+            //    success: function (productos) { alert("ORDEN: " + Id + " ENTREGADA") }
+            //});
+
+            LastId.value = IdPedido;
+            document.getElementById(IdPedido).style.display="none";
         }
     })());
 
@@ -133,12 +155,7 @@ function CrearNuevaOrden(ul, contador, id) {
 
     ul.appendChild(li);
 
-    var WSSurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/searchOrderStateJSON';
-    var req = $.ajax({
-        url: WSSurl,
-        timeout: 10000,
-        success: function (datos) { ProcesarProductos(datos) }
-    });
-
-    iniciar(divContenedor.id, divEstado.id, 2.2);
+    iniciar(divContenedor.id, divEstado.id, 2.3);
 }
+
+var interval = setInterval(CargarOrdenes, 5000);

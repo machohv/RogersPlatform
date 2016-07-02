@@ -20,6 +20,7 @@ function initializeClock(contenedor, estado, endtime) {
 
     function updateClock() {
         var t = getTimeRemaining(endtime);
+        
         minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
         secondsSpan.innerHTML = ":" + ('0' + t.seconds).slice(-2);
         if (t.minutes < 2 && t.minutes > 0) {
