@@ -99,12 +99,15 @@
     <Content Include="Administrator\AdminEmployees.aspx" />
     <Content Include="Administrator\AdminOrders.aspx" />
     <Content Include="Administrator\EditEmployee.aspx" />
+    <Content Include="Administrator\EditOrderState.aspx" />
     <Content Include="Administrator\EditPlate.aspx" />
     <Content Include="Administrator\ImageSearch.aspx" />
     <Content Include="Administrator\RemoveEmployee.aspx" />
     <Content Include="Administrator\RemovePlate.aspx" />
+    <Content Include="Administrator\SetStateTime.aspx" />
     <Content Include="Content\imageGallery.css" />
     <Content Include="images\bingLogo.png" />
+    <Content Include="images\favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -127,10 +130,10 @@
     <Content Include="Web References\RogersWS\Product.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\RogersWS\Reference.map">
+    <None Include="Web References\RogersWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\RogersWS\Rogers_API.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -156,7 +159,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="images\13509491_10153725799861989_1475246789_o.png" />
     <Content Include="images\background.jpg" />
-    <Content Include="images\favicon.ico" />
     <Content Include="images\logo.png" />
     <Content Include="Login.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
@@ -251,6 +253,13 @@
     <Compile Include="Administrator\EditEmployee.aspx.designer.cs">
       <DependentUpon>EditEmployee.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\EditOrderState.aspx.cs">
+      <DependentUpon>EditOrderState.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\EditOrderState.aspx.designer.cs">
+      <DependentUpon>EditOrderState.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\EditPlate.aspx.cs">
       <DependentUpon>EditPlate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -278,6 +287,13 @@
     </Compile>
     <Compile Include="Administrator\RemovePlate.aspx.designer.cs">
       <DependentUpon>RemovePlate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\SetStateTime.aspx.cs">
+      <DependentUpon>SetStateTime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\SetStateTime.aspx.designer.cs">
+      <DependentUpon>SetStateTime.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

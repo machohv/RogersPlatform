@@ -7,7 +7,7 @@
     
 
     <div class="page-header">
-        <img src="../images/bingLogo.png" /> <h1>Buscar en la web</h1>
+        <h1>Buscar en la web</h1>
     </div>
 
      <div class="row">

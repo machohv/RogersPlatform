@@ -38,18 +38,21 @@
 <ItemStyle Width="200px"></ItemStyle>
             </asp:BoundField>
 
-            <asp:TemplateField HeaderText="Imagen" ItemStyle-Width="100px" >
+            <asp:TemplateField HeaderText="Imagen" ItemStyle-Width="50px" >
                 <ItemTemplate>
-                    <img src='<%#Eval("PROFILEPICTUREURL")%>' height="150" width="150"/>
+                    <img src='<%#Eval("PROFILEPICTUREURL")%>' class="img-rounded" height="50" width="50"/>
                 </ItemTemplate>
 
-<ItemStyle Width="100px"></ItemStyle>
+<ItemStyle Width="50px"></ItemStyle>
             </asp:TemplateField>
 
 
             <asp:TemplateField HeaderText="Habilitar" ItemStyle-Width="100px" >
                 <ItemTemplate>
-                    <input type="checkbox" data-off-text="NO" data-on-text="SI" data-label-width="50" data-handle-width="50" name="my-checkbox" checked="">
+                    <input type="checkbox" data-off-text="NO" data-on-text="SI" data-label-width="50" data-handle-width="50" name="my-checkbox"
+                      
+                        <%# (bool)(Eval("isACTIVE")) ? "checked" : ""%>
+                         id="<%#Eval("PERSON_ID")%>">
                 </ItemTemplate>
 
 <ItemStyle Width="100px"></ItemStyle>
@@ -59,9 +62,22 @@
 
         </Columns>
     </asp:GridView>
+        
     </div>
 
     <script type="text/javascript">
         $("[name='my-checkbox']").bootstrapSwitch();
+        $("[name='my-checkbox']").on('switchChange.bootstrapSwitch', function (event, state) {
+            var id = this.id;
+            var state = $('#' + id).bootstrapSwitch('state');
+            console.log(state);
+            $.ajax({
+                url: "https://rogersapp.azurewebsites.net/Rogers_API.asmx/changeStateJSON?id=" + id + "&state=" + state,
+                dataType: "jsonp"
+            }).then(function(data) {
+                console.log("state changed");
+            });
+
+        });
     </script>
 </asp:Content>

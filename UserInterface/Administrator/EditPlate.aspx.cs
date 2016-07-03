@@ -84,8 +84,8 @@ namespace UserInterface.Administrator
                 {
                     plate.IMAGEURI = imageUri;
 
-                    api.updateProductSOAP(plate.PRODUCT_ID,plate.PRODUCTNAME, plate.DESCRIPTION,
-                        plate.PRICE, plate.IMAGEURI, 1, plate.category);
+                    api.updateProductSOAP(plate.PRODUCT_ID,txtNombre.Text, txtDescripcion.Text,
+                        double.Parse(txtPrecio.Text), plate.IMAGEURI, 1, plate.category);
                     Session.Remove("plate");
                     Response.Redirect("AdminPlates.aspx");
                 }
