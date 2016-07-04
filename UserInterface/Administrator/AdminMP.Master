@@ -7,7 +7,7 @@
     <title>Administrator Platform</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link rel="icon" href="images/favicon.ico" sizes="16x16"/>
+    <link rel="icon" href="../images/favicon.ico" sizes="16x16"/>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
         <link href="../Content/sb-admin.css" rel="stylesheet" />
         <link href="../Content/font-awesome.min.css" rel="stylesheet" />
@@ -30,7 +30,8 @@
                     <ul class="dropdown-menu">
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar sesión</a>
+                            
+                            <a href="../Login.aspx"><i class="fa fa-fw fa-power-off"></i> Cerrar sesión</a>
                         </li>
                     </ul>
                 </li>
@@ -51,7 +52,7 @@
                         <a href="AdminOrders.aspx"><i class="fa fa-fw fa fa-list"></i>  Administrar pedidos</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-clock-o"></i>  Administrar estados</a>
+                        <a href="SetStateTime.aspx"><i class="fa fa-fw fa-clock-o"></i>  Administrar estados</a>
                     </li>
                     
                 </ul>

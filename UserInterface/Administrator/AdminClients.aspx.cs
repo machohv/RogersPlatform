@@ -19,7 +19,7 @@ namespace UserInterface.Administrator
         {
             if (client == null)
                 client = "";
-
+            
             grdPlatos.DataSource = api.searchClientsSOAP(client);
             grdPlatos.DataBind();
         }

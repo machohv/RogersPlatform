@@ -56,7 +56,7 @@
 
             <asp:TemplateField HeaderText="Imagen" ItemStyle-Width="100px" >
                 <ItemTemplate>
-                    <img src='<%#Eval("IMAGEURI")%>' height="150" width="150"/>
+                    <img src='<%#Eval("IMAGEURI")%>' height="100" width="150"/>
                 </ItemTemplate>
 
 <ItemStyle Width="100px"></ItemStyle>

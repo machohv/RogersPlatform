@@ -25,7 +25,7 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label col-sm-2" for="txtPassword">Nombre de Usuario:</label>
+        <label class="control-label col-sm-2" for="txtPassword">Contraseña:</label>
         <div class="col-sm-10">
             <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Contraseña" type="password"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPassword" ErrorMessage="Campo obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -33,9 +33,9 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label col-sm-2" for="txtPassword">Puesto:</label>
+        <label class="control-label col-sm-2">Puesto:</label>
         <div class="col-sm-10">
-            <asp:DropDownList ID="ddlJob" runat="server" Width="200px" OnSelectedIndexChanged="ddlJob_SelectedIndexChanged">
+            <asp:DropDownList ID="ddlJob" runat="server" Width="200px" class="form-control">
                 <asp:ListItem Text="Cocinero" Value="false"></asp:ListItem>
                 <asp:ListItem Text="Administrador" Value="true"></asp:ListItem>
             </asp:DropDownList>

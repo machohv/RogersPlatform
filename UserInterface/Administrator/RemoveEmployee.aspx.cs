@@ -15,19 +15,19 @@ namespace UserInterface.Administrator
         private Rogers_API api = new Rogers_API();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //employee = api.searchEmployeeByIdSOAP((Request.QueryString["employeeID"]));
+            employee = api.searchEmployeeByIdSOAP((Request.QueryString["employeeID"]));
             Nombre = employee.FULLNAME;
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdminPlates.aspx");
+            Response.Redirect("AdminEmployees.aspx");
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             api.deletePersonSOAP(employee.PERSON_ID + "");
-            Response.Redirect("AdminPlates.aspx");
+            Response.Redirect("AdminEmployees.aspx");
         }
     }
 }

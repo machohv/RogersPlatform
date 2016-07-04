@@ -42,7 +42,7 @@
 
             <asp:TemplateField HeaderText="Administrador" ItemStyle-Width="60px" >
                 <ItemTemplate>
-                      <%# (bool)(Eval("isADMIN")) ? "Administrador" : "Empleado"%>
+                      <%# (bool)(Eval("isADMIN")) ? "Administrador" : "Cocinero"%>
                 </ItemTemplate>
 
 <ItemStyle Width="60px"></ItemStyle>

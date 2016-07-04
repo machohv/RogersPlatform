@@ -59,7 +59,7 @@
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="profilepictureurl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="profilepic" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
           </s:sequence>
@@ -73,7 +73,7 @@
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="fullname" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="profilepictureurl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pp1" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
           </s:sequence>
@@ -143,6 +143,21 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="changeStateSOAPResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateOrderState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="orderstate" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateOrderStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="updateOrderStateResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -223,6 +238,34 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
+      <s:element name="searchEmployeeByIdSOAP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchEmployeeByIdSOAPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchEmployeeByIdSOAPResult" type="tns:Employee" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchEmployeeByIdJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchEmployeeByIdJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchEmployeeByIdJSONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="addEmployeeJSON">
         <s:complexType>
           <s:sequence>
@@ -285,7 +328,7 @@
       <s:complexType name="OrderState">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="TIMEASIGNED" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TIMEASIGNED" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="orderStateID" type="s:int" />
         </s:sequence>
       </s:complexType>
@@ -293,7 +336,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="time" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="time" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -308,7 +351,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="time" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="time" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -395,6 +438,16 @@
       <s:element name="searchProductJSONResponse">
         <s:complexType />
       </s:element>
+      <s:element name="isBlocked">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isBlockedResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="searchProductSOAP">
         <s:complexType>
           <s:sequence>
@@ -449,6 +502,16 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="searchProductsOrderIdJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchProductsOrderIdJSONResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="updateProductJSON">
         <s:complexType>
           <s:sequence>
@@ -492,53 +555,46 @@
       <s:element name="addOrderJSON">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="prods" type="tns:ArrayOfProduct" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prods" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="total" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="coordenates" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="addOrderJSONResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="addOrderJSONResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="addOrderSOAP">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="prods" type="tns:ArrayOfProduct" />
+            <s:element minOccurs="0" maxOccurs="1" name="prods" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="total" type="s:double" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="addOrderSOAPResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="addOrderSOAPResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="searchOrdersJSON">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="searchOrdersJSONResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="searchOrderByIdJSON">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="searchOrdersJSONResult" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="searchOrderByIdJSONResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="searchOrdersSOAP">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="searchOrdersSOAPResponse">
         <s:complexType>
@@ -555,14 +611,13 @@
       <s:complexType name="Order">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="ORDERID" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ORDERSTATEID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ORDERSTATEID" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="DATETTIME" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="FULLNAME" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="PICTUREURL" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="ADDRESS" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="TOTAL" type="s:double" />
-          <s:element minOccurs="0" maxOccurs="1" name="PRODUCTS" type="tns:ArrayOfProduct" />
         </s:sequence>
       </s:complexType>
       <s:element name="deletePersonJSON">
@@ -657,6 +712,7 @@
       <s:element name="ArrayOfClient" nillable="true" type="tns:ArrayOfClient" />
       <s:element name="boolean" type="s:boolean" />
       <s:element name="ArrayOfEmployee" nillable="true" type="tns:ArrayOfEmployee" />
+      <s:element name="Employee" nillable="true" type="tns:Employee" />
       <s:element name="ArrayOfOrderState" nillable="true" type="tns:ArrayOfOrderState" />
       <s:element name="ArrayOfProduct" nillable="true" type="tns:ArrayOfProduct" />
       <s:element name="Product" nillable="true" type="tns:Product" />
@@ -711,6 +767,12 @@
   <wsdl:message name="changeStateSOAPSoapOut">
     <wsdl:part name="parameters" element="tns:changeStateSOAPResponse" />
   </wsdl:message>
+  <wsdl:message name="updateOrderStateSoapIn">
+    <wsdl:part name="parameters" element="tns:updateOrderState" />
+  </wsdl:message>
+  <wsdl:message name="updateOrderStateSoapOut">
+    <wsdl:part name="parameters" element="tns:updateOrderStateResponse" />
+  </wsdl:message>
   <wsdl:message name="updateEmployeeJSONSoapIn">
     <wsdl:part name="parameters" element="tns:updateEmployeeJSON" />
   </wsdl:message>
@@ -734,6 +796,18 @@
   </wsdl:message>
   <wsdl:message name="searchEmployeeSOAPSoapOut">
     <wsdl:part name="parameters" element="tns:searchEmployeeSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdSOAPSoapIn">
+    <wsdl:part name="parameters" element="tns:searchEmployeeByIdSOAP" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdSOAPSoapOut">
+    <wsdl:part name="parameters" element="tns:searchEmployeeByIdSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchEmployeeByIdJSON" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchEmployeeByIdJSONResponse" />
   </wsdl:message>
   <wsdl:message name="addEmployeeJSONSoapIn">
     <wsdl:part name="parameters" element="tns:addEmployeeJSON" />
@@ -801,6 +875,12 @@
   <wsdl:message name="searchProductJSONSoapOut">
     <wsdl:part name="parameters" element="tns:searchProductJSONResponse" />
   </wsdl:message>
+  <wsdl:message name="isBlockedSoapIn">
+    <wsdl:part name="parameters" element="tns:isBlocked" />
+  </wsdl:message>
+  <wsdl:message name="isBlockedSoapOut">
+    <wsdl:part name="parameters" element="tns:isBlockedResponse" />
+  </wsdl:message>
   <wsdl:message name="searchProductSOAPSoapIn">
     <wsdl:part name="parameters" element="tns:searchProductSOAP" />
   </wsdl:message>
@@ -818,6 +898,12 @@
   </wsdl:message>
   <wsdl:message name="searchProductByIdSOAPSoapOut">
     <wsdl:part name="parameters" element="tns:searchProductByIdSOAPResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchProductsOrderIdJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchProductsOrderIdJSON" />
+  </wsdl:message>
+  <wsdl:message name="searchProductsOrderIdJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchProductsOrderIdJSONResponse" />
   </wsdl:message>
   <wsdl:message name="updateProductJSONSoapIn">
     <wsdl:part name="parameters" element="tns:updateProductJSON" />
@@ -848,6 +934,12 @@
   </wsdl:message>
   <wsdl:message name="searchOrdersJSONSoapOut">
     <wsdl:part name="parameters" element="tns:searchOrdersJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchOrderByIdJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:searchOrderByIdJSON" />
+  </wsdl:message>
+  <wsdl:message name="searchOrderByIdJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:searchOrderByIdJSONResponse" />
   </wsdl:message>
   <wsdl:message name="searchOrdersSOAPSoapIn">
     <wsdl:part name="parameters" element="tns:searchOrdersSOAP" />
@@ -906,7 +998,7 @@
   <wsdl:message name="addClientJSONHttpGetIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="profilepictureurl" type="s:string" />
+    <wsdl:part name="profilepic" type="s:string" />
     <wsdl:part name="email" type="s:string" />
     <wsdl:part name="address" type="s:string" />
   </wsdl:message>
@@ -914,7 +1006,7 @@
   <wsdl:message name="addClientSOAPHttpGetIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="profilepictureurl" type="s:string" />
+    <wsdl:part name="pp1" type="s:string" />
     <wsdl:part name="email" type="s:string" />
     <wsdl:part name="address" type="s:string" />
   </wsdl:message>
@@ -951,6 +1043,13 @@
   <wsdl:message name="changeStateSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
+  <wsdl:message name="updateOrderStateHttpGetIn">
+    <wsdl:part name="orderid" type="s:string" />
+    <wsdl:part name="orderstate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateOrderStateHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
   <wsdl:message name="updateEmployeeJSONHttpGetIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
@@ -980,6 +1079,18 @@
   </wsdl:message>
   <wsdl:message name="searchEmployeeSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfEmployee" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdSOAPHttpGetOut">
+    <wsdl:part name="Body" element="tns:Employee" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdJSONHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdJSONHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="addEmployeeJSONHttpGetIn">
     <wsdl:part name="fullname" type="s:string" />
@@ -1059,6 +1170,10 @@
     <wsdl:part name="productname" type="s:string" />
   </wsdl:message>
   <wsdl:message name="searchProductJSONHttpGetOut" />
+  <wsdl:message name="isBlockedHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="isBlockedHttpGetOut" />
   <wsdl:message name="searchProductSOAPHttpGetIn">
     <wsdl:part name="productname" type="s:string" />
   </wsdl:message>
@@ -1075,6 +1190,10 @@
   <wsdl:message name="searchProductByIdSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:Product" />
   </wsdl:message>
+  <wsdl:message name="searchProductsOrderIdJSONHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductsOrderIdJSONHttpGetOut" />
   <wsdl:message name="updateProductJSONHttpGetIn">
     <wsdl:part name="id" type="s:string" />
     <wsdl:part name="name" type="s:string" />
@@ -1099,15 +1218,26 @@
   <wsdl:message name="updateProductSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="searchOrdersJSONHttpGetIn">
+  <wsdl:message name="addOrderJSONHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="prods" type="s:string" />
+    <wsdl:part name="total" type="s:string" />
+    <wsdl:part name="coordenates" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addOrderJSONHttpGetOut" />
+  <wsdl:message name="addOrderSOAPHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="prods" type="s:string" />
+    <wsdl:part name="total" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addOrderSOAPHttpGetOut" />
+  <wsdl:message name="searchOrdersJSONHttpGetIn" />
+  <wsdl:message name="searchOrdersJSONHttpGetOut" />
+  <wsdl:message name="searchOrderByIdJSONHttpGetIn">
     <wsdl:part name="id" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="searchOrdersJSONHttpGetOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="searchOrdersSOAPHttpGetIn">
-    <wsdl:part name="id" type="s:string" />
-  </wsdl:message>
+  <wsdl:message name="searchOrderByIdJSONHttpGetOut" />
+  <wsdl:message name="searchOrdersSOAPHttpGetIn" />
   <wsdl:message name="searchOrdersSOAPHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfOrder" />
   </wsdl:message>
@@ -1166,7 +1296,7 @@
   <wsdl:message name="addClientJSONHttpPostIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="profilepictureurl" type="s:string" />
+    <wsdl:part name="profilepic" type="s:string" />
     <wsdl:part name="email" type="s:string" />
     <wsdl:part name="address" type="s:string" />
   </wsdl:message>
@@ -1174,7 +1304,7 @@
   <wsdl:message name="addClientSOAPHttpPostIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
-    <wsdl:part name="profilepictureurl" type="s:string" />
+    <wsdl:part name="pp1" type="s:string" />
     <wsdl:part name="email" type="s:string" />
     <wsdl:part name="address" type="s:string" />
   </wsdl:message>
@@ -1211,6 +1341,13 @@
   <wsdl:message name="changeStateSOAPHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
+  <wsdl:message name="updateOrderStateHttpPostIn">
+    <wsdl:part name="orderid" type="s:string" />
+    <wsdl:part name="orderstate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateOrderStateHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
   <wsdl:message name="updateEmployeeJSONHttpPostIn">
     <wsdl:part name="fullname" type="s:string" />
     <wsdl:part name="password" type="s:string" />
@@ -1240,6 +1377,18 @@
   </wsdl:message>
   <wsdl:message name="searchEmployeeSOAPHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfEmployee" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdSOAPHttpPostOut">
+    <wsdl:part name="Body" element="tns:Employee" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchEmployeeByIdJSONHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="addEmployeeJSONHttpPostIn">
     <wsdl:part name="fullname" type="s:string" />
@@ -1319,6 +1468,10 @@
     <wsdl:part name="productname" type="s:string" />
   </wsdl:message>
   <wsdl:message name="searchProductJSONHttpPostOut" />
+  <wsdl:message name="isBlockedHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="isBlockedHttpPostOut" />
   <wsdl:message name="searchProductSOAPHttpPostIn">
     <wsdl:part name="productname" type="s:string" />
   </wsdl:message>
@@ -1335,6 +1488,10 @@
   <wsdl:message name="searchProductByIdSOAPHttpPostOut">
     <wsdl:part name="Body" element="tns:Product" />
   </wsdl:message>
+  <wsdl:message name="searchProductsOrderIdJSONHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="searchProductsOrderIdJSONHttpPostOut" />
   <wsdl:message name="updateProductJSONHttpPostIn">
     <wsdl:part name="id" type="s:string" />
     <wsdl:part name="name" type="s:string" />
@@ -1359,15 +1516,26 @@
   <wsdl:message name="updateProductSOAPHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="searchOrdersJSONHttpPostIn">
+  <wsdl:message name="addOrderJSONHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="prods" type="s:string" />
+    <wsdl:part name="total" type="s:string" />
+    <wsdl:part name="coordenates" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addOrderJSONHttpPostOut" />
+  <wsdl:message name="addOrderSOAPHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="prods" type="s:string" />
+    <wsdl:part name="total" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addOrderSOAPHttpPostOut" />
+  <wsdl:message name="searchOrdersJSONHttpPostIn" />
+  <wsdl:message name="searchOrdersJSONHttpPostOut" />
+  <wsdl:message name="searchOrderByIdJSONHttpPostIn">
     <wsdl:part name="id" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="searchOrdersJSONHttpPostOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
-  <wsdl:message name="searchOrdersSOAPHttpPostIn">
-    <wsdl:part name="id" type="s:string" />
-  </wsdl:message>
+  <wsdl:message name="searchOrderByIdJSONHttpPostOut" />
+  <wsdl:message name="searchOrdersSOAPHttpPostIn" />
   <wsdl:message name="searchOrdersSOAPHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfOrder" />
   </wsdl:message>
@@ -1444,6 +1612,10 @@
       <wsdl:input message="tns:changeStateSOAPSoapIn" />
       <wsdl:output message="tns:changeStateSOAPSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="updateOrderState">
+      <wsdl:input message="tns:updateOrderStateSoapIn" />
+      <wsdl:output message="tns:updateOrderStateSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="updateEmployeeJSON">
       <wsdl:input message="tns:updateEmployeeJSONSoapIn" />
       <wsdl:output message="tns:updateEmployeeJSONSoapOut" />
@@ -1459,6 +1631,14 @@
     <wsdl:operation name="searchEmployeeSOAP">
       <wsdl:input message="tns:searchEmployeeSOAPSoapIn" />
       <wsdl:output message="tns:searchEmployeeSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdSOAP">
+      <wsdl:input message="tns:searchEmployeeByIdSOAPSoapIn" />
+      <wsdl:output message="tns:searchEmployeeByIdSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdJSON">
+      <wsdl:input message="tns:searchEmployeeByIdJSONSoapIn" />
+      <wsdl:output message="tns:searchEmployeeByIdJSONSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="addEmployeeJSON">
       <wsdl:input message="tns:addEmployeeJSONSoapIn" />
@@ -1504,6 +1684,10 @@
       <wsdl:input message="tns:searchProductJSONSoapIn" />
       <wsdl:output message="tns:searchProductJSONSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="isBlocked">
+      <wsdl:input message="tns:isBlockedSoapIn" />
+      <wsdl:output message="tns:isBlockedSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="searchProductSOAP">
       <wsdl:input message="tns:searchProductSOAPSoapIn" />
       <wsdl:output message="tns:searchProductSOAPSoapOut" />
@@ -1515,6 +1699,10 @@
     <wsdl:operation name="searchProductByIdSOAP">
       <wsdl:input message="tns:searchProductByIdSOAPSoapIn" />
       <wsdl:output message="tns:searchProductByIdSOAPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchProductsOrderIdJSON">
+      <wsdl:input message="tns:searchProductsOrderIdJSONSoapIn" />
+      <wsdl:output message="tns:searchProductsOrderIdJSONSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="updateProductJSON">
       <wsdl:input message="tns:updateProductJSONSoapIn" />
@@ -1535,6 +1723,10 @@
     <wsdl:operation name="searchOrdersJSON">
       <wsdl:input message="tns:searchOrdersJSONSoapIn" />
       <wsdl:output message="tns:searchOrdersJSONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderByIdJSON">
+      <wsdl:input message="tns:searchOrderByIdJSONSoapIn" />
+      <wsdl:output message="tns:searchOrderByIdJSONSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="searchOrdersSOAP">
       <wsdl:input message="tns:searchOrdersSOAPSoapIn" />
@@ -1598,6 +1790,10 @@
       <wsdl:input message="tns:changeStateSOAPHttpGetIn" />
       <wsdl:output message="tns:changeStateSOAPHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="updateOrderState">
+      <wsdl:input message="tns:updateOrderStateHttpGetIn" />
+      <wsdl:output message="tns:updateOrderStateHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="updateEmployeeJSON">
       <wsdl:input message="tns:updateEmployeeJSONHttpGetIn" />
       <wsdl:output message="tns:updateEmployeeJSONHttpGetOut" />
@@ -1613,6 +1809,14 @@
     <wsdl:operation name="searchEmployeeSOAP">
       <wsdl:input message="tns:searchEmployeeSOAPHttpGetIn" />
       <wsdl:output message="tns:searchEmployeeSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdSOAP">
+      <wsdl:input message="tns:searchEmployeeByIdSOAPHttpGetIn" />
+      <wsdl:output message="tns:searchEmployeeByIdSOAPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdJSON">
+      <wsdl:input message="tns:searchEmployeeByIdJSONHttpGetIn" />
+      <wsdl:output message="tns:searchEmployeeByIdJSONHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="addEmployeeJSON">
       <wsdl:input message="tns:addEmployeeJSONHttpGetIn" />
@@ -1658,6 +1862,10 @@
       <wsdl:input message="tns:searchProductJSONHttpGetIn" />
       <wsdl:output message="tns:searchProductJSONHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="isBlocked">
+      <wsdl:input message="tns:isBlockedHttpGetIn" />
+      <wsdl:output message="tns:isBlockedHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="searchProductSOAP">
       <wsdl:input message="tns:searchProductSOAPHttpGetIn" />
       <wsdl:output message="tns:searchProductSOAPHttpGetOut" />
@@ -1670,6 +1878,10 @@
       <wsdl:input message="tns:searchProductByIdSOAPHttpGetIn" />
       <wsdl:output message="tns:searchProductByIdSOAPHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="searchProductsOrderIdJSON">
+      <wsdl:input message="tns:searchProductsOrderIdJSONHttpGetIn" />
+      <wsdl:output message="tns:searchProductsOrderIdJSONHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="updateProductJSON">
       <wsdl:input message="tns:updateProductJSONHttpGetIn" />
       <wsdl:output message="tns:updateProductJSONHttpGetOut" />
@@ -1678,9 +1890,21 @@
       <wsdl:input message="tns:updateProductSOAPHttpGetIn" />
       <wsdl:output message="tns:updateProductSOAPHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="addOrderJSON">
+      <wsdl:input message="tns:addOrderJSONHttpGetIn" />
+      <wsdl:output message="tns:addOrderJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addOrderSOAP">
+      <wsdl:input message="tns:addOrderSOAPHttpGetIn" />
+      <wsdl:output message="tns:addOrderSOAPHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="searchOrdersJSON">
       <wsdl:input message="tns:searchOrdersJSONHttpGetIn" />
       <wsdl:output message="tns:searchOrdersJSONHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderByIdJSON">
+      <wsdl:input message="tns:searchOrderByIdJSONHttpGetIn" />
+      <wsdl:output message="tns:searchOrderByIdJSONHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="searchOrdersSOAP">
       <wsdl:input message="tns:searchOrdersSOAPHttpGetIn" />
@@ -1744,6 +1968,10 @@
       <wsdl:input message="tns:changeStateSOAPHttpPostIn" />
       <wsdl:output message="tns:changeStateSOAPHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="updateOrderState">
+      <wsdl:input message="tns:updateOrderStateHttpPostIn" />
+      <wsdl:output message="tns:updateOrderStateHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="updateEmployeeJSON">
       <wsdl:input message="tns:updateEmployeeJSONHttpPostIn" />
       <wsdl:output message="tns:updateEmployeeJSONHttpPostOut" />
@@ -1759,6 +1987,14 @@
     <wsdl:operation name="searchEmployeeSOAP">
       <wsdl:input message="tns:searchEmployeeSOAPHttpPostIn" />
       <wsdl:output message="tns:searchEmployeeSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdSOAP">
+      <wsdl:input message="tns:searchEmployeeByIdSOAPHttpPostIn" />
+      <wsdl:output message="tns:searchEmployeeByIdSOAPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdJSON">
+      <wsdl:input message="tns:searchEmployeeByIdJSONHttpPostIn" />
+      <wsdl:output message="tns:searchEmployeeByIdJSONHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="addEmployeeJSON">
       <wsdl:input message="tns:addEmployeeJSONHttpPostIn" />
@@ -1804,6 +2040,10 @@
       <wsdl:input message="tns:searchProductJSONHttpPostIn" />
       <wsdl:output message="tns:searchProductJSONHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="isBlocked">
+      <wsdl:input message="tns:isBlockedHttpPostIn" />
+      <wsdl:output message="tns:isBlockedHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="searchProductSOAP">
       <wsdl:input message="tns:searchProductSOAPHttpPostIn" />
       <wsdl:output message="tns:searchProductSOAPHttpPostOut" />
@@ -1816,6 +2056,10 @@
       <wsdl:input message="tns:searchProductByIdSOAPHttpPostIn" />
       <wsdl:output message="tns:searchProductByIdSOAPHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="searchProductsOrderIdJSON">
+      <wsdl:input message="tns:searchProductsOrderIdJSONHttpPostIn" />
+      <wsdl:output message="tns:searchProductsOrderIdJSONHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="updateProductJSON">
       <wsdl:input message="tns:updateProductJSONHttpPostIn" />
       <wsdl:output message="tns:updateProductJSONHttpPostOut" />
@@ -1824,9 +2068,21 @@
       <wsdl:input message="tns:updateProductSOAPHttpPostIn" />
       <wsdl:output message="tns:updateProductSOAPHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="addOrderJSON">
+      <wsdl:input message="tns:addOrderJSONHttpPostIn" />
+      <wsdl:output message="tns:addOrderJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addOrderSOAP">
+      <wsdl:input message="tns:addOrderSOAPHttpPostIn" />
+      <wsdl:output message="tns:addOrderSOAPHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="searchOrdersJSON">
       <wsdl:input message="tns:searchOrdersJSONHttpPostIn" />
       <wsdl:output message="tns:searchOrdersJSONHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderByIdJSON">
+      <wsdl:input message="tns:searchOrderByIdJSONHttpPostIn" />
+      <wsdl:output message="tns:searchOrderByIdJSONHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="searchOrdersSOAP">
       <wsdl:input message="tns:searchOrdersSOAPHttpPostIn" />
@@ -1931,6 +2187,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="updateOrderState">
+      <soap:operation soapAction="http://tempuri.org/updateOrderState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="updateEmployeeJSON">
       <soap:operation soapAction="http://tempuri.org/updateEmployeeJSON" style="document" />
       <wsdl:input>
@@ -1960,6 +2225,24 @@
     </wsdl:operation>
     <wsdl:operation name="searchEmployeeSOAP">
       <soap:operation soapAction="http://tempuri.org/searchEmployeeSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdSOAP">
+      <soap:operation soapAction="http://tempuri.org/searchEmployeeByIdSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdJSON">
+      <soap:operation soapAction="http://tempuri.org/searchEmployeeByIdJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2066,6 +2349,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="isBlocked">
+      <soap:operation soapAction="http://tempuri.org/isBlocked" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="searchProductSOAP">
       <soap:operation soapAction="http://tempuri.org/searchProductSOAP" style="document" />
       <wsdl:input>
@@ -2086,6 +2378,15 @@
     </wsdl:operation>
     <wsdl:operation name="searchProductByIdSOAP">
       <soap:operation soapAction="http://tempuri.org/searchProductByIdSOAP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductsOrderIdJSON">
+      <soap:operation soapAction="http://tempuri.org/searchProductsOrderIdJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2131,6 +2432,15 @@
     </wsdl:operation>
     <wsdl:operation name="searchOrdersJSON">
       <soap:operation soapAction="http://tempuri.org/searchOrdersJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderByIdJSON">
+      <soap:operation soapAction="http://tempuri.org/searchOrderByIdJSON" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2276,6 +2586,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="updateOrderState">
+      <soap12:operation soapAction="http://tempuri.org/updateOrderState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="updateEmployeeJSON">
       <soap12:operation soapAction="http://tempuri.org/updateEmployeeJSON" style="document" />
       <wsdl:input>
@@ -2305,6 +2624,24 @@
     </wsdl:operation>
     <wsdl:operation name="searchEmployeeSOAP">
       <soap12:operation soapAction="http://tempuri.org/searchEmployeeSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdSOAP">
+      <soap12:operation soapAction="http://tempuri.org/searchEmployeeByIdSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchEmployeeByIdJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2411,6 +2748,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="isBlocked">
+      <soap12:operation soapAction="http://tempuri.org/isBlocked" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="searchProductSOAP">
       <soap12:operation soapAction="http://tempuri.org/searchProductSOAP" style="document" />
       <wsdl:input>
@@ -2431,6 +2777,15 @@
     </wsdl:operation>
     <wsdl:operation name="searchProductByIdSOAP">
       <soap12:operation soapAction="http://tempuri.org/searchProductByIdSOAP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchProductsOrderIdJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchProductsOrderIdJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2476,6 +2831,15 @@
     </wsdl:operation>
     <wsdl:operation name="searchOrdersJSON">
       <soap12:operation soapAction="http://tempuri.org/searchOrdersJSON" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderByIdJSON">
+      <soap12:operation soapAction="http://tempuri.org/searchOrderByIdJSON" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2617,6 +2981,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="updateOrderState">
+      <http:operation location="/updateOrderState" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="updateEmployeeJSON">
       <http:operation location="/updateEmployeeJSON" />
       <wsdl:input>
@@ -2646,6 +3019,24 @@
     </wsdl:operation>
     <wsdl:operation name="searchEmployeeSOAP">
       <http:operation location="/searchEmployeeSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdSOAP">
+      <http:operation location="/searchEmployeeByIdSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdJSON">
+      <http:operation location="/searchEmployeeByIdJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -2750,6 +3141,13 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="isBlocked">
+      <http:operation location="/isBlocked" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="searchProductSOAP">
       <http:operation location="/searchProductSOAP" />
       <wsdl:input>
@@ -2775,6 +3173,13 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="searchProductsOrderIdJSON">
+      <http:operation location="/searchProductsOrderIdJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="updateProductJSON">
       <http:operation location="/updateProductJSON" />
       <wsdl:input>
@@ -2793,14 +3198,33 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="addOrderJSON">
+      <http:operation location="/addOrderJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="addOrderSOAP">
+      <http:operation location="/addOrderSOAP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="searchOrdersJSON">
       <http:operation location="/searchOrdersJSON" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderByIdJSON">
+      <http:operation location="/searchOrderByIdJSON" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="searchOrdersSOAP">
       <http:operation location="/searchOrdersSOAP" />
@@ -2936,6 +3360,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="updateOrderState">
+      <http:operation location="/updateOrderState" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="updateEmployeeJSON">
       <http:operation location="/updateEmployeeJSON" />
       <wsdl:input>
@@ -2965,6 +3398,24 @@
     </wsdl:operation>
     <wsdl:operation name="searchEmployeeSOAP">
       <http:operation location="/searchEmployeeSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdSOAP">
+      <http:operation location="/searchEmployeeByIdSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchEmployeeByIdJSON">
+      <http:operation location="/searchEmployeeByIdJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -3069,6 +3520,13 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="isBlocked">
+      <http:operation location="/isBlocked" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="searchProductSOAP">
       <http:operation location="/searchProductSOAP" />
       <wsdl:input>
@@ -3094,6 +3552,13 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="searchProductsOrderIdJSON">
+      <http:operation location="/searchProductsOrderIdJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="updateProductJSON">
       <http:operation location="/updateProductJSON" />
       <wsdl:input>
@@ -3112,14 +3577,33 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="addOrderJSON">
+      <http:operation location="/addOrderJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="addOrderSOAP">
+      <http:operation location="/addOrderSOAP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="searchOrdersJSON">
       <http:operation location="/searchOrdersJSON" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="searchOrderByIdJSON">
+      <http:operation location="/searchOrderByIdJSON" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="searchOrdersSOAP">
       <http:operation location="/searchOrdersSOAP" />

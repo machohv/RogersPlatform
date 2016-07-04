@@ -14,8 +14,7 @@ namespace UserInterface.Administrator
         private Rogers_API api = new Rogers_API();
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //employee = api.searchEmployeeByIdSOAP((Request.QueryString["employeeID"]));
+            employee = api.searchEmployeeByIdSOAP((Request.QueryString["employeeID"]));
             if (!IsPostBack)
             {
                 fillData();
@@ -38,7 +37,7 @@ namespace UserInterface.Administrator
 
                 Rogers_API api = new Rogers_API();
 
-                //api.updateEmployeeSOAP(employee.PERSON_ID,txtNombre.Text, txtPassword.Text, txtUsername.Text, bool.Parse(ddlJob.SelectedValue));
+                api.updateEmployeeSOAP(txtNombre.Text, txtPassword.Text, txtUsername.Text, bool.Parse(ddlJob.SelectedValue));
                 Response.Redirect("AdminEmployees.aspx");
 
             }

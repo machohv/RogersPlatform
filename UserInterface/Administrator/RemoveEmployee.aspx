@@ -17,4 +17,6 @@
             <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" class="btn btn-danger btn-sm" OnClick="btnEliminar_Click"/>
         </div>
     </div>
+    <br />
+    <br />
 </asp:Content>
