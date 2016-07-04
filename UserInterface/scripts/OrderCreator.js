@@ -12,31 +12,60 @@
 }
 
 function RegresarOrden() {
+
     var IdPedido = document.getElementById("lastId").value;
     document.getElementById(IdPedido).style.display = "inline-block";
     document.getElementById("lastId").value = "clear";
+
+    if (ul.childElementCount == 11) {
+        var ul = document.getElementById('listapedidos');
+        var ulEspera = document.getElementById('listaespera');
+
+        ulEspera.insertBefore(ul.lastElementChild, ulEspera.firstElementChild);
+    }
+
+    var WSSurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/updateOrderState?orderid=' + IdPedido + '&orderstate=' + 1;
+    var req = $.ajax({
+        url: WSSurl,
+        timeout: 10000,
+        success: function (productos) { alert("ORDEN: " + IdPedido + " RECUPERADA") }
+    });
 }
 
 function ProcesarOrdenes(datos) {
+
     var ul = document.getElementById('listapedidos');
-    var cont = document.getElementById('contador').value;
+    var ulEspera = document.getElementById('listaespera');
+
     $.each(JSON.parse(datos), function () {
-        var ul = document.getElementById('listapedidos');
-        if (ul.lastElementChild == null) {
-            CrearNuevaOrden(ul, cont, this);
-            cont++;
-        } else if (this.ORDERID > ul.lastElementChild.id) {
-            CrearNuevaOrden(ul, cont, this);
-            if (cont++ > 10) {
-                document.getElementById('li' + this.ORDERID).style.display = "none";
-                document.getElementById('footer').style.display = "block";
+        if (this.ORDERSTATEID != 4 && this.ORDERSTATEID != 5) {
+            if (ul.lastElementChild == null) {
+                CrearNuevaOrden(ul, this);
+            } else if (ul.childElementCount < 10 && this.ORDERID > ul.lastElementChild.id) {
+
+                CrearNuevaOrden(ul, this);
+
+            } else if (ul.childElementCount == 10) {
+
+                if (ulEspera.childElementCount != 0) {
+
+                    if (this.ORDERID > ulEspera.lastElementChild.id) {
+                        CrearNuevaOrden(ulEspera, this);
+                        document.getElementById('footer').style.display = 'block';
+                    }
+
+                } else if (this.ORDERID > ul.lastElementChild.id) {
+                    CrearNuevaOrden(ulEspera, this);
+                    document.getElementById('footer').style.display = 'block';
+                }
+
             }
-        }
-    });
-    document.getElementById('contador').value = cont;
+
+        } 
+    });    
 }
 
-function CrearNuevaOrden(ul, contador, pedido) {
+function CrearNuevaOrden(ul, pedido) {
     var li = document.createElement('li');
     li.id = pedido.ORDERID;
 
@@ -50,7 +79,7 @@ function CrearNuevaOrden(ul, contador, pedido) {
 
     var spanId = document.createElement('span');
     spanId.className = "id";
-    spanId.innerHTML = contador;
+    spanId.innerHTML = pedido.ORDERID;
     var spanTiempo = document.createElement('span');
     spanTiempo.innerHTML = "Tiempo restante: ";
     var spanMinutos = document.createElement('span');
@@ -123,24 +152,38 @@ function CrearNuevaOrden(ul, contador, pedido) {
         var LastId = document.getElementById("lastId");
 
         return function () {
+        
+                var elem = document.getElementById(LastId.value);
 
-            var elem = document.getElementById(LastId.value);
+                if (elem != null) {
+                    elem.parentNode.removeChild(elem);
+                }
 
-            if (elem != null) {
-                elem.parentNode.removeChild(elem);
+                LastId.value = IdPedido;
+                document.getElementById(IdPedido).style.display = "none";
+                    
+                var ul = document.getElementById('listapedidos');
+                var ulEspera = document.getElementById('listaespera');
                 
-            }
+                
 
-            alert(Id);
-            //var WSSurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/' + Id;
-            //var req = $.ajax({
-            //    url: WSSurl,
-            //    timeout: 10000,
-            //    success: function (productos) { alert("ORDEN: " + Id + " ENTREGADA") }
-            //});
+                var nuevo = ulEspera.firstElementChild;
+                if (nuevo != null) {
+                    nuevo.parentNode.removeChild(nuevo);
+                    ul.appendChild(nuevo);
+                }
 
-            LastId.value = IdPedido;
-            document.getElementById(IdPedido).style.display="none";
+                if (ulEspera.childElementCount == 0) {
+                    document.getElementById('footer').style.display = 'none';
+                }
+
+                var WSSurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/updateOrderState?orderid=' + Id + '&orderstate=' + 4;
+                var req = $.ajax({
+                    url: WSSurl,
+                    timeout: 10000,
+                    success: function (productos) { alert("ORDEN " + Id + " ENTREGADA") }
+                });
+            
         }
     })());
 
@@ -155,7 +198,7 @@ function CrearNuevaOrden(ul, contador, pedido) {
 
     ul.appendChild(li);
 
-    iniciar(divContenedor.id, divEstado.id, 2.3);
+    iniciar(divContenedor.id, divEstado.id);
 }
 
-var interval = setInterval(CargarOrdenes, 5000);
+var interval = setInterval(CargarOrdenes, 10000);

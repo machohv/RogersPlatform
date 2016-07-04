@@ -15,9 +15,20 @@
 }
 
 #footer {
-    background-color:rgba(255, 255, 255, 0.46);
+    background-color:#1f1d1d;
     height:40px;
     display:none;
+    padding: 20px 0px 5px 10px;
+    font-family:Impact;
+    font-size: 20px;
+    font-weight: 500;
+    text-align:left;
+    color:rgba(229, 53, 53, 0.91);
+}
+
+#leyenda {
+    padding:0;
+    margin:0;
 }
 
 #regresar {
@@ -63,7 +74,7 @@
 
 .detalles {
     background-color:#fffbe0;
-    height:300px;
+    height:200px;
     border-bottom:1px solid #000000;
 }
 
@@ -83,6 +94,10 @@
     
 }
 
+#listaespera {
+    display:none;
+}
+
 .botones {
     width:100%;
     text-align:center;
@@ -97,6 +112,10 @@
     font-family:Impact;
     font-size: 16px;
     font-weight: 500;
+}
+
+.btEntregar:hover {
+    background-color:rgba(229, 53, 53, 0.91);
 }
 
 .estado {

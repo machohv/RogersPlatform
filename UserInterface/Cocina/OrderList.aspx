@@ -4,12 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Ordenes</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/ico" />
+    <title>Cocina</title>
     <script src="../scripts/ThreadManagement.js"></script>
     <script src="../scripts/OrderCreator.js"></script>
     <script src="../scripts/jquery-3.0.0.min.js"></script>
     <link href="../Content/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"/>
 
 </head>
 <body onload="CargarOrdenes()">
@@ -22,9 +23,11 @@
             <ul id="listapedidos">
                 
             </ul>
+            <ul id="listaespera">
+
+            </ul>
         </div>
         <input type="hidden" value="" id="lastId"/>
-        <input type="hidden" value="1" id="contador" />
     </form>
     <div id="footer">
        <h4 id="leyenda">Existen más ordenes sin mostrar</h4>
