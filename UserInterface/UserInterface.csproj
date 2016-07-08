@@ -130,6 +130,7 @@
     <Content Include="Web References\RogersWS\Product.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\RogersRestaurant.pubxml" />
     <None Include="Web References\RogersWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
