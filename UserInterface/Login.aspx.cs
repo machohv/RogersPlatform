@@ -56,11 +56,16 @@ namespace UserInterface
             {
                 Employee employee = api.searchEmployeeSOAP(txtUser.Text).First();
                 Session["user"] = employee;
+
                 if (employee.isADMIN)
                 {
                     FormsAuthentication.RedirectFromLoginPage
                    (employee.USERNAME, true);
                     Response.Redirect("Administrator/Default.aspx");
+                } else if (!employee.isADMIN) {
+                    FormsAuthentication.RedirectFromLoginPage
+                   (employee.USERNAME, true);
+                    Response.Redirect("Cocina/OrderList.aspx");
                 }
 
                 

@@ -1,0 +1,186 @@
+﻿body{
+    background: #ffffff;
+    margin:0;
+    margin-top:1px;
+    padding:0;
+    background-color:#343030;
+}
+
+#header {
+    background-color:#1f1d1d;
+    background-repeat:no-repeat;
+    background-position:center;
+    height:60px;
+    text-align:center;
+    margin-top:0;
+    padding-top:0;
+    position:fixed;
+    width:1350px;
+}
+
+#footer {
+    background-color:#1f1d1d;
+    height:40px;
+    display:none;
+    padding: 20px 0px 5px 10px;
+    font-family:Impact;
+    font-size: 20px;
+    font-weight: 500;
+    text-align:left;
+    color:rgba(229, 53, 53, 0.91);
+}
+
+#leyenda {
+    padding:0;
+    margin:0;
+}
+
+#regresar {
+    color:rgba(229, 53, 53, 0.91);
+    font-size:40px;
+    padding-top:10px;
+}
+
+#regresar:hover {
+    color:rgb(239, 31, 31);
+}
+
+#salir {
+    float:right;
+    color:rgba(229, 53, 53, 0.91);
+    font-size:40px;
+    padding-top:10px;
+}
+
+#salir:hover {
+    color:rgb(239, 31, 31);
+}
+
+.profile {
+    width:50px;
+    height:50px;
+    float:right;
+    border-radius:50%;
+}
+
+#logo{
+    width:200px;
+    height:60px;
+    float:left;
+}
+
+.cliente {
+    background-color:#fff7c2;
+    margin:0;
+    padding:5px 5px 5px 10px;
+    height:50px;
+    border-bottom: 1px solid #000000;
+    font-family: Impact;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.contenedor {
+    width:100%;
+    color: #000000;
+    display: inline;
+    text-align: left;
+}
+
+.detalles {
+    background-color:#fffbe0;
+    height:200px;
+    border-bottom:1px solid #000000;
+    overflow-y:scroll;
+}
+
+#listapedidos {
+    margin:10px 0px 0px 0px;
+    padding:0;
+}
+
+#listapedidos li {
+    display:inline-block;
+    width:21%;
+    margin-left:10px;
+    margin-bottom:1.5%;
+    margin-top:70px;
+    padding:0;
+    list-style:none;
+    border: 1px solid #000000;
+}
+
+#listaespera {
+    display:none;
+}
+
+.botones {
+    width:100%;
+    text-align:center;
+}
+
+.btEntregar {
+    background-color:#1f1d1d;
+    height:40px;
+    margin:0;
+    width:100%;
+    color:#ffffff;
+    font-family:Impact;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btEntregar:hover {
+    background-color:rgba(229, 53, 53, 0.91);
+}
+
+.estado {
+    /*#035f13*/
+    /*#f7a600*/
+    /*#bb0000*/
+    background-color:#035f13;
+    height:40px;
+    margin:0;
+    padding-left:10px;
+    color:#ffffff;
+    border-bottom: 1px solid #000000;
+    font-family:Impact;
+    font-size: 16px;
+    font-weight: 500;
+    text-align:left;
+}
+
+.id {
+    float:right;
+    font-family:Impact;
+    font-size: 16px;
+    font-weight: 500;
+    padding:10px 20px;
+
+}
+
+.cantidad, .total {
+    float:right;
+    padding-right:10px;
+}
+
+.producto, .precio{
+    border-bottom:0.1px solid #000000;
+}
+
+.total {
+    background-color:rgba(229, 53, 53, 0.91);
+}
+
+.precio {
+    background-color:#fff7c2;
+}
+
+p {
+    margin:0;
+    padding: 15px 0px 10px 10px;
+    font-family:Impact;
+    font-size: 16px;
+    font-weight: 500;
+    
+}
