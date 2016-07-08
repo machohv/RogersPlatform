@@ -24,7 +24,7 @@ function initializeClock(contenedor, estado, endtime, Estados) {
         minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
         secondsSpan.innerHTML = ":" + ('0' + t.seconds).slice(-2);
 
-        if (t.minutes < Estados[1].Time && t.minutes > Estados[2].Time) {
+        if (t.minutes < (Estados[1].Time + Estados[2].Time) && t.minutes > Estados[2].Time) {
             document.getElementById(estado).style.backgroundColor = '#f7a600';
             clock.querySelector('.estados').innerHTML = Estados[1].Name;
         } 
@@ -54,19 +54,13 @@ function iniciar(contenedor, estado) {
 
     function AsignarTiempos(estados) {
 
-        var est = [{ "NAME": "A tiempo", "TIMEASIGNED": 7, "orderStateID": 1 },
-            { "NAME": "Sobre tiempo", "TIMEASIGNED": 5, "orderStateID": 2 },
-            { "NAME": "Demora", "TIMEASIGNED": 3, "orderStateID": 3 },
-            { "NAME": "Entregado", "TIMEASIGNED": 0, "orderStateID": 4 },
-            { "NAME": "Anulado", "TIMEASIGNED": 60, "orderStateID": 5 }];
-
-        $.each(est, function () {
+        $.each(JSON.parse(estados), function () {
             var estado = { Name: this.NAME, Time: this.TIMEASIGNED };
             Estados.push(estado);
         });
 
         var currentTime = Date.parse(new Date());
-        var deadline = new Date(currentTime + Estados[0].Time * 60 * 1000);
+        var deadline = new Date(currentTime + (Estados[0].Time + Estados[1].Time + Estados[2].Time) * 60 * 1000);
 
         initializeClock(contenedor, estado, deadline, Estados);
     };

@@ -21,7 +21,9 @@ function RegresarOrden() {
         var ul = document.getElementById('listapedidos');
         var ulEspera = document.getElementById('listaespera');
 
-        ulEspera.insertBefore(ul.lastElementChild, ulEspera.firstElementChild);
+        var primero = ulEspera.firstElementChild;
+        ulEspera.insertBefore(ul.lastElementChild, primero);
+
     }
 
     var WSSurl = 'http://approgers.azurewebsites.net/Rogers_API.asmx/updateOrderState?orderid=' + IdPedido + '&orderstate=' + 1;

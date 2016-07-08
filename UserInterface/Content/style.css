@@ -76,6 +76,7 @@
     background-color:#fffbe0;
     height:200px;
     border-bottom:1px solid #000000;
+    overflow-y:scroll;
 }
 
 #listapedidos {

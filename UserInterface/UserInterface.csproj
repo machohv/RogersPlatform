@@ -105,7 +105,9 @@
     <Content Include="Administrator\RemoveEmployee.aspx" />
     <Content Include="Administrator\RemovePlate.aspx" />
     <Content Include="Administrator\SetStateTime.aspx" />
+    <Content Include="Cocina\OrderList.aspx" />
     <Content Include="Content\imageGallery.css" />
+    <Content Include="Content\style.css" />
     <Content Include="images\bingLogo.png" />
     <Content Include="images\favicon.ico" />
     <Content Include="packages.config" />
@@ -294,6 +296,13 @@
     </Compile>
     <Compile Include="Administrator\SetStateTime.aspx.designer.cs">
       <DependentUpon>SetStateTime.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocina\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocina\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
