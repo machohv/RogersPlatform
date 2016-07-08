@@ -1,17 +1,21 @@
 ﻿body{
     background: #ffffff;
     margin:0;
+    margin-top:1px;
     padding:0;
     background-color:#343030;
 }
 
 #header {
-    /*background-image: url('../images/logoRogers.jpg');*/
     background-color:#1f1d1d;
     background-repeat:no-repeat;
     background-position:center;
     height:60px;
     text-align:center;
+    margin-top:0;
+    padding-top:0;
+    position:fixed;
+    width:1350px;
 }
 
 #footer {
@@ -38,6 +42,17 @@
 }
 
 #regresar:hover {
+    color:rgb(239, 31, 31);
+}
+
+#salir {
+    float:right;
+    color:rgba(229, 53, 53, 0.91);
+    font-size:40px;
+    padding-top:10px;
+}
+
+#salir:hover {
     color:rgb(239, 31, 31);
 }
 
@@ -89,10 +104,10 @@
     width:21%;
     margin-left:10px;
     margin-bottom:1.5%;
+    margin-top:70px;
     padding:0;
     list-style:none;
     border: 1px solid #000000;
-    
 }
 
 #listaespera {
@@ -144,13 +159,21 @@
 
 }
 
-.cantidad {
+.cantidad, .total {
     float:right;
     padding-right:10px;
 }
 
-.producto{
+.producto, .precio{
     border-bottom:0.1px solid #000000;
+}
+
+.total {
+    background-color:rgba(229, 53, 53, 0.91);
+}
+
+.precio {
+    background-color:#fff7c2;
 }
 
 p {

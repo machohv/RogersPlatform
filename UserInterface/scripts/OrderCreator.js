@@ -17,9 +17,12 @@ function RegresarOrden() {
     document.getElementById(IdPedido).style.display = "inline-block";
     document.getElementById("lastId").value = "clear";
 
+    var ul = document.getElementById('listapedidos');
+    var ulEspera = document.getElementById('listaespera');
+
     if (ul.childElementCount == 11) {
-        var ul = document.getElementById('listapedidos');
-        var ulEspera = document.getElementById('listaespera');
+        alert("Entre");
+        
 
         var primero = ulEspera.firstElementChild;
         ulEspera.insertBefore(ul.lastElementChild, primero);
@@ -137,7 +140,23 @@ function CrearNuevaOrden(ul, pedido) {
             divDetalles.appendChild(cantidad);
             divDetalles.appendChild(producto);
         });
+
     }
+
+    var Precio = document.createElement('p');
+    Precio.className = "total";
+    var cant = document.createTextNode(pedido.TOTAL);
+    Precio.appendChild(cant);
+
+    var Total = document.createElement('p');
+    Total.className = "precio";
+    var detalle = document.createTextNode("TOTAL:");
+    Total.appendChild(detalle);
+
+    var divTotal = document.createElement('div');
+
+    divTotal.appendChild(Precio);
+    divTotal.appendChild(Total);
 
     var divBoton = document.createElement('div');
     divBoton.className = "botones";
@@ -194,6 +213,7 @@ function CrearNuevaOrden(ul, pedido) {
     divContenedor.appendChild(divEstado);
     divContenedor.appendChild(divCliente);
     divContenedor.appendChild(divDetalles);
+    divContenedor.appendChild(divTotal);
     divContenedor.appendChild(divBoton);
 
     li.appendChild(divContenedor);
