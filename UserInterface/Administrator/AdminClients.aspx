@@ -69,7 +69,7 @@
         $("[name='my-checkbox']").bootstrapSwitch();
         $("[name='my-checkbox']").on('switchChange.bootstrapSwitch', function (event, state) {
             var id = this.id;
-            var state = $('#' + id).bootstrapSwitch('state');
+            var state = !$('#' + id).bootstrapSwitch('state');
             console.log(state);
             $.ajax({
                 url: "https://rogersapp.azurewebsites.net/Rogers_API.asmx/changeStateJSON?id=" + id + "&state=" + state,

@@ -79,11 +79,11 @@
             </asp:TemplateField>
 
 
-            <asp:TemplateField HeaderText="Habilitar" ItemStyle-Width="100px" >
+            <asp:TemplateField HeaderText="Deshabilitar" ItemStyle-Width="100px" >
                 <ItemTemplate>
                     <input type="checkbox" data-off-text="NO" data-on-text="SI" data-label-width="50" data-handle-width="50" name="my-checkbox"
                       
-                        <%# (bool)(Eval("isoutofstock")) ? "checked" : ""%>
+                        <%# (bool)(Eval("isoutofstock")) ? "" : "checked"%>
                          id="<%#Eval("PRODUCT_ID")%>">
                 </ItemTemplate>
 
@@ -108,7 +108,7 @@
         $("[name='my-checkbox']").bootstrapSwitch();
         $("[name='my-checkbox']").on('switchChange.bootstrapSwitch', function (event, state) {
             var id = this.id;
-            var state = !$('#' + id).bootstrapSwitch('state');
+            var state = $('#' + id).bootstrapSwitch('state');
             console.log(state);
             $.ajax({
                 url: "https://approgers.azurewebsites.net/Rogers_API.asmx/changeProductStateJSON?id=" + id + "&state=" + state,
