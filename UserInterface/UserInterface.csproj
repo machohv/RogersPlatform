@@ -110,10 +110,6 @@
     <Content Include="Content\style.css" />
     <Content Include="images\bingLogo.png" />
     <Content Include="images\favicon.ico" />
-    <Content Include="obj\Debug\TempPE\Web References.RogersWS.Reference.cs.dll" />
-    <Content Include="obj\Debug\UserInterface.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\UserInterface.dll" />
-    <Content Include="obj\Debug\UserInterface.pdb" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -121,9 +117,6 @@
     <Content Include="Administrator\AdminMP.Master" />
     <Content Include="scripts\BingSearch.js" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
-    <Content Include="scripts\jquery-3.0.0.min.js" />
-    <Content Include="scripts\OrderCreator.js" />
-    <Content Include="scripts\ThreadManagement.js" />
     <Content Include="Web References\RogersWS\Client.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -139,10 +132,7 @@
     <Content Include="Web References\RogersWS\Product.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\UserInterface.csprojResolveAssemblyReference.cache" />
-    <None Include="Properties\PublishProfiles\RogersService.pubxml" />
+    <None Include="Properties\PublishProfiles\RogersRestaurant.pubxml" />
     <None Include="Web References\RogersWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -322,12 +312,6 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

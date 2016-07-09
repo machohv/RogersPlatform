@@ -101,7 +101,7 @@ namespace UserInterface.Administrator
                 string fileName = FileUpload1.FileName;
                 FileUpload1.PostedFile.SaveAs(Server.MapPath(".") + "//../images//" + fileName);
 
-                retorno = "http://rogers.azurewebsites.net/images/" + fileName;
+                retorno = "http://rogersrestaurant.azurewebsites.net/images/" + fileName;
             }
             return retorno;
         }
